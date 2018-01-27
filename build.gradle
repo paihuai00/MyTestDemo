@@ -1,0 +1,41 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.jakewharton:butterknife-gradle-plugin:8.5.1'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    //支持库版本
+    supportVersion = "26.1.0"
+    //编译的SDK版本
+    compileSdkVersion = 26
+    //构建工具的版本，其中包括了打包工具aapt、dx等,如API20对应的build-tool的版本就是20.0.0
+    buildToolsVersion = "26.0.0"
+    //兼容的最低 SDK 版本
+    minSdkVersion = 14
+    //向前兼容，保存新旧两种逻辑，并通过 if-else 方法来判断执行哪种逻辑
+    targetSdkVersion = 26
+}

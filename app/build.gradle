@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    //现在Android Gradle 插件有默认的buildToolsVersion，我们完全可以不设置buildToolsVersion
+    defaultConfig {
+        applicationId "com.csx.mytestdemo"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+//    implementation "com.android.support:support-v4:$rootProject.ext.supportVersion"
+    //mlibrary中已经添加，无需重复添加
+//    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportVersion"
+//    implementation "com.android.support:design:$rootProject.ext.supportVersion"
+
+    implementation project(':mlibrary')
+
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    //RxJava RxAndroid
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    //RxBinding
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+    //permission 6.0 权限管理
+    implementation 'com.github.hotchemi:permissionsdispatcher:3.1.0'
+    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:3.1.0"
+
+    //ButterKnife
+    api 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+
+}
