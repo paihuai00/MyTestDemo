@@ -3,21 +3,16 @@ package com.csx.mytestdemo.rxjava_test;
 import android.os.Environment;
 import android.util.Log;
 
-import com.csx.mlibrary.BaseActivity;
-import com.csx.mlibrary.widget.Utils;
+import com.csx.mlibrary.base.BaseActivity;
+import com.csx.mlibrary.widget.SdCardUtils;
 import com.csx.mytestdemo.R;
-
-import java.io.File;
-import java.sql.Time;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
@@ -231,6 +226,6 @@ public class RxJavaActivity extends BaseActivity {
 
         Log.d(TAG, "图片存储路径: " + this.getExternalFilesDir(Environment.DIRECTORY_PICTURES));
 
-        Log.d(TAG, "外置SD卡的路径: " + Utils.getExtendedMemoryPath(this));
+        Log.d(TAG, "外置SD卡的路径: " + SdCardUtils.getExtendedMemoryPath(this));
     }
 }

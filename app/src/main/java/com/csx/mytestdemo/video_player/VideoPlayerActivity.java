@@ -1,6 +1,6 @@
 package com.csx.mytestdemo.video_player;
 
-import com.csx.mlibrary.BaseActivity;
+import com.csx.mlibrary.base.BaseActivity;
 import com.csx.mytestdemo.R;
 
 /**

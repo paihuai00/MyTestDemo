@@ -1,14 +1,12 @@
 package com.csx.mytestdemo.mvp;
 
-import android.os.Bundle;
 import android.widget.TextView;
 
-import com.csx.mlibrary.BaseActivity;
+import com.csx.mlibrary.base.BaseActivity;
 import com.csx.mytestdemo.R;
 import com.csx.mytestdemo.mvp.base_mvp.UserInfoBean;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * @Created by cuishuxiang

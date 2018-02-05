@@ -41,8 +41,13 @@
             android:text="Video播放"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/drag_rv_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="拖动的RecyclerView"
+            android:textAllCaps="false" />
 
     </LinearLayout>
-
 
 </ScrollView>

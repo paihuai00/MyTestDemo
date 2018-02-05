@@ -1,6 +1,6 @@
 package com.csx.mytestdemo.common_dialog;
 
-import com.csx.mlibrary.BaseActivity;
+import com.csx.mlibrary.base.BaseActivity;
 
 /**
  * @Created by cuishuxiang

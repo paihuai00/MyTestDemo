@@ -1,20 +1,15 @@
 package com.csx.mytestdemo;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
-import com.csx.mlibrary.BaseActivity;
-
+import com.csx.mlibrary.base.BaseActivity;
+import com.csx.mytestdemo.drag_recyclerview.DragActivity;
 import com.csx.mytestdemo.mvp.MvpActivity;
 import com.csx.mytestdemo.rxjava_test.RxJavaActivity;
+
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
@@ -26,6 +21,10 @@ public class MainActivity extends BaseActivity {
     Button mMvpBtn;
     @BindView(R.id.dialog_btn)
     Button mDialogBtn;
+    @BindView(R.id.video_btn)
+    Button mVideoBtn;
+    @BindView(R.id.drag_rv_btn)
+    Button mDragRvBtn;
 
     @Override
     public int getLayoutId() {
@@ -34,15 +33,15 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        
+
     }
-    
+
     @Override
     public void initData() {
 
     }
-    
-    @OnClick({R.id.rxjava_btn, R.id.mvp_btn, R.id.dialog_btn})
+
+    @OnClick({R.id.rxjava_btn, R.id.mvp_btn, R.id.dialog_btn, R.id.video_btn, R.id.drag_rv_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -54,7 +53,11 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.dialog_btn:
                 break;
+            case R.id.video_btn:
+                break;
+            case R.id.drag_rv_btn:
+                startActivity(new Intent(MainActivity.this, DragActivity.class));
+                break;
         }
     }
-
 }

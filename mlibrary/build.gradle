@@ -38,4 +38,8 @@ dependencies {
     //ButterKnife
     api 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+
+
+    //Rv helper：https://www.jianshu.com/p/b343fcff51b0
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
 }

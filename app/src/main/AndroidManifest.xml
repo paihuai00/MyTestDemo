@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.csx.mytestdemo">
+    <!--震动权限-->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".app.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -18,21 +23,29 @@
         </activity>
 
         <!--RxJava测试-->
-        <activity android:name=".rxjava_test.RxJavaActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".rxjava_test.RxJavaActivity"
+            android:screenOrientation="portrait" />
 
         <!--mvp demo-->
-        <activity android:name=".mvp.MvpActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".mvp.MvpActivity"
+            android:screenOrientation="portrait" />
 
         <!--万能dialog-->
-        <activity android:name=".common_dialog.CommonDialogActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".common_dialog.CommonDialogActivity"
+            android:screenOrientation="portrait" />
 
         <!--视频播放-->
-        <activity android:name=".video_player.VideoPlayerActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".video_player.VideoPlayerActivity"
+            android:screenOrientation="portrait" />
 
+        <!--可以拖动/滑动RecyclerView-->
+        <activity
+            android:name=".drag_recyclerview.DragActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

@@ -1,4 +1,4 @@
-package com.csx.mlibrary;
+package com.csx.mlibrary.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

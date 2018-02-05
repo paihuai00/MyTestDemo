@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
  * @date 2018/1/29.
  */
 
-public class Utils {
+public class SdCardUtils {
     /**
      * 获取外置sd卡路径
      * @param mContext
