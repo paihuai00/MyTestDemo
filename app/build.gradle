@@ -45,4 +45,7 @@ dependencies {
     api 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 
+    //视频 ：https://github.com/lipangit/JiaoZiVideoPlayer
+    implementation 'cn.jzvd:jiaozivideoplayer:6.2.7'
+
 }

@@ -35,7 +35,7 @@ ext {
     //构建工具的版本，其中包括了打包工具aapt、dx等,如API20对应的build-tool的版本就是20.0.0
     buildToolsVersion = "26.0.0"
     //兼容的最低 SDK 版本
-    minSdkVersion = 14
+    minSdkVersion = 18
     //向前兼容，保存新旧两种逻辑，并通过 if-else 方法来判断执行哪种逻辑
     targetSdkVersion = 26
 }

@@ -13,11 +13,34 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/rxjava_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAllCaps="false"
             android:text="RxJava测试"
-            android:id="@+id/rxjava_btn"/>
+            android:textAllCaps="false" />
+
+
+        <Button
+            android:id="@+id/mvp_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mvp测试"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/dialog_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="万能dialog"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/video_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Video播放"
+            android:textAllCaps="false" />
+
 
     </LinearLayout>
 

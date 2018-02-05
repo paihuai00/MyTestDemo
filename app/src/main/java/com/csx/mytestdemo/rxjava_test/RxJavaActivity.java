@@ -1,21 +1,26 @@
 package com.csx.mytestdemo.rxjava_test;
 
+import android.os.Environment;
 import android.util.Log;
 
 import com.csx.mlibrary.BaseActivity;
+import com.csx.mlibrary.widget.Utils;
 import com.csx.mytestdemo.R;
 
+import java.io.File;
 import java.sql.Time;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -39,8 +44,34 @@ public class RxJavaActivity extends BaseActivity {
 //        testMethod_1();
 
         //线程控制
-        testScheduler();
-        
+//        testScheduler();
+
+        //操作符
+        testOperate();
+
+
+        //存储目录
+//        testDirectory();
+    }
+
+
+    private void testOperate() {
+        Observable.just("1", "2")
+                .flatMap(new Function<String, ObservableSource<Integer>>() {
+                    @Override
+                    public ObservableSource<Integer> apply(String s) throws Exception {
+
+                        int num_1 = Integer.valueOf(s);
+
+                        return Observable.just(num_1);
+                    }
+                }).subscribe(new Consumer<Integer>() {
+            @Override
+            public void accept(Integer integer) throws Exception {
+                Log.d(TAG, "accept: 接收到 = " + integer);
+            }
+        });
+
     }
 
     private void testScheduler() {
@@ -78,7 +109,6 @@ public class RxJavaActivity extends BaseActivity {
                     }
                 });
 
-        CompositeDisposable
 
     }
 
@@ -185,5 +215,22 @@ public class RxJavaActivity extends BaseActivity {
     @Override
     public void initData() {
 
+    }
+
+    private void testDirectory() {
+        //手机内存
+        Environment.getDataDirectory().getParentFile();
+        Log.d(TAG, "手机内存: " + Environment.getDataDirectory().getParentFile());
+
+        //SD卡
+        Environment.getExternalStorageDirectory();
+        Log.d(TAG, "手机SD卡 : " + Environment.getExternalStorageDirectory());
+
+        //私有存储
+        Log.d(TAG, "缓存路径: " + this.getExternalCacheDir());
+
+        Log.d(TAG, "图片存储路径: " + this.getExternalFilesDir(Environment.DIRECTORY_PICTURES));
+
+        Log.d(TAG, "外置SD卡的路径: " + Utils.getExtendedMemoryPath(this));
     }
 }
