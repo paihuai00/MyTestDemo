@@ -121,7 +121,7 @@ public class CommonDialog extends Dialog {
         }
 
         /**
-         * 设置View的点击事情
+         * 设置View的点击事情，使用SparseArray存储view的点击事件
          *
          * @param viewId
          * @param onClickListener
@@ -182,7 +182,7 @@ public class CommonDialog extends Dialog {
         }
 
         /**
-         * 自己添加一个 style
+         * 添加一个 style动画
          *
          * @param styleAnimation
          * @return

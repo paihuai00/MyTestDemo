@@ -72,9 +72,6 @@ public class DialogController {
         mDialogViewHelper.setText(viewId, charSequence);
     }
 
-
-
-
     public static class DialogParams {
         public Context mContext;
         public int mThemeResId;
@@ -99,7 +96,7 @@ public class DialogController {
         public int mHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
         //动画
         public int mAnimation = 0;
-        //位置
+        //位置：default center
         public int mGravity = Gravity.CENTER;
 
 
@@ -129,7 +126,7 @@ public class DialogController {
 
             }
 
-            //设置viewhelper
+            //设置viewHelper
             mAlert.setDialogViewHelper(viewHelper);
 
             //setContentView 必须调用

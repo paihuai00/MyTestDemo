@@ -91,7 +91,7 @@ class DialogViewHelper {
      * @param onClickListener
      */
     public void setOnClickListener(int viewId, View.OnClickListener onClickListener) {
-        View mView = getView(viewId);;
+        View mView = getView(viewId);
         if (mView != null)
             mView.setOnClickListener(onClickListener);
     }
