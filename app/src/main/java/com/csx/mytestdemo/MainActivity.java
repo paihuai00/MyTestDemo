@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.csx.mlibrary.base.BaseActivity;
+import com.csx.mytestdemo.common_dialog.CommonDialogActivity;
 import com.csx.mytestdemo.drag_recyclerview.DragActivity;
 import com.csx.mytestdemo.mvp.MvpActivity;
 import com.csx.mytestdemo.rxjava_test.RxJavaActivity;
@@ -52,6 +53,7 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(MainActivity.this, MvpActivity.class));
                 break;
             case R.id.dialog_btn:
+                startActivity(new Intent(MainActivity.this, CommonDialogActivity.class));
                 break;
             case R.id.video_btn:
                 break;
