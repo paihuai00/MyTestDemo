@@ -68,7 +68,7 @@ public class AudioActivity extends BaseActivity {
      * 参考:https://github.com/adrielcafe/AndroidAudioConverter
      *
      * 转换为MP3格式，有个坑；录音的输出格式，最好不要是 MPEG_4
-     * 可以设置为default ，后缀为 wav / arm ;这样转换出来的MP3 在ios上也是可以播放的
+     * 可以设置为default ，后缀为 wav / amr ;这样转换出来的MP3 在ios上也是可以播放的
      */
     private boolean isTurnMp3 = true;
 

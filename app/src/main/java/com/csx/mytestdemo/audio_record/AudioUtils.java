@@ -27,7 +27,7 @@ public class AudioUtils {
     //生成的录音文件
     private File audioFile;
     //文件名：为了避免重复，使用时间戳 (后缀，可以根据格式 改变为 mp4  wav等)
-    private String fileName = System.currentTimeMillis() + "_audio.arm";
+    private String fileName = System.currentTimeMillis() + "_audio.amr";
     //文件目录 ：默认为私有目录
     private String fileDir;
 
