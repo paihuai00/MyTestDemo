@@ -48,6 +48,13 @@
             android:text="拖动的RecyclerView"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/audio_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="录音demo"
+            android:textAllCaps="false" />
+
     </LinearLayout>
 
 </ScrollView>

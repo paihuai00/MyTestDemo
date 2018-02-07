@@ -21,13 +21,11 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-//    implementation "com.android.support:support-v4:$rootProject.ext.supportVersion"
+    //    implementation "com.android.support:support-v4:$rootProject.ext.supportVersion"
     //mlibrary中已经添加，无需重复添加
-//    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportVersion"
-//    implementation "com.android.support:design:$rootProject.ext.supportVersion"
-
+    //    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportVersion"
+    //    implementation "com.android.support:design:$rootProject.ext.supportVersion"
     implementation project(':mlibrary')
-
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
@@ -40,12 +38,15 @@ dependencies {
     //permission 6.0 权限管理
     implementation 'com.github.hotchemi:permissionsdispatcher:3.1.0'
     annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:3.1.0"
-
     //ButterKnife
     api 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-
     //视频 ：https://github.com/lipangit/JiaoZiVideoPlayer
     implementation 'cn.jzvd:jiaozivideoplayer:6.2.7'
+
+
+    //此库，为了解决android录音无法转换为MP3  详情见AudioActivity
+    implementation 'com.github.adrielcafe:AndroidAudioConverter:0.0.8'
+
 
 }
