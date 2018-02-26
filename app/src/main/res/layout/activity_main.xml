@@ -55,6 +55,14 @@
             android:text="录音demo"
             android:textAllCaps="false" />
 
+
+        <Button
+            android:id="@+id/bottom_bar_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="底部导航栏(有消息红点)"
+            android:textAllCaps="false" />
+
     </LinearLayout>
 
 </ScrollView>

@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import com.csx.mlibrary.base.BaseActivity;
 import com.csx.mytestdemo.audio_record.AudioActivity;
+import com.csx.mytestdemo.bottom_bar.BottomBarActivity;
 import com.csx.mytestdemo.common_dialog.CommonDialogActivity;
 import com.csx.mytestdemo.drag_recyclerview.DragActivity;
 import com.csx.mytestdemo.mvp.MvpActivity;
@@ -31,6 +32,8 @@ public class MainActivity extends BaseActivity {
     Button mDragRvBtn;
     @BindView(R.id.audio_btn)
     Button mAudioBtn;
+    @BindView(R.id.bottom_bar_btn)
+    Button mBottomBarBtn;
 
     @Override
     public int getLayoutId() {
@@ -47,8 +50,7 @@ public class MainActivity extends BaseActivity {
 
     }
 
-
-    @OnClick({R.id.rxjava_btn, R.id.mvp_btn, R.id.dialog_btn, R.id.video_btn, R.id.drag_rv_btn, R.id.audio_btn})
+    @OnClick({R.id.rxjava_btn, R.id.mvp_btn, R.id.dialog_btn, R.id.video_btn, R.id.drag_rv_btn, R.id.audio_btn, R.id.bottom_bar_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -68,7 +70,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.audio_btn:
                 startActivity(new Intent(MainActivity.this, AudioActivity.class));
-
+                break;
+            case R.id.bottom_bar_btn:
+                startActivity(new Intent(MainActivity.this, BottomBarActivity.class));
                 break;
         }
     }
