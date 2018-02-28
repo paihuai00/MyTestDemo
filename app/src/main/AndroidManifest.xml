@@ -77,6 +77,11 @@
             android:name=".broadcast_test.BroadCastActivity"
             android:screenOrientation="portrait" />
 
+
+        <!--View 手势，速度检测-->
+        <activity android:name=".view_gesture_velocity.GestureVelocityActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

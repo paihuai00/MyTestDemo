@@ -13,6 +13,7 @@ import com.csx.mytestdemo.common_dialog.CommonDialogActivity;
 import com.csx.mytestdemo.drag_recyclerview.DragActivity;
 import com.csx.mytestdemo.mvp.MvpActivity;
 import com.csx.mytestdemo.rxjava_test.RxJavaActivity;
+import com.csx.mytestdemo.view_gesture_velocity.GestureVelocityActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +38,8 @@ public class MainActivity extends BaseActivity {
     Button mBottomBarBtn;
     @BindView(R.id.broadcast_btn)
     Button mBroadcastBtn;
+    @BindView(R.id.gesture_velocity_btn)
+    Button mGestureVelocityBtn;
 
     @Override
     public int getLayoutId() {
@@ -53,7 +56,7 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.rxjava_btn, R.id.mvp_btn, R.id.dialog_btn, R.id.video_btn, R.id.drag_rv_btn, R.id.audio_btn, R.id.bottom_bar_btn, R.id.broadcast_btn})
+    @OnClick({R.id.mvp_btn, R.id.dialog_btn, R.id.video_btn, R.id.drag_rv_btn, R.id.audio_btn, R.id.bottom_bar_btn, R.id.broadcast_btn, R.id.gesture_velocity_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -79,6 +82,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.broadcast_btn:
                 startActivity(new Intent(MainActivity.this, BroadCastActivity.class));
+                break;
+            case R.id.gesture_velocity_btn:
+                startActivity(new Intent(MainActivity.this, GestureVelocityActivity.class));
                 break;
         }
     }
