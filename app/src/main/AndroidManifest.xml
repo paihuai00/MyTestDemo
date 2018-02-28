@@ -54,11 +54,27 @@
             android:screenOrientation="portrait" />
 
         <!--录音demo-->
-        <activity android:name=".audio_record.AudioActivity"
+        <activity
+            android:name=".audio_record.AudioActivity"
             android:screenOrientation="portrait" />
 
         <!--底部导航栏-->
-        <activity android:name=".bottom_bar.BottomBarActivity"
+        <activity
+            android:name=".bottom_bar.BottomBarActivity"
+            android:screenOrientation="portrait" />
+
+
+        <!--广播接收器,静态注册(8.0+ 不支持静态)-->
+        <!--<receiver android:name=".broadcast_test.StandardReceiver">-->
+            <!--<intent-filter>-->
+
+                <!--&lt;!&ndash;添加标识：STANDRAD_BROADCASR 发送的广播，包含此标识，才会被接收&ndash;&gt;-->
+                <!--<action android:name="com.csx.mytestdemo" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
+
+        <activity
+            android:name=".broadcast_test.BroadCastActivity"
             android:screenOrientation="portrait" />
 
     </application>

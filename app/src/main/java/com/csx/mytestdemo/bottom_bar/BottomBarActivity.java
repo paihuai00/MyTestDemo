@@ -31,6 +31,7 @@ import butterknife.ButterKnife;
  */
 
 public class BottomBarActivity extends BaseActivity {
+    private static final String TAG = "BottomBarActivity";
     @BindView(R.id.vp_content)
     ViewPager mVpContent;
     @BindView(R.id.bbl)
@@ -49,44 +50,44 @@ public class BottomBarActivity extends BaseActivity {
     public void initView() {
         BottomBarFragment homeFragment = new BottomBarFragment();
         Bundle bundle1 = new Bundle();
-        bundle1.putString(BottomBarFragment.CONTENT,"首页");
+        bundle1.putString(BottomBarFragment.CONTENT, "首页");
         homeFragment.setArguments(bundle1);
         mFragmentList.add(homeFragment);
 
         BottomBarFragment videoFragment = new BottomBarFragment();
         Bundle bundle2 = new Bundle();
-        bundle2.putString(BottomBarFragment.CONTENT,"视频");
+        bundle2.putString(BottomBarFragment.CONTENT, "视频");
         videoFragment.setArguments(bundle2);
         mFragmentList.add(videoFragment);
 
         BottomBarFragment microFragment = new BottomBarFragment();
         Bundle bundle3 = new Bundle();
-        bundle3.putString(BottomBarFragment.CONTENT,"微头条");
+        bundle3.putString(BottomBarFragment.CONTENT, "微头条");
         microFragment.setArguments(bundle3);
         mFragmentList.add(microFragment);
 
         BottomBarFragment meFragment = new BottomBarFragment();
         Bundle bundle4 = new Bundle();
-        bundle4.putString(BottomBarFragment.CONTENT,"我的");
+        bundle4.putString(BottomBarFragment.CONTENT, "我的");
         meFragment.setArguments(bundle4);
         mFragmentList.add(meFragment);
     }
 
     @Override
     public void initData() {
-
         initListener();
     }
+
     private void initListener() {
         mVpContent.setAdapter(new MyAdapter(getSupportFragmentManager()));
         mBottomBarLayout.setViewPager(mVpContent);
         mBottomBarLayout.setOnItemSelectedListener(new BottomBarLayout.OnItemSelectedListener() {
             @Override
             public void onItemSelected(final BottomBarItem bottomBarItem, int position) {
-                Log.i("MainActivity","position: " + position);
-                if (position == 0){
+                Log.d(TAG, "onItemSelected: " + position);
+                if (position == 0) {
                     //如果是第一个，即首页
-                    if (mBottomBarLayout.getCurrentItem() == position){
+                    if (mBottomBarLayout.getCurrentItem() == position) {
                         //如果是在原来位置上点击,更换首页图标并播放旋转动画
                         bottomBarItem.setIconSelectedResourceId(R.drawable.tab_loading);//更换成加载图标
                         bottomBarItem.setStatus(true);
@@ -111,7 +112,7 @@ public class BottomBarActivity extends BaseActivity {
                                 bottomBarItem.setStatus(true);//刷新图标
                                 cancelTabLoading(bottomBarItem);
                             }
-                        },3000);
+                        }, 3000);
                         return;
                     }
                 }
@@ -124,16 +125,18 @@ public class BottomBarActivity extends BaseActivity {
             }
         });
 
-        mBottomBarLayout.setUnread(0,20);//设置第一个页签的未读数为20
-        mBottomBarLayout.setUnread(1,1001);//设置第二个页签的未读数
+        mBottomBarLayout.setUnread(0, 20);//设置第一个页签的未读数为20
+        mBottomBarLayout.setUnread(1, 1001);//设置第二个页签的未读数
         mBottomBarLayout.showNotify(2);//设置第三个页签显示提示的小红点
-        mBottomBarLayout.setMsg(3,"NEW");//设置第四个页签显示NEW提示文字
+        mBottomBarLayout.setMsg(3, "NEW");//设置第四个页签显示NEW提示文字
     }
 
-    /**停止首页页签的旋转动画*/
+    /**
+     * 停止首页页签的旋转动画
+     */
     private void cancelTabLoading(BottomBarItem bottomItem) {
         Animation animation = bottomItem.getImageView().getAnimation();
-        if (animation != null){
+        if (animation != null) {
             animation.cancel();
         }
     }
