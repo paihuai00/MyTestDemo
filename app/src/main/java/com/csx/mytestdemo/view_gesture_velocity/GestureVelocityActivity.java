@@ -1,7 +1,5 @@
 package com.csx.mytestdemo.view_gesture_velocity;
 
-import android.os.Bundle;
-import android.support.v4.view.GestureDetectorCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -14,7 +12,6 @@ import com.csx.mlibrary.base.BaseActivity;
 import com.csx.mytestdemo.R;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * @Created by cuishuxiang
@@ -24,7 +21,7 @@ import butterknife.ButterKnife;
  */
 
 public class GestureVelocityActivity extends BaseActivity
-        implements GestureVelocityView.RetuenEventLog,
+        implements GestureVelocityView.ReturnEventLog,
         GestureDetector.OnGestureListener,
         GestureDetector.OnDoubleTapListener {
     private static final String TAG = "GestureVelocityActivity";
@@ -49,7 +46,7 @@ public class GestureVelocityActivity extends BaseActivity
 
     @Override
     public void initView() {
-        mGvView.setRetuenEventLog(this);
+        mGvView.setReturnEventLog(this);
 
         mGestureDetector = new GestureDetector(this, this);
         //检测双击
@@ -67,6 +64,20 @@ public class GestureVelocityActivity extends BaseActivity
         });
 
 
+        mGvView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Log.d("GestureVelocityView", "OnTouchListener  -> " + event.getAction());
+                return false;
+            }
+        });
+
+//        mGvView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.d("GestureVelocityView", "----> onClick: ");
+//            }
+//        });
     }
 
     @Override
@@ -140,6 +151,13 @@ public class GestureVelocityActivity extends BaseActivity
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
         Log.d(TAG, "onFling: ");
         return true;
+    }
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        Log.d(TAG, "onTouchEvent: " + event.getAction());
+        return super.onTouchEvent(event);
     }
 
 }

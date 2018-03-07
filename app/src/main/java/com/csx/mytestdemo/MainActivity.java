@@ -1,5 +1,6 @@
 package com.csx.mytestdemo;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,8 @@ import com.csx.mytestdemo.drag_recyclerview.DragActivity;
 import com.csx.mytestdemo.mvp.MvpActivity;
 import com.csx.mytestdemo.rxjava_test.RxJavaActivity;
 import com.csx.mytestdemo.view_gesture_velocity.GestureVelocityActivity;
+import com.csx.mytestdemo.view_touch_nine.NineDotActivity;
+import com.csx.mytestdemo.view_touch_scroll.TouchScrollActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +43,10 @@ public class MainActivity extends BaseActivity {
     Button mBroadcastBtn;
     @BindView(R.id.gesture_velocity_btn)
     Button mGestureVelocityBtn;
+    @BindView(R.id.nice_dot_btn)
+    Button mNiceDotBtn;
+    @BindView(R.id.touch_scroll_btn)
+    Button mTouchScrollBtn;
 
     @Override
     public int getLayoutId() {
@@ -56,7 +63,8 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.mvp_btn, R.id.dialog_btn, R.id.video_btn, R.id.drag_rv_btn, R.id.audio_btn, R.id.bottom_bar_btn, R.id.broadcast_btn, R.id.gesture_velocity_btn})
+    @OnClick({R.id.mvp_btn, R.id.dialog_btn, R.id.video_btn, R.id.drag_rv_btn, R.id.touch_scroll_btn,
+            R.id.audio_btn, R.id.bottom_bar_btn, R.id.broadcast_btn, R.id.gesture_velocity_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -86,6 +94,13 @@ public class MainActivity extends BaseActivity {
             case R.id.gesture_velocity_btn:
                 startActivity(new Intent(MainActivity.this, GestureVelocityActivity.class));
                 break;
+            case R.id.nice_dot_btn:
+                startActivity(new Intent(MainActivity.this, NineDotActivity.class));
+                break;
+            case R.id.touch_scroll_btn:
+                startActivity(new Intent(MainActivity.this, TouchScrollActivity.class));
+                break;
         }
     }
+
 }

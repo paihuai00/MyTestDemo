@@ -16,12 +16,12 @@ import android.view.View;
  */
 
 public class GestureVelocityView extends View {
-    private static final String TAG = "GesutureVelocityView";
+    private static final String TAG = "GestureVelocityView";
 
-    public RetuenEventLog mRetuenEventLog;
+    public ReturnEventLog mReturnEventLog;
 
-    public void setRetuenEventLog(RetuenEventLog mRetuenEventLog) {
-        this.mRetuenEventLog = mRetuenEventLog;
+    public void setReturnEventLog(ReturnEventLog mReturnEventLog) {
+        this.mReturnEventLog = mReturnEventLog;
     }
 
     public GestureVelocityView(Context context) {
@@ -36,27 +36,25 @@ public class GestureVelocityView extends View {
         super(context, attrs, defStyleAttr);
     }
 
-
     @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        Log.d(TAG, "dispatchTouchEvent: ----> " + event.getAction());
+        return super.dispatchTouchEvent(event);
+    }
+
+
+        @Override
     public boolean onTouchEvent(MotionEvent event) {
+        Log.d(TAG, "onTouchEvent: ----> " + event.getAction());
         int action = event.getAction();
 
         calculateVelocity(event);
-
-
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-
                 printLogs("MotionEvent.ACTION_DOWN");
-
-
                 break;
             case MotionEvent.ACTION_MOVE:
-
                 printLogs("MotionEvent.ACTION_MOVE");
-
-
-
                 break;
             case MotionEvent.ACTION_UP:
                 printLogs("MotionEvent.ACTION_UP");
@@ -66,9 +64,6 @@ public class GestureVelocityView extends View {
 //                }
                 break;
         }
-
-
-
         return true;
     }
 
@@ -108,12 +103,12 @@ public class GestureVelocityView extends View {
      * @param info
      */
     private void printLogs(String info) {
-        if (mRetuenEventLog==null) return;
+        if (mReturnEventLog ==null) return;
 
-        mRetuenEventLog.eventLog(info);
+        mReturnEventLog.eventLog(info);
     }
 
-    public interface RetuenEventLog{
+    public interface ReturnEventLog {
         void eventLog(String eventInfo);
     }
 

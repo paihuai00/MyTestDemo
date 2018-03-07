@@ -82,6 +82,13 @@
         <activity android:name=".view_gesture_velocity.GestureVelocityActivity"
             android:screenOrientation="portrait" />
 
+         <!--View 九宫格解锁-->
+        <activity android:name=".view_touch_nine.NineDotActivity"
+            android:screenOrientation="portrait" />
+
+        <!--滑动冲突-->
+        <activity android:name=".view_touch_scroll.TouchScrollActivity" />
+
     </application>
 
 </manifest>

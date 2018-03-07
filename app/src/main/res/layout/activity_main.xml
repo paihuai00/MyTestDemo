@@ -77,6 +77,21 @@
             android:text="View，手势/速度"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/nice_dot_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="九宫格解锁(Touch)"
+            android:textAllCaps="false" />
+
+
+        <Button
+            android:id="@+id/touch_scroll_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="滑动冲突(Touch)"
+            android:textAllCaps="false" />
+
     </LinearLayout>
 
 </ScrollView>
