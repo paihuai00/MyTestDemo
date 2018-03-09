@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: "com.mob.sdk"
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -50,4 +51,45 @@ dependencies {
 
     //底部导航栏(含消息红点)  http://blog.csdn.net/chay_chan/article/details/73715607
     implementation 'com.github.chaychan:BottomBarLayout:1.0.8'
+}
+// 在MobSDK的扩展中注册ShareSDK的相关信息
+MobSDK {
+    appKey "d580ad56b4b5"
+    appSecret "7fcae59a62342e7e2759e9e397c82bdd"
+
+    ShareSDK {
+        devInfo {
+            //微博
+            SinaWeibo {
+                appKey "2014710567"
+                appSecret "bf6c0477c5c01f45dcb1c732d9f87faa"
+                callbackUri "http://www.sharesdk.cn"
+                shareByAppClient false
+            }
+            //微信
+            Wechat {
+                appKey "wx20e1b2f497fbafdb"
+                appSecret "1e056a7c3b486ad23fbe6b84a4669bc7"
+                shareByAppClient false  //bypassApproval表示是否绕过审核
+                shareByAppClient true //shareByAppClient标识是否使用客户端分享
+                enable true
+            }
+            //朋友圈
+            WechatMoments {
+                appKey "wx20e1b2f497fbafdb"
+                appSecret "1e056a7c3b486ad23fbe6b84a4669bc7"
+                shareByAppClient true
+                enable true
+            }
+            //QQ
+            QQ {
+                appKey "1106516063"
+                appSecret "GyrYdts0JZtDRlsH"
+                bypassApproval false
+                shareByAppClient true
+                enable true
+            }
+
+        }
+    }
 }

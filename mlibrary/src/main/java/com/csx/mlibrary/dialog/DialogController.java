@@ -92,7 +92,7 @@ public class DialogController {
         //存储点击事件
         public SparseArray<View.OnClickListener> mListenerArray = new SparseArray<>();
         //默认宽度，自适应
-        public int mWidth = ViewGroup.LayoutParams.WRAP_CONTENT;
+        public int mWidth = ViewGroup.LayoutParams.MATCH_PARENT;
         public int mHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
         //动画
         public int mAnimation = 0;

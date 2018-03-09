@@ -19,7 +19,6 @@
             android:text="RxJava测试"
             android:textAllCaps="false" />
 
-
         <Button
             android:id="@+id/mvp_btn"
             android:layout_width="match_parent"
@@ -90,6 +89,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="滑动冲突(Touch)"
+            android:textAllCaps="false" />
+
+
+        <Button
+            android:id="@+id/share_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ShareSdk(mob)"
             android:textAllCaps="false" />
 
     </LinearLayout>

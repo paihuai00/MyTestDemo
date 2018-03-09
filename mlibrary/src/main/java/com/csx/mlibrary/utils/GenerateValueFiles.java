@@ -1,4 +1,4 @@
-package com.csx.mytestdemo.screen_fit;
+package com.csx.mlibrary.utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,11 +7,13 @@ import java.io.PrintWriter;
 
 /**
  * @Created by cuishuxiang
- * @date 2018/2/26.
+ * @date 2018/3/7.
+ * @description: 生成不同分辨率的Values文件夹
+ *
+ * 鸿洋适配屏幕，工具类；
  */
 
 public class GenerateValueFiles {
-
     private int baseW;
     private int baseH;
 
@@ -25,7 +27,7 @@ public class GenerateValueFiles {
      */
     private final static String VALUE_TEMPLATE = "values-{0}x{1}";
 
-    private static final String SUPPORT_DIMESION = "320,480;480,800;480,854;540,960;600,1024;720,1184;720,1196;720,1280;768,1024;800,1280;1080,1812;1080,1920;1440,2560;";
+    private static final String SUPPORT_DIMESION = "320,480;480,800;480,854;540,960;600,1024;720,1184;720,1196;720,1280;768,1024;768,1280;800,1280;1080,1812;1080,1920;1440,2560;";
 
     private String supportStr = SUPPORT_DIMESION;
 
@@ -142,8 +144,9 @@ public class GenerateValueFiles {
     }
 
     public static void main(String[] args) {
-        int baseW = 320;
-        int baseH = 400;
+        //修改基准为  1080 *  1920
+        int baseW = 1080;
+        int baseH = 1920;
         String addition = "";
         try {
             if (args.length >= 3) {
