@@ -156,6 +156,10 @@
             android:exported="true"
             android:screenOrientation="portrait" />
 
+
+        <!--Scroller 仿ViewPager滑动-->
+        <activity android:name=".scroller_view.ScrollerActivity" />
+
     </application>
 
 </manifest>

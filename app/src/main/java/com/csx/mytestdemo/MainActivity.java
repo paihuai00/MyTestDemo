@@ -12,6 +12,7 @@ import com.csx.mytestdemo.bottom_bar.BottomBarActivity;
 import com.csx.mytestdemo.broadcast_test.BroadCastActivity;
 import com.csx.mytestdemo.common_dialog.CommonDialogActivity;
 import com.csx.mytestdemo.drag_recyclerview.DragActivity;
+import com.csx.mytestdemo.scroller_view.ScrollerActivity;
 import com.csx.mytestdemo.share_mob.ShareActivity;
 import com.csx.mytestdemo.mvp.MvpActivity;
 import com.csx.mytestdemo.rxjava_test.RxJavaActivity;
@@ -49,6 +50,8 @@ public class MainActivity extends BaseActivity {
     Button mTouchScrollBtn;
     @BindView(R.id.share_btn)
     Button mShareBtn;
+    @BindView(R.id.scroller_btn)
+    Button mScrollBtn;
 
     @Override
     public int getLayoutId() {
@@ -74,7 +77,7 @@ public class MainActivity extends BaseActivity {
     @OnClick({R.id.mvp_btn, R.id.dialog_btn, R.id.video_btn, R.id.drag_rv_btn, R.id.touch_scroll_btn,
             R.id.audio_btn, R.id.bottom_bar_btn,
             R.id.broadcast_btn, R.id.gesture_velocity_btn,
-            R.id.share_btn})
+            R.id.share_btn, R.id.scroller_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -113,6 +116,11 @@ public class MainActivity extends BaseActivity {
             case R.id.share_btn:
                 startActivity(new Intent(MainActivity.this, ShareActivity.class));
                 break;
+            case R.id.scroller_btn:
+                startActivity(new Intent(MainActivity.this, ScrollerActivity.class));
+                break;
+
+
         }
     }
 

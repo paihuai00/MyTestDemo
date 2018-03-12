@@ -99,6 +99,13 @@
             android:text="ShareSdk(mob)"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/scroller_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Scroller实现ViewPager效果"
+            android:textAllCaps="false" />
+
     </LinearLayout>
 
 </ScrollView>

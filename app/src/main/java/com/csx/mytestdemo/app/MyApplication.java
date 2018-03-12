@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.csx.mlibrary.utils.Utils;
+import com.mob.MobSDK;
 
 import cafe.adriel.androidaudioconverter.AndroidAudioConverter;
 import cafe.adriel.androidaudioconverter.callback.ILoadCallback;
@@ -21,7 +22,15 @@ public class MyApplication extends Application {
         Utils.init(this);
 
 
-        //初始化，为了解决android录音无法转换成mp3
+        initAudio();
+
+    }
+
+    /**
+     * 为了解决android录音无法转换成mp3
+     */
+    private void initAudio() {
+        //初始化，
         AndroidAudioConverter.load(this, new ILoadCallback() {
             @Override
             public void onSuccess() {
@@ -34,5 +43,6 @@ public class MyApplication extends Application {
                 Log.d(TAG, "AndroidAudioConverter -> error: ");
             }
         });
+        
     }
 }
