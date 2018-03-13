@@ -81,17 +81,21 @@ public class SlidingMenu extends HorizontalScrollView {
 
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            Log.d(TAG, "onFling: velocityX = " + velocityX);
+//            Log.d(TAG, "onFling: velocityX = " + velocityX + "  velocityY = " + velocityY);
             //  velocityX > 0 向右快速滑动
             //  velocityX < 0 向左快速滑动
 
+            //判断是否是 X 方向的快速滑动
+            boolean isXScroll = Math.abs(velocityX) > Math.abs(velocityY);
             if (isMenuOpen) {
-                if (velocityX < 0) {
+                //屏蔽Y方向的快速滑动
+                if (velocityX < 0 && isXScroll) {
                     closeMenu();
                     return true;
                 }
             } else {
-                if (velocityX > 0) {
+                if (velocityX > 0 && isXScroll) {
+
                     openMenu();
                     return true;
                 }
@@ -101,13 +105,19 @@ public class SlidingMenu extends HorizontalScrollView {
         }
     };
 
-
+    /**
+     * 当菜单打开，点击右侧时，关闭菜单
+     * @param ev
+     * @return
+     */
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        if (getScrollX() <= menuWidth / 2) {
+        if (isMenuOpen) {
             // i此时菜单处于打开状态
             if (ev.getX() > menuWidth) {
                 //按下的点，大于菜单的范围，拦截事件
+                //此处返回 true ，表示子View接收不到事件；
+                //将事件交由自己的 onTouchEvent处理
                 return true;
             }
         }
@@ -124,6 +134,7 @@ public class SlidingMenu extends HorizontalScrollView {
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         if (mGestureDetector.onTouchEvent(ev)) {
+            //处理快速滑动。
             return true;
         }
 
