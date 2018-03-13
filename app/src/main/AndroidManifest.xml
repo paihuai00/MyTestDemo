@@ -160,6 +160,8 @@
         <!--Scroller 仿ViewPager滑动-->
         <activity android:name=".scroller_view.ScrollerActivity" />
 
+        <!--仿 酷狗，侧滑菜单-->
+        <activity android:name=".view_slide_menu.SlideMenuActivity" />
     </application>
 
 </manifest>

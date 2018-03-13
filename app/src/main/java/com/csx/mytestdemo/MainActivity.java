@@ -1,6 +1,7 @@
 package com.csx.mytestdemo;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -12,15 +13,17 @@ import com.csx.mytestdemo.bottom_bar.BottomBarActivity;
 import com.csx.mytestdemo.broadcast_test.BroadCastActivity;
 import com.csx.mytestdemo.common_dialog.CommonDialogActivity;
 import com.csx.mytestdemo.drag_recyclerview.DragActivity;
-import com.csx.mytestdemo.scroller_view.ScrollerActivity;
-import com.csx.mytestdemo.share_mob.ShareActivity;
 import com.csx.mytestdemo.mvp.MvpActivity;
 import com.csx.mytestdemo.rxjava_test.RxJavaActivity;
+import com.csx.mytestdemo.scroller_view.ScrollerActivity;
+import com.csx.mytestdemo.share_mob.ShareActivity;
 import com.csx.mytestdemo.view_gesture_velocity.GestureVelocityActivity;
+import com.csx.mytestdemo.view_slide_menu.SlideMenuActivity;
 import com.csx.mytestdemo.view_touch_nine.NineDotActivity;
 import com.csx.mytestdemo.view_touch_scroll.TouchScrollActivity;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
@@ -52,6 +55,8 @@ public class MainActivity extends BaseActivity {
     Button mShareBtn;
     @BindView(R.id.scroller_btn)
     Button mScrollBtn;
+    @BindView(R.id.slide_menu_btn)
+    Button mSlideMenuBtn;
 
     @Override
     public int getLayoutId() {
@@ -77,7 +82,7 @@ public class MainActivity extends BaseActivity {
     @OnClick({R.id.mvp_btn, R.id.dialog_btn, R.id.video_btn, R.id.drag_rv_btn, R.id.touch_scroll_btn,
             R.id.audio_btn, R.id.bottom_bar_btn,
             R.id.broadcast_btn, R.id.gesture_velocity_btn,
-            R.id.share_btn, R.id.scroller_btn})
+            R.id.share_btn, R.id.scroller_btn, R.id.slide_menu_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -118,6 +123,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.scroller_btn:
                 startActivity(new Intent(MainActivity.this, ScrollerActivity.class));
+                break;
+            case R.id.slide_menu_btn:
+                startActivity(new Intent(MainActivity.this, SlideMenuActivity.class));
                 break;
 
 
