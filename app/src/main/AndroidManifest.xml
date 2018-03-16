@@ -162,6 +162,9 @@
 
         <!--仿 酷狗，侧滑菜单-->
         <activity android:name=".view_slide_menu.SlideMenuActivity" />
+
+        <!--webservice ksoap 使用-->
+        <activity android:name=".ksoap_webservice.KsoapActivity" />
     </application>
 
 </manifest>

@@ -18,6 +18,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    defaultConfig {
+        multiDexEnabled true
+    }
+
 }
 
 dependencies {
@@ -36,6 +41,15 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     //RxBinding
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+    //Retrofit2
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    //Retrofit 支持Rxjava 的支持库
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+    //gson解析器
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    //okhttp + 拦截器
+    implementation 'com.squareup.okhttp3:okhttp:3.4.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     //permission 6.0 权限管理
     implementation 'com.github.hotchemi:permissionsdispatcher:3.1.0'
     annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:3.1.0"
@@ -44,13 +58,11 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     //视频 ：https://github.com/lipangit/JiaoZiVideoPlayer
     implementation 'cn.jzvd:jiaozivideoplayer:6.2.7'
-
-
     //此库，为了解决android录音无法转换为MP3  详情见AudioActivity
     implementation 'com.github.adrielcafe:AndroidAudioConverter:0.0.8'
-
     //底部导航栏(含消息红点)  http://blog.csdn.net/chay_chan/article/details/73715607
     implementation 'com.github.chaychan:BottomBarLayout:1.0.8'
+    implementation files('libs/ksoap2-android-assembly-2.4-jar-with-dependencies.jar')
 }
 // 在MobSDK的扩展中注册ShareSDK的相关信息
 MobSDK {

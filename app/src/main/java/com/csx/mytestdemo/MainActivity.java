@@ -13,6 +13,7 @@ import com.csx.mytestdemo.bottom_bar.BottomBarActivity;
 import com.csx.mytestdemo.broadcast_test.BroadCastActivity;
 import com.csx.mytestdemo.common_dialog.CommonDialogActivity;
 import com.csx.mytestdemo.drag_recyclerview.DragActivity;
+import com.csx.mytestdemo.ksoap_webservice.KsoapActivity;
 import com.csx.mytestdemo.mvp.MvpActivity;
 import com.csx.mytestdemo.rxjava_test.RxJavaActivity;
 import com.csx.mytestdemo.scroller_view.ScrollerActivity;
@@ -57,6 +58,9 @@ public class MainActivity extends BaseActivity {
     Button mScrollBtn;
     @BindView(R.id.slide_menu_btn)
     Button mSlideMenuBtn;
+    @BindView(R.id.ksoap_btn)
+    Button mKsoapBtn;
+
 
     @Override
     public int getLayoutId() {
@@ -79,10 +83,10 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.mvp_btn, R.id.dialog_btn, R.id.video_btn, R.id.drag_rv_btn, R.id.touch_scroll_btn,
-            R.id.audio_btn, R.id.bottom_bar_btn,
-            R.id.broadcast_btn, R.id.gesture_velocity_btn,
-            R.id.share_btn, R.id.scroller_btn, R.id.slide_menu_btn})
+    @OnClick({R.id.rxjava_btn, R.id.mvp_btn, R.id.dialog_btn, R.id.video_btn,
+            R.id.drag_rv_btn, R.id.touch_scroll_btn, R.id.audio_btn, R.id.bottom_bar_btn,
+            R.id.broadcast_btn, R.id.gesture_velocity_btn, R.id.share_btn,
+            R.id.scroller_btn, R.id.slide_menu_btn, R.id.ksoap_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -127,7 +131,9 @@ public class MainActivity extends BaseActivity {
             case R.id.slide_menu_btn:
                 startActivity(new Intent(MainActivity.this, SlideMenuActivity.class));
                 break;
-
+            case R.id.ksoap_btn:
+                startActivity(new Intent(MainActivity.this, KsoapActivity.class));
+                break;
 
         }
     }
