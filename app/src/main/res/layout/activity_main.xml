@@ -120,6 +120,18 @@
             android:text="WebService(Ksoap使用)"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/gson_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gson解释"
+            android:textAllCaps="false" />
+
+        <com.csx.mytestdemo.DragImageView
+            android:id="@+id/draw_iv"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y200"
+            />
     </LinearLayout>
 
 </ScrollView>

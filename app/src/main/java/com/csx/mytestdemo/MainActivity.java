@@ -1,6 +1,7 @@
 package com.csx.mytestdemo;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -13,6 +14,7 @@ import com.csx.mytestdemo.bottom_bar.BottomBarActivity;
 import com.csx.mytestdemo.broadcast_test.BroadCastActivity;
 import com.csx.mytestdemo.common_dialog.CommonDialogActivity;
 import com.csx.mytestdemo.drag_recyclerview.DragActivity;
+import com.csx.mytestdemo.gson_test.GsonActivity;
 import com.csx.mytestdemo.ksoap_webservice.KsoapActivity;
 import com.csx.mytestdemo.mvp.MvpActivity;
 import com.csx.mytestdemo.rxjava_test.RxJavaActivity;
@@ -60,6 +62,10 @@ public class MainActivity extends BaseActivity {
     Button mSlideMenuBtn;
     @BindView(R.id.ksoap_btn)
     Button mKsoapBtn;
+    @BindView(R.id.draw_iv)
+    DragImageView mDrawIv;
+    @BindView(R.id.gson_btn)
+    Button mGsonBtn;
 
 
     @Override
@@ -72,21 +78,30 @@ public class MainActivity extends BaseActivity {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         float dpi = displayMetrics.densityDpi;
+        Log.d(TAG, "设备dpi = " + dpi);
+
+        float widthPixels = displayMetrics.widthPixels;
+        float heightPixels = displayMetrics.heightPixels;
+
+        Log.d(TAG, "initView: widthPixels = " + widthPixels + "   heightPixels = " + heightPixels);
     }
 
     @Override
     public void initData() {
-        DisplayMetrics mDisplayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(mDisplayMetrics);
-        float dpi = mDisplayMetrics.densityDpi;
-        Log.d(TAG, "设备dpi = " + dpi);
 
+
+
+        Drawable drawable = getResources().getDrawable(R.drawable.ic_qq);
+
+        mDrawIv.setImageDrawable(drawable);
+        mDrawIv.setmActivity(this);
+        mDrawIv.doScaleAnim();
     }
 
     @OnClick({R.id.rxjava_btn, R.id.mvp_btn, R.id.dialog_btn, R.id.video_btn,
             R.id.drag_rv_btn, R.id.touch_scroll_btn, R.id.audio_btn, R.id.bottom_bar_btn,
             R.id.broadcast_btn, R.id.gesture_velocity_btn, R.id.share_btn,
-            R.id.scroller_btn, R.id.slide_menu_btn, R.id.ksoap_btn})
+            R.id.scroller_btn, R.id.slide_menu_btn, R.id.ksoap_btn, R.id.gson_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -100,8 +115,6 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(MainActivity.this, CommonDialogActivity.class));
                 break;
             case R.id.video_btn:
-                break;
-            case R.id.drag_rv_btn:
                 startActivity(new Intent(MainActivity.this, DragActivity.class));
                 break;
             case R.id.audio_btn:
@@ -133,6 +146,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.ksoap_btn:
                 startActivity(new Intent(MainActivity.this, KsoapActivity.class));
+                break;
+            case R.id.gson_btn:
+                startActivity(new Intent(MainActivity.this, GsonActivity.class));
                 break;
 
         }

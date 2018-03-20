@@ -165,6 +165,9 @@
 
         <!--webservice ksoap 使用-->
         <activity android:name=".ksoap_webservice.KsoapActivity" />
+
+        <!--Gson-->
+        <activity android:name=".gson_test.GsonActivity" />
     </application>
 
 </manifest>
