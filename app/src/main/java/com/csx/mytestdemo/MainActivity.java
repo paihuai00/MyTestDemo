@@ -3,15 +3,19 @@ package com.csx.mytestdemo;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.csx.mlibrary.base.BaseActivity;
+import com.csx.mlibrary.utils.SharedPreferencesUtils;
 import com.csx.mytestdemo.audio_record.AudioActivity;
 import com.csx.mytestdemo.bottom_bar.BottomBarActivity;
 import com.csx.mytestdemo.broadcast_test.BroadCastActivity;
+import com.csx.mytestdemo.butterknife_test.ButterKnifeActivity;
 import com.csx.mytestdemo.common_dialog.CommonDialogActivity;
 import com.csx.mytestdemo.drag_recyclerview.DragActivity;
 import com.csx.mytestdemo.gson_test.GsonActivity;
@@ -62,8 +66,8 @@ public class MainActivity extends BaseActivity {
     Button mSlideMenuBtn;
     @BindView(R.id.ksoap_btn)
     Button mKsoapBtn;
-    @BindView(R.id.draw_iv)
-    DragImageView mDrawIv;
+    @BindView(R.id.bf_btn)
+    Button mBfBtn;
     @BindView(R.id.gson_btn)
     Button mGsonBtn;
 
@@ -84,24 +88,21 @@ public class MainActivity extends BaseActivity {
         float heightPixels = displayMetrics.heightPixels;
 
         Log.d(TAG, "initView: widthPixels = " + widthPixels + "   heightPixels = " + heightPixels);
+
+        Log.d(TAG, "initView: 核心线程数：" + Runtime.getRuntime().availableProcessors());
+
     }
 
     @Override
     public void initData() {
 
-
-
-        Drawable drawable = getResources().getDrawable(R.drawable.ic_qq);
-
-        mDrawIv.setImageDrawable(drawable);
-        mDrawIv.setmActivity(this);
-        mDrawIv.doScaleAnim();
     }
 
     @OnClick({R.id.rxjava_btn, R.id.mvp_btn, R.id.dialog_btn, R.id.video_btn,
             R.id.drag_rv_btn, R.id.touch_scroll_btn, R.id.audio_btn, R.id.bottom_bar_btn,
             R.id.broadcast_btn, R.id.gesture_velocity_btn, R.id.share_btn,
-            R.id.scroller_btn, R.id.slide_menu_btn, R.id.ksoap_btn, R.id.gson_btn})
+            R.id.scroller_btn, R.id.slide_menu_btn, R.id.ksoap_btn, R.id.gson_btn,
+            R.id.bf_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -149,6 +150,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.gson_btn:
                 startActivity(new Intent(MainActivity.this, GsonActivity.class));
+                break;
+            case R.id.bf_btn:
+                startActivity(new Intent(MainActivity.this, ButterKnifeActivity.class));
                 break;
 
         }

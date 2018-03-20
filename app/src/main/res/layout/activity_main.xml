@@ -127,11 +127,14 @@
             android:text="Gson解释"
             android:textAllCaps="false" />
 
-        <com.csx.mytestdemo.DragImageView
-            android:id="@+id/draw_iv"
-            android:layout_width="@dimen/x200"
-            android:layout_height="@dimen/y200"
-            />
+        <Button
+            android:id="@+id/bf_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ButterKnife用法 "
+            android:textAllCaps="false" />
+
+
     </LinearLayout>
 
 </ScrollView>

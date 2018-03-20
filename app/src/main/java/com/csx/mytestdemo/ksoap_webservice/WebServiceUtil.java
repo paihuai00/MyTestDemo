@@ -24,7 +24,8 @@ import java.util.concurrent.Executors;
 
 public class WebServiceUtil {
     private static String jsonData;
-    private final static int CURRENT_VERSION = SoapEnvelope.VER11;
+    private final static int SOAP_VERSION = SoapEnvelope.VER11;
+    private static boolean isSupportDotNet = true;//是否支持.net
 
     // 含有3个线程的线程池
     private static final ExecutorService executorService = Executors
@@ -50,9 +51,9 @@ public class WebServiceUtil {
 
         // 实例化SoapSerializationEnvelope，传入WebService的SOAP协议的版本号
         final SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(
-                CURRENT_VERSION);
+                SOAP_VERSION);
 
-        soapEnvelope.dotNet = true;//设置是否调用的是.Net开发的WebService
+        soapEnvelope.dotNet = isSupportDotNet;//设置是否调用的是.Net开发的WebService
         soapEnvelope.bodyOut = soapObject;
 
 

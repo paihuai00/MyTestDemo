@@ -168,6 +168,9 @@
 
         <!--Gson-->
         <activity android:name=".gson_test.GsonActivity" />
+
+        <!--butterKnife-->
+        <activity android:name=".butterknife_test.ButterKnifeActivity" />
     </application>
 
 </manifest>
