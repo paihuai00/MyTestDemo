@@ -6,6 +6,9 @@ import android.util.Log;
 import com.csx.mlibrary.base.BaseActivity;
 import com.csx.mlibrary.widget.SdCardUtils;
 import com.csx.mytestdemo.R;
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -17,6 +20,9 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * @Created by cuishuxiang
@@ -47,6 +53,43 @@ public class RxJavaActivity extends BaseActivity {
 
         //存储目录
 //        testDirectory();
+
+        initRetrofit();
+    }
+
+    private void initRetrofit() {
+
+        //创建 okhttp
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(1000, TimeUnit.MILLISECONDS)
+                .build();
+
+        //创建retrofit
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://api.juheapi.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .client(client)
+                .build();
+
+        ApiService apiService = retrofit.create(ApiService.class);
+
+        String key = "8bd460e1802adb477698a4a2bae65cde";
+        String v = "1.0";
+        String month = "11";
+        String day = "1";
+
+        //数据请求
+        apiService.getUserInfo("japi",key, v, month, day)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<NewsBean>() {
+            @Override
+            public void accept(NewsBean newsBean) throws Exception {
+                Log.d(TAG, "accept: " + newsBean.toString());
+            }
+        });
+
     }
 
 
@@ -144,6 +187,7 @@ public class RxJavaActivity extends BaseActivity {
         //被观察者 -- > 订阅 观察者
 //        observable.subscribe(observer);
 
+        //调用此方法订阅，随便 上游发什么，都不接收
         observable.subscribe();
         /**
          * subscribe 两个参数的方法。
