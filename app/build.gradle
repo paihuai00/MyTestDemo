@@ -63,6 +63,9 @@ dependencies {
     //底部导航栏(含消息红点)  http://blog.csdn.net/chay_chan/article/details/73715607
     implementation 'com.github.chaychan:BottomBarLayout:1.0.8'
     implementation files('libs/ksoap2-android-assembly-2.4-jar-with-dependencies.jar')
+
+    //流式布局
+    implementation 'com.hyman:flowlayout-lib:1.1.2'
 }
 // 在MobSDK的扩展中注册ShareSDK的相关信息
 MobSDK {

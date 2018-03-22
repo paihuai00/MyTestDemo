@@ -15,7 +15,7 @@ import com.csx.mlibrary.R;
 /**
  * @Created by cuishuxiang
  * @date 2018/2/5.
- * 构建万能的dialog
+ * 构建common的dialog
  */
 
 public class CommonDialog extends Dialog {

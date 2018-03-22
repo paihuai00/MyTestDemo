@@ -45,7 +45,7 @@ public class ButterKnifeActivity extends BaseActivity {
     }
 
     @OnTextChanged({R.id.bf_et})
-    public void onTextChanged(View view, CharSequence s, int start, int before, int count) {
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
         Log.d(TAG, "onTextChange: butterknife = " + s + "  start = " + start + " before = " + before + " count = " + count);
 
         ToastUtils.showShortToast(s);

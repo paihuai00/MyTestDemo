@@ -171,6 +171,9 @@
 
         <!--butterKnife-->
         <activity android:name=".butterknife_test.ButterKnifeActivity" />
+
+        <!--流式标签-->
+        <activity android:name=".flow_view.FlowActivity" />
     </application>
 
 </manifest>

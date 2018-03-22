@@ -134,6 +134,13 @@
             android:text="ButterKnife用法 "
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/flow_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="流式标签"
+            android:textAllCaps="false" />
+
 
     </LinearLayout>
 

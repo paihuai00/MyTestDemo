@@ -18,6 +18,7 @@ import com.csx.mytestdemo.broadcast_test.BroadCastActivity;
 import com.csx.mytestdemo.butterknife_test.ButterKnifeActivity;
 import com.csx.mytestdemo.common_dialog.CommonDialogActivity;
 import com.csx.mytestdemo.drag_recyclerview.DragActivity;
+import com.csx.mytestdemo.flow_view.FlowActivity;
 import com.csx.mytestdemo.gson_test.GsonActivity;
 import com.csx.mytestdemo.ksoap_webservice.KsoapActivity;
 import com.csx.mytestdemo.mvp.MvpActivity;
@@ -70,6 +71,8 @@ public class MainActivity extends BaseActivity {
     Button mBfBtn;
     @BindView(R.id.gson_btn)
     Button mGsonBtn;
+    @BindView(R.id.flow_btn)
+    Button mFlowBtn;
 
 
     @Override
@@ -102,7 +105,7 @@ public class MainActivity extends BaseActivity {
             R.id.drag_rv_btn, R.id.touch_scroll_btn, R.id.audio_btn, R.id.bottom_bar_btn,
             R.id.broadcast_btn, R.id.gesture_velocity_btn, R.id.share_btn,
             R.id.scroller_btn, R.id.slide_menu_btn, R.id.ksoap_btn, R.id.gson_btn,
-            R.id.bf_btn})
+            R.id.bf_btn, R.id.flow_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -153,6 +156,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.bf_btn:
                 startActivity(new Intent(MainActivity.this, ButterKnifeActivity.class));
+                break;
+            case R.id.flow_btn:
+                startActivity(new Intent(MainActivity.this, FlowActivity.class));
                 break;
 
         }
