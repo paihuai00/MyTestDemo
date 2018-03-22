@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: "com.mob.sdk"
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion 26
     //现在Android Gradle 插件有默认的buildToolsVersion，我们完全可以不设置buildToolsVersion
     defaultConfig {
         applicationId "com.csx.mytestdemo"

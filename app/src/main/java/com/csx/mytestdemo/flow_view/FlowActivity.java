@@ -6,9 +6,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.csx.mlibrary.base.BaseActivity;
+import com.csx.mlibrary.dialog.CommonDialog;
 import com.csx.mlibrary.utils.ToastUtils;
 import com.csx.mytestdemo.R;
 import com.zhy.view.flowlayout.FlowLayout;
@@ -21,6 +23,7 @@ import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @Created by cuishuxiang
@@ -36,6 +39,9 @@ public class FlowActivity extends BaseActivity {
     @BindView(R.id.flow_layout)
     TagFlowLayout mFlowLayout;
 
+    @BindView(R.id.show_flow_dialog_btn)
+    Button mShowFlowLayoutBtn;
+
     private String mNames[] = {
             "welcome", "android", "TextView",
             "apple", "jamy", "kobe bryant",
@@ -45,6 +51,10 @@ public class FlowActivity extends BaseActivity {
     };
 
     List<String> mStringList = new ArrayList<>();
+
+    List<PersonBean> personBeanList;
+
+    CommonDialog showFlowLayoutDialog;
 
     @Override
     public int getLayoutId() {
@@ -103,7 +113,45 @@ public class FlowActivity extends BaseActivity {
 //
 //            }
 //        });
-    }
 
+         personBeanList = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            PersonBean personBean = new PersonBean();
+            personBean.setAge(String.valueOf(i));
+            personBean.setName("" + i);
+            personBeanList.add(personBean);
+        }
+
+        View view = mInflater.inflate(R.layout.dialog_flow_layout, null);
+
+        TagFlowLayout tagFlowLayout = view.findViewById(R.id.flow_layout);
+
+        showFlowLayoutDialog = new CommonDialog.Builder(this)
+                .setContentView(view)
+                .create();
+
+        tagFlowLayout.setAdapter(new TagAdapter<PersonBean>(personBeanList) {
+            @Override
+            public View getView(FlowLayout parent, int position, PersonBean o) {
+                Log.d(TAG, "getView: " + personBeanList.get(position));
+                TextView textView = (TextView) mInflater.inflate(R.layout.item_flow_tv,parent, false);
+                textView.setText(personBeanList.get(position).getName());
+                return textView;
+            }
+        });
+
+        tagFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
+            @Override
+            public boolean onTagClick(View view, int position, FlowLayout parent) {
+                ToastUtils.showLongToast(mStringList.get(position));
+                return false;
+            }
+        });
+
+    }
+    @OnClick(R.id.show_flow_dialog_btn)
+    public void onViewClicked() {
+        showFlowLayoutDialog.show();
+    }
 
 }

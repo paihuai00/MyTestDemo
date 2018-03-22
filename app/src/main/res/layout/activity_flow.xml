@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_height="match_parent">
 
     <com.csx.mytestdemo.flow_view.XCFlowLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/flow_views"></com.csx.mytestdemo.flow_view.XCFlowLayout>
+        android:layout_height="200px"
+        android:id="@+id/flow_views"
+        ></com.csx.mytestdemo.flow_view.XCFlowLayout>
 
 
 
@@ -15,6 +17,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="20dp"
+        app:max_select="1"
         android:background="@color/light_gray"
         android:id="@+id/flow_layout"></com.zhy.view.flowlayout.TagFlowLayout>
-</RelativeLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="弹出流式弹框"
+        android:id="@+id/show_flow_dialog_btn"/>
+
+</LinearLayout>
