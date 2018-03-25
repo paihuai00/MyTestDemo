@@ -1,17 +1,12 @@
 package com.csx.mytestdemo;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.csx.mlibrary.base.BaseActivity;
-import com.csx.mlibrary.utils.SharedPreferencesUtils;
 import com.csx.mytestdemo.audio_record.AudioActivity;
 import com.csx.mytestdemo.bottom_bar.BottomBarActivity;
 import com.csx.mytestdemo.broadcast_test.BroadCastActivity;
@@ -20,6 +15,7 @@ import com.csx.mytestdemo.common_dialog.CommonDialogActivity;
 import com.csx.mytestdemo.drag_recyclerview.DragActivity;
 import com.csx.mytestdemo.flow_view.FlowActivity;
 import com.csx.mytestdemo.gson_test.GsonActivity;
+import com.csx.mytestdemo.state_inner_bar.StatusBarActivity;
 import com.csx.mytestdemo.ksoap_webservice.KsoapActivity;
 import com.csx.mytestdemo.mvp.MvpActivity;
 import com.csx.mytestdemo.rxjava_test.RxJavaActivity;
@@ -31,7 +27,6 @@ import com.csx.mytestdemo.view_touch_nine.NineDotActivity;
 import com.csx.mytestdemo.view_touch_scroll.TouchScrollActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
@@ -73,6 +68,8 @@ public class MainActivity extends BaseActivity {
     Button mGsonBtn;
     @BindView(R.id.flow_btn)
     Button mFlowBtn;
+    @BindView(R.id.state_bar_btn)
+    Button mStateBarBtn;
 
 
     @Override
@@ -105,7 +102,7 @@ public class MainActivity extends BaseActivity {
             R.id.drag_rv_btn, R.id.touch_scroll_btn, R.id.audio_btn, R.id.bottom_bar_btn,
             R.id.broadcast_btn, R.id.gesture_velocity_btn, R.id.share_btn,
             R.id.scroller_btn, R.id.slide_menu_btn, R.id.ksoap_btn, R.id.gson_btn,
-            R.id.bf_btn, R.id.flow_btn})
+            R.id.bf_btn, R.id.flow_btn, R.id.state_bar_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -159,6 +156,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.flow_btn:
                 startActivity(new Intent(MainActivity.this, FlowActivity.class));
+                break;
+            case R.id.state_bar_btn:
+                startActivity(new Intent(MainActivity.this, StatusBarActivity.class));
                 break;
 
         }
