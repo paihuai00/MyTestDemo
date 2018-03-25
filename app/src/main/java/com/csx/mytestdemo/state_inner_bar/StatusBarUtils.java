@@ -1,4 +1,4 @@
-package com.csx.mydemo;
+package com.csx.mytestdemo.state_inner_bar;
 
 import android.app.Activity;
 import android.content.res.Resources;
