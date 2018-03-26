@@ -1,4 +1,4 @@
-package com.csx.mytestdemo.state_inner_bar;
+package com.csx.mytestdemo.immerse_state_bar;
 
 import android.app.Activity;
 import android.content.res.Resources;
@@ -62,10 +62,15 @@ public class StatusBarUtils {
         {
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
+
+        if (activity.getActionBar() != null && activity.getActionBar().isShowing()) {
+            activity.getActionBar().hide();
+        }
+
     }
 
     /**
-     * 状态栏高度
+     * 获取 状态栏高度
      *
      * 单位：px
      */

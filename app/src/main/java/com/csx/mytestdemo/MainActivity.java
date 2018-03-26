@@ -15,12 +15,13 @@ import com.csx.mytestdemo.common_dialog.CommonDialogActivity;
 import com.csx.mytestdemo.drag_recyclerview.DragActivity;
 import com.csx.mytestdemo.flow_view.FlowActivity;
 import com.csx.mytestdemo.gson_test.GsonActivity;
-import com.csx.mytestdemo.state_inner_bar.StatusBarActivity;
+import com.csx.mytestdemo.immerse_state_bar.StatusBarActivity;
 import com.csx.mytestdemo.ksoap_webservice.KsoapActivity;
 import com.csx.mytestdemo.mvp.MvpActivity;
 import com.csx.mytestdemo.rxjava_test.RxJavaActivity;
 import com.csx.mytestdemo.scroller_view.ScrollerActivity;
 import com.csx.mytestdemo.share_mob.ShareActivity;
+import com.csx.mytestdemo.thread_test.ThreadActivity;
 import com.csx.mytestdemo.view_gesture_velocity.GestureVelocityActivity;
 import com.csx.mytestdemo.view_slide_menu.SlideMenuActivity;
 import com.csx.mytestdemo.view_touch_nine.NineDotActivity;
@@ -70,6 +71,8 @@ public class MainActivity extends BaseActivity {
     Button mFlowBtn;
     @BindView(R.id.state_bar_btn)
     Button mStateBarBtn;
+    @BindView(R.id.asynctask_btn)
+    Button mAsyncTaskBtn;
 
 
     @Override
@@ -102,7 +105,7 @@ public class MainActivity extends BaseActivity {
             R.id.drag_rv_btn, R.id.touch_scroll_btn, R.id.audio_btn, R.id.bottom_bar_btn,
             R.id.broadcast_btn, R.id.gesture_velocity_btn, R.id.share_btn,
             R.id.scroller_btn, R.id.slide_menu_btn, R.id.ksoap_btn, R.id.gson_btn,
-            R.id.bf_btn, R.id.flow_btn, R.id.state_bar_btn})
+            R.id.bf_btn, R.id.flow_btn, R.id.state_bar_btn, R.id.asynctask_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -159,6 +162,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.state_bar_btn:
                 startActivity(new Intent(MainActivity.this, StatusBarActivity.class));
+                break;
+            case R.id.asynctask_btn:
+                startActivity(new Intent(MainActivity.this, ThreadActivity.class));
                 break;
 
         }

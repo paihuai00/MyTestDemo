@@ -176,7 +176,10 @@
         <activity android:name=".flow_view.FlowActivity" />
 
         <!--沉浸式状态栏-->
-        <activity android:name=".state_inner_bar.StatusBarActivity" />
+        <activity android:name=".immerse_state_bar.StatusBarActivity" />
+
+        <!--线程AsyncTask-->
+        <activity android:name=".thread_test.ThreadActivity" />
     </application>
 
 </manifest>
