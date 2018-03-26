@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_ll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <ScrollView
+        android:layout_width="0px"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="#0D000000">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/scroll_input_et_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="可滑动，测试软键盘1" />
+
+            <EditText
+                android:id="@+id/scroll_input_et_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y200"
+                android:hint="可滑动，测试软键盘2" />
+
+
+            <EditText
+                android:id="@+id/scroll_input_et_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y200"
+                android:hint="可滑动，测试软键盘3" />
+
+
+            <EditText
+                android:id="@+id/scroll_input_et_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y200"
+                android:hint="可滑动，测试软键盘4" />
+
+
+            <EditText
+                android:id="@+id/scroll_input_et_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y200"
+                android:hint="可滑动，测试软键盘5" />
+
+            <EditText
+                android:id="@+id/scroll_input_et_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y200"
+                android:hint="可滑动，测试软键盘6" />
+
+
+            <EditText
+                android:id="@+id/scroll_input_et_7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y200"
+                android:hint="可滑动，测试软键盘7" />
+        </LinearLayout>
+    </ScrollView>
+
+
+    <LinearLayout
+        android:layout_width="0px"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/input_et_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="不可滑动，测试软键盘1" />
+
+        <EditText
+            android:id="@+id/input_et_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y200"
+            android:hint="不可滑动，测试软键盘2" />
+
+
+        <EditText
+            android:id="@+id/input_et_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y200"
+            android:hint="不可滑动，测试软键盘3" />
+
+
+        <EditText
+            android:id="@+id/input_et_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y200"
+            android:hint="不可滑动，测试软键盘4" />
+
+
+        <EditText
+            android:id="@+id/input_et_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y200"
+            android:hint="不可滑动，测试软键盘5" />
+    </LinearLayout>
+
+
+</LinearLayout>

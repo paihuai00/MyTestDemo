@@ -16,6 +16,7 @@ import com.csx.mytestdemo.drag_recyclerview.DragActivity;
 import com.csx.mytestdemo.flow_view.FlowActivity;
 import com.csx.mytestdemo.gson_test.GsonActivity;
 import com.csx.mytestdemo.immerse_state_bar.StatusBarActivity;
+import com.csx.mytestdemo.keyboard_test.KeyBoardActivity;
 import com.csx.mytestdemo.ksoap_webservice.KsoapActivity;
 import com.csx.mytestdemo.mvp.MvpActivity;
 import com.csx.mytestdemo.rxjava_test.RxJavaActivity;
@@ -73,6 +74,8 @@ public class MainActivity extends BaseActivity {
     Button mStateBarBtn;
     @BindView(R.id.asynctask_btn)
     Button mAsyncTaskBtn;
+    @BindView(R.id.keyboard_btn)
+    Button mKeyBoardBtn;
 
 
     @Override
@@ -105,7 +108,7 @@ public class MainActivity extends BaseActivity {
             R.id.drag_rv_btn, R.id.touch_scroll_btn, R.id.audio_btn, R.id.bottom_bar_btn,
             R.id.broadcast_btn, R.id.gesture_velocity_btn, R.id.share_btn,
             R.id.scroller_btn, R.id.slide_menu_btn, R.id.ksoap_btn, R.id.gson_btn,
-            R.id.bf_btn, R.id.flow_btn, R.id.state_bar_btn, R.id.asynctask_btn})
+            R.id.bf_btn, R.id.flow_btn, R.id.state_bar_btn, R.id.asynctask_btn, R.id.keyboard_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -166,7 +169,9 @@ public class MainActivity extends BaseActivity {
             case R.id.asynctask_btn:
                 startActivity(new Intent(MainActivity.this, ThreadActivity.class));
                 break;
-
+            case R.id.keyboard_btn:
+                startActivity(new Intent(MainActivity.this, KeyBoardActivity.class));
+                break;
         }
     }
 
