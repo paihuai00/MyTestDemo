@@ -27,6 +27,7 @@ import com.csx.mytestdemo.view_gesture_velocity.GestureVelocityActivity;
 import com.csx.mytestdemo.view_slide_menu.SlideMenuActivity;
 import com.csx.mytestdemo.view_touch_nine.NineDotActivity;
 import com.csx.mytestdemo.view_touch_scroll.TouchScrollActivity;
+import com.csx.mytestdemo.wifi_demo.WifiActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -76,7 +77,8 @@ public class MainActivity extends BaseActivity {
     Button mAsyncTaskBtn;
     @BindView(R.id.keyboard_btn)
     Button mKeyBoardBtn;
-
+    @BindView(R.id.wifi_btn)
+    Button mWifiBtn;
 
     @Override
     public int getLayoutId() {
@@ -108,7 +110,8 @@ public class MainActivity extends BaseActivity {
             R.id.drag_rv_btn, R.id.touch_scroll_btn, R.id.audio_btn, R.id.bottom_bar_btn,
             R.id.broadcast_btn, R.id.gesture_velocity_btn, R.id.share_btn,
             R.id.scroller_btn, R.id.slide_menu_btn, R.id.ksoap_btn, R.id.gson_btn,
-            R.id.bf_btn, R.id.flow_btn, R.id.state_bar_btn, R.id.asynctask_btn, R.id.keyboard_btn})
+            R.id.bf_btn, R.id.flow_btn, R.id.state_bar_btn, R.id.asynctask_btn, R.id.keyboard_btn,
+            R.id.wifi_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -172,6 +175,10 @@ public class MainActivity extends BaseActivity {
             case R.id.keyboard_btn:
                 startActivity(new Intent(MainActivity.this, KeyBoardActivity.class));
                 break;
+            case R.id.wifi_btn:
+                startActivity(new Intent(MainActivity.this, WifiActivity.class));
+                break;
+
         }
     }
 

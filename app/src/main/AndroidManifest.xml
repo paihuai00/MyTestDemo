@@ -188,7 +188,10 @@
         <!--键盘-->
         <activity
             android:name=".keyboard_test.KeyBoardActivity"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--wifi -->
+        <activity android:name=".wifi_demo.WifiActivity" />
 
     </application>
 

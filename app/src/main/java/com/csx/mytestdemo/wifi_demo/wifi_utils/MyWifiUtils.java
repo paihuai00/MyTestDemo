@@ -1,10 +1,11 @@
-package com.csx.mytestdemo.wifi_demo;
+package com.csx.mytestdemo.wifi_demo.wifi_utils;
 
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
@@ -537,7 +538,7 @@ public class MyWifiUtils {
         mFilter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION); //wifi状态，是否连上，密码
         mFilter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION); //是不是正在获得IP地址
         mFilter.addAction(WifiManager.NETWORK_IDS_CHANGED_ACTION);
-//        mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         context.registerReceiver(wifiBoardCastReceiver, mFilter);
         isRegister = true;
     }

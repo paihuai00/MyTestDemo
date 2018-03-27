@@ -1,4 +1,4 @@
-package com.csx.mytestdemo.wifi_demo;
+package com.csx.mytestdemo.wifi_demo.wifi_utils;
 
 import android.net.wifi.ScanResult;
 

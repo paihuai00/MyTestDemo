@@ -163,6 +163,13 @@
             android:text="键盘处理"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/wifi_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Wifi 连接"
+            android:textAllCaps="false" />
+
     </LinearLayout>
 
 </ScrollView>
