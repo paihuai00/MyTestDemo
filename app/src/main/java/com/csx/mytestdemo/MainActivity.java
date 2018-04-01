@@ -1,5 +1,6 @@
 package com.csx.mytestdemo;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -106,6 +107,7 @@ public class MainActivity extends BaseActivity {
 
     }
 
+
     @OnClick({R.id.rxjava_btn, R.id.mvp_btn, R.id.dialog_btn, R.id.video_btn,
             R.id.drag_rv_btn, R.id.touch_scroll_btn, R.id.audio_btn, R.id.bottom_bar_btn,
             R.id.broadcast_btn, R.id.gesture_velocity_btn, R.id.share_btn,
@@ -115,71 +117,79 @@ public class MainActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
-                Intent intent = new Intent(MainActivity.this, RxJavaActivity.class);
-                startActivity(intent);
+                openActivity(RxJavaActivity.class);
                 break;
             case R.id.mvp_btn:
-                startActivity(new Intent(MainActivity.this, MvpActivity.class));
+                openActivity(MvpActivity.class);
                 break;
             case R.id.dialog_btn:
-                startActivity(new Intent(MainActivity.this, CommonDialogActivity.class));
+                openActivity(CommonDialogActivity.class);
                 break;
             case R.id.video_btn:
-                startActivity(new Intent(MainActivity.this, DragActivity.class));
+                openActivity(DragActivity.class);
                 break;
             case R.id.audio_btn:
-                startActivity(new Intent(MainActivity.this, AudioActivity.class));
+                openActivity(AudioActivity.class);
                 break;
             case R.id.bottom_bar_btn:
-                startActivity(new Intent(MainActivity.this, BottomBarActivity.class));
+                openActivity(BottomBarActivity.class);
                 break;
             case R.id.broadcast_btn:
-                startActivity(new Intent(MainActivity.this, BroadCastActivity.class));
+                openActivity(BroadCastActivity.class);
                 break;
             case R.id.gesture_velocity_btn:
-                startActivity(new Intent(MainActivity.this, GestureVelocityActivity.class));
+                openActivity(GestureVelocityActivity.class);
                 break;
             case R.id.nice_dot_btn:
-                startActivity(new Intent(MainActivity.this, NineDotActivity.class));
+                openActivity(NineDotActivity.class);
                 break;
             case R.id.touch_scroll_btn:
-                startActivity(new Intent(MainActivity.this, TouchScrollActivity.class));
+                openActivity(TouchScrollActivity.class);
                 break;
             case R.id.share_btn:
-                startActivity(new Intent(MainActivity.this, ShareActivity.class));
+                openActivity(ShareActivity.class);
                 break;
             case R.id.scroller_btn:
-                startActivity(new Intent(MainActivity.this, ScrollerActivity.class));
+                openActivity(ScrollerActivity.class);
                 break;
             case R.id.slide_menu_btn:
-                startActivity(new Intent(MainActivity.this, SlideMenuActivity.class));
+                openActivity(SlideMenuActivity.class);
                 break;
             case R.id.ksoap_btn:
-                startActivity(new Intent(MainActivity.this, KsoapActivity.class));
+                openActivity(KsoapActivity.class);
                 break;
             case R.id.gson_btn:
-                startActivity(new Intent(MainActivity.this, GsonActivity.class));
+                openActivity(GsonActivity.class);
                 break;
             case R.id.bf_btn:
-                startActivity(new Intent(MainActivity.this, ButterKnifeActivity.class));
+                openActivity(ButterKnifeActivity.class);
                 break;
             case R.id.flow_btn:
-                startActivity(new Intent(MainActivity.this, FlowActivity.class));
+                openActivity(FlowActivity.class);
                 break;
             case R.id.state_bar_btn:
-                startActivity(new Intent(MainActivity.this, StatusBarActivity.class));
+                openActivity(StatusBarActivity.class);
                 break;
             case R.id.asynctask_btn:
-                startActivity(new Intent(MainActivity.this, ThreadActivity.class));
+                openActivity(ThreadActivity.class);
                 break;
             case R.id.keyboard_btn:
-                startActivity(new Intent(MainActivity.this, KeyBoardActivity.class));
+                openActivity(KeyBoardActivity.class);
                 break;
             case R.id.wifi_btn:
-                startActivity(new Intent(MainActivity.this, WifiActivity.class));
+                openActivity(WifiActivity.class);
                 break;
 
         }
+    }
+
+    /**
+     * 跳转到 c.class
+     * @param c
+     */
+    private void  openActivity(Class c) {
+        startActivity(new Intent(MainActivity.this, c));
+
     }
 
 }

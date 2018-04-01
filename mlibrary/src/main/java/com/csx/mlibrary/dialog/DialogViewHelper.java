@@ -29,7 +29,6 @@ class DialogViewHelper {
 
 
     public DialogViewHelper(Context context, int layoutResId) {
-
         mContentView = LayoutInflater.from(context).inflate(layoutResId, null);
 
         if (mViewArray == null)
