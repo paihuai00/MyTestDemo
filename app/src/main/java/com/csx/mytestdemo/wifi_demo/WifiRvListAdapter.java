@@ -11,21 +11,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.csx.mytestdemo.R;
-import com.csx.mytestdemo.wifi_demo.wifi_utils.WifiInfoBean;
+import com.csx.mytestdemo.wifi_demo.wifi_widget.SecurityModeEnum;
+import com.csx.mytestdemo.wifi_demo.wifi_widget.WifiMessageBean;
 
 import java.util.List;
 
 /**
  * @author cuishuxiang
  * @date 2017/12/21.
- *
+ * <p>
  * wifi 列表adapter
  */
 
 public class WifiRvListAdapter extends RecyclerView.Adapter<WifiRvListAdapter.ViewHolder> {
 
     private Context context;
-    private List<WifiInfoBean> mWifiInfoBeanList;
+    private List<WifiMessageBean> scanResultList;
     private WifiInfo connectedWifiInfo;
 
     public void setConnectWifiInfo(WifiInfo wifiInfo) {
@@ -33,9 +34,9 @@ public class WifiRvListAdapter extends RecyclerView.Adapter<WifiRvListAdapter.Vi
         notifyDataSetChanged();
     }
 
-    public WifiRvListAdapter(Context context, List<WifiInfoBean> wifiInfoBeans) {
+    public WifiRvListAdapter(Context context, List<WifiMessageBean> scanResultList) {
         this.context = context;
-        this.mWifiInfoBeanList = wifiInfoBeans;
+        this.scanResultList = scanResultList;
     }
 
     @Override
@@ -51,14 +52,14 @@ public class WifiRvListAdapter extends RecyclerView.Adapter<WifiRvListAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        ScanResult scanResult = mWifiInfoBeanList.get(position).getScanResult();
-        int security_type = mWifiInfoBeanList.get(position).getSecurityType();
-        int level = mWifiInfoBeanList.get(position).getLevel();
+        ScanResult scanResult = scanResultList.get(position).scanResult;
+        SecurityModeEnum security_type = scanResultList.get(position).security_type;
+        int level = scanResultList.get(position).level;
 
         holder.wifi_name.setText(scanResult.SSID);
 
         //首先判断加密方式   0 为没有密码
-        if (0 == security_type) {
+        if (SecurityModeEnum.OPEN == security_type) {
             switch (level) {
                 case 0:
                     holder.wifi_img.setImageResource(R.drawable.ic_wifi_1);
@@ -79,7 +80,7 @@ public class WifiRvListAdapter extends RecyclerView.Adapter<WifiRvListAdapter.Vi
         }
 
         //有密码的情况
-        if (0 != security_type) {
+        if (SecurityModeEnum.OPEN != security_type) {
             switch (level) {
                 case 0:
                     holder.wifi_img.setImageResource(R.drawable.ic_wifi_lock0);
@@ -99,26 +100,27 @@ public class WifiRvListAdapter extends RecyclerView.Adapter<WifiRvListAdapter.Vi
             }
         }
 
-        if (connectedWifiInfo != null && connectedWifiInfo.getSSID().equals("\""+scanResult.SSID+"\"")) {
+        if (connectedWifiInfo != null && connectedWifiInfo.getSSID().equals("\"" + scanResult.SSID + "\"")) {
             holder.connect_state.setText("已连接");
-        }else {
+        } else {
             holder.connect_state.setText("");
         }
     }
 
     @Override
     public int getItemCount() {
-        return mWifiInfoBeanList == null ? 0 : mWifiInfoBeanList.size();
+        return scanResultList == null ? 0 : scanResultList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView wifi_img;
-        TextView wifi_name,connect_state;
+        TextView wifi_name, connect_state;
+
         public ViewHolder(View itemView) {
             super(itemView);
             wifi_img = itemView.findViewById(R.id.wifi_img);
             wifi_name = itemView.findViewById(R.id.wifi_name);
-            connect_state=itemView.findViewById(R.id.connect_state);
+            connect_state = itemView.findViewById(R.id.connect_state);
             if (onRvItemClickListener != null) {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -145,10 +147,13 @@ public class WifiRvListAdapter extends RecyclerView.Adapter<WifiRvListAdapter.Vi
         this.onRvItemClickListener = onRvItemClickListener;
     }
 
-    interface OnRvItemClickListener {
+
+    public interface OnRvItemClickListener {
+
         void onItemClickListener(View view, int position);
 
         void onLongItemClickListener(View view, int position);
+
     }
 }
 

@@ -14,6 +14,7 @@ import com.csx.mytestdemo.broadcast_test.BroadCastActivity;
 import com.csx.mytestdemo.butterknife_test.ButterKnifeActivity;
 import com.csx.mytestdemo.common_dialog.CommonDialogActivity;
 import com.csx.mytestdemo.drag_recyclerview.DragActivity;
+import com.csx.mytestdemo.float_menu.FloatMenuActivity;
 import com.csx.mytestdemo.flow_view.FlowActivity;
 import com.csx.mytestdemo.gson_test.GsonActivity;
 import com.csx.mytestdemo.immerse_state_bar.StatusBarActivity;
@@ -80,6 +81,8 @@ public class MainActivity extends BaseActivity {
     Button mKeyBoardBtn;
     @BindView(R.id.wifi_btn)
     Button mWifiBtn;
+    @BindView(R.id.float_menu_btn)
+    Button mFloatMenuBtn;
 
     @Override
     public int getLayoutId() {
@@ -113,7 +116,7 @@ public class MainActivity extends BaseActivity {
             R.id.broadcast_btn, R.id.gesture_velocity_btn, R.id.share_btn,
             R.id.scroller_btn, R.id.slide_menu_btn, R.id.ksoap_btn, R.id.gson_btn,
             R.id.bf_btn, R.id.flow_btn, R.id.state_bar_btn, R.id.asynctask_btn, R.id.keyboard_btn,
-            R.id.wifi_btn})
+            R.id.wifi_btn, R.id.float_menu_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -179,6 +182,10 @@ public class MainActivity extends BaseActivity {
             case R.id.wifi_btn:
                 openActivity(WifiActivity.class);
                 break;
+            case R.id.float_menu_btn:
+                startActivity(new Intent(MainActivity.this, FloatMenuActivity.class));
+                break;
+
 
         }
     }

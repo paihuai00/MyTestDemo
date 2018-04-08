@@ -3,4 +3,9 @@
     <string name="send">发送</string>
     <string name="ensure">确定</string>
     <string name="cancel">取消</string>
+
+    <!--权限相关-->
+    <string name="permission_ask">您已经禁止了该权限,请前往 - 设置开启</string>
+    <string name="permission_deny">您拒绝了该权限，将无法正常使用该功能！</string>
+
 </resources>

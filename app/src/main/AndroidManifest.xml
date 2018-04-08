@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.csx.mytestdemo">
+
+    <!--android:sharedUserId="android.uid.system"-->
+
     <!--震动权限-->
     <uses-permission android:name="android.permission.VIBRATE" />
 
@@ -21,6 +24,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
+    <!--关机权限-->
+    <!--<uses-permission android:name="android.permission.SHUTDOWN" />-->
 
     <application
         android:name=".app.MyApplication"
@@ -192,6 +197,20 @@
 
         <!--wifi -->
         <activity android:name=".wifi_demo.WifiActivity" />
+        <!-- 监听网络状态的广播接收者 -->
+        <receiver android:name="com.csx.mytestdemo.wifi_demo.wifi_widget.WiFiManager$NetworkBroadcastReceiver">
+            <intent-filter>
+                <!-- AP扫描完成，客户端得到可用的结果集 -->
+                <action android:name="android.net.wifi.SCAN_RESULTS"/>
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED"/>
+                <action android:name="android.net.wifi.STATE_CHANGE"/>
+                <action android:name="android.net.wifi.supplicant.STATE_CHANGE"/>
+                <action android:name="android.net.wifi.supplicant.CONNECTION_CHANGE"/>
+            </intent-filter>
+        </receiver>
+
+        <!--悬浮窗 按钮-->
+        <activity android:name=".float_menu.FloatMenuActivity" />
 
     </application>
 

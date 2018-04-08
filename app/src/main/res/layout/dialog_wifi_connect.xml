@@ -2,62 +2,87 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@drawable/bg_white">
+    android:orientation="vertical">
 
-    <RelativeLayout
+    <!--正常显示的界面-->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="20px"
-        android:paddingRight="20px">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="WLAN"
-            android:textSize="50px" />
-
-        <Button
-            android:id="@+id/close_dialog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="关闭" />
-
-        <ProgressBar
-            android:id="@+id/load_pb"
-            android:layout_width="50px"
-            android:layout_height="50px"
-            android:layout_below="@+id/close_dialog"
-            android:layout_marginRight="10px"
-            android:layout_toLeftOf="@+id/wifi_switch"
-            android:visibility="invisible" />
-
-        <Switch
-            android:id="@+id/wifi_switch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/close_dialog"
-            android:layout_gravity="right"
-            android:layout_marginBottom="10px" />
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@android:color/darker_gray" />
-
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh"
-        android:layout_width="match_parent"
-        android:layout_height="500px">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/wif_rv"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="500px" />
-    </android.support.v4.widget.SwipeRefreshLayout>
+            android:layout_height="wrap_content"
+            android:paddingLeft="20px"
+            android:paddingRight="20px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WLAN"
+                android:textSize="50px" />
+
+            <Button
+                android:id="@+id/close_dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="关闭" />
+
+            <ProgressBar
+                android:id="@+id/load_pb"
+                android:layout_width="50px"
+                android:layout_height="50px"
+                android:layout_below="@+id/close_dialog"
+                android:layout_marginRight="10px"
+                android:layout_toLeftOf="@+id/wifi_switch"
+                android:visibility="invisible" />
+
+            <Switch
+                android:id="@+id/wifi_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/close_dialog"
+                android:layout_gravity="right"
+                android:layout_marginBottom="10px" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@android:color/darker_gray" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="500px">
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_refresh"
+                android:layout_width="match_parent"
+                android:layout_height="500px">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/wif_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="500px" />
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+            <!--wifi关闭的界面-->
+
+            <TextView
+                android:id="@+id/wifi_enable_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:text="若要查看可用网络，请打开WLAN！"
+                android:textSize="@dimen/y45"
+                android:visibility="gone" />
+
+        </FrameLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

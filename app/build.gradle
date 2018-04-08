@@ -66,6 +66,13 @@ dependencies {
 
     //流式布局
     implementation 'com.hyman:flowlayout-lib:1.1.2'
+
+    //悬浮菜单
+    implementation 'com.oguzdev:CircularFloatingActionMenu:1.0.2'
+    implementation 'com.dingmouren.annularmenu:annularmenu:1.0.2'
+
+    //弹框
+    implementation 'com.orhanobut:dialogplus:1.11@aar'
 }
 // 在MobSDK的扩展中注册ShareSDK的相关信息
 MobSDK {

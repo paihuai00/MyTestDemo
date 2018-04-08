@@ -170,6 +170,13 @@
             android:text="Wifi 连接"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/float_menu_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Menu悬浮窗"
+            android:textAllCaps="false" />
+
     </LinearLayout>
 
 </ScrollView>
