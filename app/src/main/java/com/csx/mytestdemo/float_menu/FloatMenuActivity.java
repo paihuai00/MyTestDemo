@@ -1,8 +1,9 @@
 package com.csx.mytestdemo.float_menu;
 
-import android.content.Context;
-import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,8 @@ import com.csx.mytestdemo.R;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
-import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,16 +27,26 @@ import butterknife.OnClick;
 /**
  * @Created by cuishuxiang
  * @date 2018/3/29.
- * @description: 悬浮窗 按钮
+ * @description: 1,悬浮窗 按钮
+ * 2，使用Behavior结合RecyclerView实现上滑fab按钮消失的功能。
+ * 3，2中的功能也可以使用三方库 https://github.com/makovkastar/FloatingActionButton 来实现
  */
 
 public class FloatMenuActivity extends BaseActivity {
     private static final String TAG = "FloatMenuActivity";
-    
+
     @BindView(R.id.shutdown_system_btn)
     Button mShutdownSystemBtn;
     @BindView(R.id.fab_btn)
     FloatingActionButton mFabBtn;
+    @BindView(R.id.fab_rv)
+    RecyclerView mFabRv;
+    @BindView(R.id.top_fab)
+    FloatingActionButton mTopFab;
+
+    //点击Fab，列表回到顶层
+    private List<String> mStringList;
+    private FabRvAdapter mFabRvAdapter;
 
     @Override
     public int getLayoutId() {
@@ -43,6 +55,9 @@ public class FloatMenuActivity extends BaseActivity {
 
     @Override
     public void initView() {
+
+        //Fab按钮 + RecyclerView结合使用
+        initRv();
 
         SubActionButton.Builder rLSubBuilder = new SubActionButton.Builder(this);
         ImageView rlIcon1 = new ImageView(this);
@@ -57,7 +72,7 @@ public class FloatMenuActivity extends BaseActivity {
         rlIcon1.setImageDrawable(getResources().getDrawable(R.drawable.ic_mic_voice));
 
 
-        FloatingActionMenu fabMenu=new FloatingActionMenu.Builder(this)
+        FloatingActionMenu fabMenu = new FloatingActionMenu.Builder(this)
                 .addSubActionView(rLSubBuilder.setContentView(rlIcon1).build())
                 .addSubActionView(rLSubBuilder.setContentView(rlIcon2).build())
                 .addSubActionView(rLSubBuilder.setContentView(rlIcon3).build())
@@ -108,6 +123,21 @@ public class FloatMenuActivity extends BaseActivity {
             }
         });
 
+    }
+
+    /**
+     * 初始化，Rv
+     */
+    private void initRv() {
+        mStringList = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            mStringList.add("This is " + i);
+        }
+        mFabRvAdapter = new FabRvAdapter(this, mStringList);
+
+        mFabRv.setLayoutManager(new LinearLayoutManager(this));
+
+        mFabRv.setAdapter(mFabRvAdapter);
     }
 
     @Override
