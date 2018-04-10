@@ -1,5 +1,6 @@
 package com.csx.mytestdemo.float_menu;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +18,9 @@ import com.csx.mytestdemo.R;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -142,6 +146,7 @@ public class FloatMenuActivity extends BaseActivity {
 
     @Override
     public void initData() {
+
 
     }
 
