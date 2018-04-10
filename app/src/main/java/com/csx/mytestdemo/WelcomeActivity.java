@@ -51,7 +51,9 @@ public class WelcomeActivity extends BaseActivity {
 
     }
 
-
+    /**
+     * 内部类，监听动画结束
+     */
     class MyListener extends PathAnimatorListener {
         public MyListener() {
             super();

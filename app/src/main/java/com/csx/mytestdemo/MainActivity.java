@@ -23,6 +23,7 @@ import com.csx.mytestdemo.ksoap_webservice.KsoapActivity;
 import com.csx.mytestdemo.mvp.MvpActivity;
 import com.csx.mytestdemo.rxjava_test.RxJavaActivity;
 import com.csx.mytestdemo.scroller_view.ScrollerActivity;
+import com.csx.mytestdemo.service_test.ServiceActivity;
 import com.csx.mytestdemo.share_mob.ShareActivity;
 import com.csx.mytestdemo.thread_test.ThreadActivity;
 import com.csx.mytestdemo.view_gesture_velocity.GestureVelocityActivity;
@@ -83,6 +84,8 @@ public class MainActivity extends BaseActivity {
     Button mWifiBtn;
     @BindView(R.id.float_menu_btn)
     Button mFloatMenuBtn;
+    @BindView(R.id.service_btn)
+    Button mServiceBtn;
 
     @Override
     public int getLayoutId() {
@@ -116,7 +119,7 @@ public class MainActivity extends BaseActivity {
             R.id.broadcast_btn, R.id.gesture_velocity_btn, R.id.share_btn,
             R.id.scroller_btn, R.id.slide_menu_btn, R.id.ksoap_btn, R.id.gson_btn,
             R.id.bf_btn, R.id.flow_btn, R.id.state_bar_btn, R.id.asynctask_btn, R.id.keyboard_btn,
-            R.id.wifi_btn, R.id.float_menu_btn})
+            R.id.wifi_btn, R.id.float_menu_btn,R.id.service_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -184,6 +187,10 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.float_menu_btn:
                 startActivity(new Intent(MainActivity.this, FloatMenuActivity.class));
+                break;
+
+            case R.id.service_btn:
+                startActivity(new Intent(MainActivity.this, ServiceActivity.class));
                 break;
 
 

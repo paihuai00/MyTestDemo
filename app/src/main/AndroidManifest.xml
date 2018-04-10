@@ -214,6 +214,10 @@
         <!--悬浮窗 按钮-->
         <activity android:name=".float_menu.FloatMenuActivity" />
 
+        <!--service使用-->
+        <activity android:name=".service_test.ServiceActivity" />
+        <service android:name=".service_test.MyService" />
+
     </application>
 
 </manifest>
