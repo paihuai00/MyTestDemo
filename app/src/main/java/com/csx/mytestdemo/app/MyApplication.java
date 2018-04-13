@@ -3,8 +3,8 @@ package com.csx.mytestdemo.app;
 import android.app.Application;
 import android.util.Log;
 
+import com.csx.mlibrary.crash.CrashAppHelper;
 import com.csx.mlibrary.utils.Utils;
-import com.mob.MobSDK;
 
 import cafe.adriel.androidaudioconverter.AndroidAudioConverter;
 import cafe.adriel.androidaudioconverter.callback.ILoadCallback;
@@ -23,6 +23,9 @@ public class MyApplication extends Application {
 
 
         initAudio();
+
+        //初始化崩溃日志打印
+        CrashAppHelper.getInstance().init(this);
 
     }
 

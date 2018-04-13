@@ -1,7 +1,13 @@
 package com.csx.mytestdemo.service_test;
 
+import android.app.AlertDialog;
+import android.app.Notification;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -20,6 +26,7 @@ import butterknife.OnClick;
  */
 
 public class ServiceActivity extends BaseActivity {
+    private static final String TAG = "MyServiceActivity";
 
     @BindView(R.id.start_service_btn)
     Button mStartServiceBtn;
@@ -30,7 +37,21 @@ public class ServiceActivity extends BaseActivity {
     @BindView(R.id.unbind_service_btn)
     Button mUnbindServiceBtn;
 
+    MyService.MyBind mMyBind;
 
+    private ServiceConnection mServiceConnection=new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            Log.d(TAG, "onServiceConnected: ");
+            mMyBind = (MyService.MyBind) service;
+            mMyBind.doSomeThing();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            Log.d(TAG, "onServiceDisconnected: ");
+        }
+    };
 
 
     @Override
@@ -60,8 +81,12 @@ public class ServiceActivity extends BaseActivity {
                 stopService(stopServiceIntent);
                 break;
             case R.id.bind_service_btn:
+                Intent bindServiceIntent = new Intent(this, MyService.class);
+                bindService(bindServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
                 break;
             case R.id.unbind_service_btn:
+                Intent unbindServiceIntent = new Intent(this, MyService.class);
+                unbindService(mServiceConnection);
                 break;
         }
     }

@@ -2,6 +2,7 @@ package com.csx.mytestdemo;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Environment;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -32,8 +33,14 @@ import com.csx.mytestdemo.view_touch_nine.NineDotActivity;
 import com.csx.mytestdemo.view_touch_scroll.TouchScrollActivity;
 import com.csx.mytestdemo.wifi_demo.WifiActivity;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static android.os.Environment.DIRECTORY_MUSIC;
 
 public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
@@ -106,11 +113,23 @@ public class MainActivity extends BaseActivity {
 
         Log.d(TAG, "initView: 核心线程数：" + Runtime.getRuntime().availableProcessors());
 
+
+//        mStringList.add("11");
+
+        Log.d(TAG, "Environment.getExternalStorageDirectory() = " + Environment.getExternalStorageDirectory());
+        Log.d(TAG, "Environment.getExternalStorageDirectory().getAbsolutePath()= " + Environment.getExternalStorageDirectory().getAbsolutePath());
+        Log.d(TAG, "Environment.getExternalStoragePublicDirectory(DIRECTORY_MUSIC)= " + Environment.getExternalStoragePublicDirectory(DIRECTORY_MUSIC));
+        Log.d(TAG, "Environment.getDownloadCacheDirectory() = " + Environment.getDownloadCacheDirectory());
+        Log.d(TAG, "Environment.getExternalStorageState() = " + Environment.getExternalStorageState());
+        Log.d(TAG, "getExternalCacheDir().getAbsolutePath() =  " + getExternalCacheDir().getAbsolutePath());
+
     }
+
+    private List<String> mStringList;
 
     @Override
     public void initData() {
-
+        mStringList.add("1");
     }
 
 
