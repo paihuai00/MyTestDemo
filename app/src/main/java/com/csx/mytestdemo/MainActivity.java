@@ -125,11 +125,10 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    private List<String> mStringList;
 
     @Override
     public void initData() {
-        mStringList.add("1");
+
     }
 
 

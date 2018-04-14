@@ -1,18 +1,29 @@
 package com.csx.mytestdemo.service_test;
 
-import android.app.AlertDialog;
-import android.app.Notification;
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.csx.mlibrary.base.BaseActivity;
+import com.csx.mlibrary.utils.ToastUtils;
+import com.csx.mlibrary.utils.permission_utils.AskAgainCallback;
+import com.csx.mlibrary.utils.permission_utils.FullCallback;
+import com.csx.mlibrary.utils.permission_utils.PermissionEnum;
+import com.csx.mlibrary.utils.permission_utils.PermissionManager;
+import com.csx.mlibrary.utils.permission_utils.PermissionUtils;
+import com.csx.mlibrary.utils.permission_utils.SimpleCallback;
+import com.csx.mytestdemo.MainActivity;
 import com.csx.mytestdemo.R;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,8 +49,10 @@ public class ServiceActivity extends BaseActivity {
     Button mUnbindServiceBtn;
 
     MyService.MyBind mMyBind;
+    @BindView(R.id.permission_btn)
+    Button mPermissionBtn;
 
-    private ServiceConnection mServiceConnection=new ServiceConnection() {
+    private ServiceConnection mServiceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             Log.d(TAG, "onServiceConnected: ");
@@ -69,7 +82,7 @@ public class ServiceActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.start_service_btn, R.id.stop_service_btn, R.id.bind_service_btn, R.id.unbind_service_btn})
+    @OnClick({R.id.start_service_btn, R.id.stop_service_btn, R.id.bind_service_btn, R.id.unbind_service_btn,R.id.permission_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.start_service_btn:
@@ -88,6 +101,55 @@ public class ServiceActivity extends BaseActivity {
                 Intent unbindServiceIntent = new Intent(this, MyService.class);
                 unbindService(mServiceConnection);
                 break;
+
+            case R.id.permission_btn:
+                PermissionManager.Builder()
+                        .key(0x01)
+                        .permission(PermissionEnum.CAMERA,PermissionEnum.WRITE_EXTERNAL_STORAGE)
+                        .askAgain(true)
+                        .callback(new FullCallback() {
+                            @Override
+                            public void result(ArrayList<PermissionEnum> permissionsGranted, ArrayList<PermissionEnum> permissionsDenied, ArrayList<PermissionEnum> permissionsDeniedForever, ArrayList<PermissionEnum> permissionsAsked) {
+                                Log.d(TAG, "result: ");
+                            }
+                        })
+                        .askAgainCallback(new AskAgainCallback() {
+                            @Override
+                            public void showRequestPermission(UserResponse response) {
+                                // response 中的boolean值，可以用于判断是否再次弹框
+                                showDialog(response);
+                                Log.d(TAG, "showRequestPermission: ");
+                            }
+                        })
+                        .ask(this);
+
+                break;
         }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        PermissionManager.handleResult(this, requestCode, permissions, grantResults);
+    }
+
+    private void showDialog(final AskAgainCallback.UserResponse response) {
+        new AlertDialog.Builder(ServiceActivity.this)
+                .setTitle("Permission needed")
+                .setMessage("本应用需要使用该权限，是否授予?")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        response.result(true);
+                    }
+                })
+                .setNegativeButton("NOT NOW", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        response.result(false);
+                    }
+                })
+                .setCancelable(false)
+                .show();
     }
 }
