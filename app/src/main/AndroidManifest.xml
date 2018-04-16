@@ -218,6 +218,9 @@
         <activity android:name=".service_test.ServiceActivity" />
         <service android:name=".service_test.MyService" />
 
+        <!--连线view-->
+        <activity android:name=".connect_view.ContactActivity" />
+
     </application>
 
 </manifest>

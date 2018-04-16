@@ -16,8 +16,10 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
@@ -49,13 +51,61 @@ public class RxJavaActivity extends BaseActivity {
 //        testScheduler();
 
         //操作符
-        testOperate();
+//        testOperate();
 
 
         //存储目录
 //        testDirectory();
 
-        initRetrofit();
+//        initRetrofit();
+
+
+        initZipOperate();
+    }
+
+    /**
+     * zip + backpress
+     */
+    private void initZipOperate() {
+        Observable observable1 = Observable.create(new ObservableOnSubscribe() {
+            @Override
+            public void subscribe(ObservableEmitter emitter) throws Exception {
+                emitter.onNext(1);
+                emitter.onNext(2);
+                emitter.onNext(3);
+
+                int i = 0;
+                while (i != 10000) {
+
+                    emitter.onNext(4);
+                    i += 1;
+                }
+            }
+        });
+
+        Observable observable2 = Observable.create(new ObservableOnSubscribe() {
+            @Override
+            public void subscribe(ObservableEmitter emitter) throws Exception {
+                emitter.onNext("This is observable2_1 :");
+                emitter.onNext("This is observable2_2 :");
+                emitter.onNext("This is observable2_3 :");
+            }
+        });
+
+        Observable.zip(observable1, observable2, new BiFunction<Integer, String, String>() {
+            @Override
+            public String apply(Integer integer, String s) throws Exception {
+                return s+"  "+integer ;
+            }
+
+        }).subscribe(new Consumer<String>() {
+            @Override
+            public void accept(String s) throws Exception {
+                Log.d(TAG, "accept: " + s);
+            }
+
+        });
+
     }
 
     private void initRetrofit() {
