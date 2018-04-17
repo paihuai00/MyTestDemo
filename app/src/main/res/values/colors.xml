@@ -10,4 +10,7 @@
     <color name="tab_selected_color">#D33D3C</color>
 
     <color name="gray">#696969</color>
+    <color name="gray_alpha">#33696969</color>
+
+
 </resources>
