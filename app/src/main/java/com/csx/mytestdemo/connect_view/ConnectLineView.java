@@ -139,6 +139,7 @@ public class ConnectLineView extends View {
 
     /**
      * 绘制移动时候的线
+     *
      * @param canvas
      */
     private void drawMoveLine(Canvas canvas) {
@@ -146,7 +147,11 @@ public class ConnectLineView extends View {
             Log.d(TAG, "drawMoveLine: downRect == null || movePoint == null");
             return;
         }
-        canvas.drawLine(downRect.right, (downRect.bottom + downRect.top) / 2, movePoint.x, movePoint.y, mLinePaint);
+        if (0 == movePoint.x && 0 == movePoint.y) {
+            Log.d(TAG, "drawMoveLine: 0 == movePoint.x && 0 == movePoint.y");
+            return;
+        }
+        canvas.drawLine(downRect.right - downRect.width() / 2, (downRect.bottom + downRect.top) / 2, movePoint.x, movePoint.y, mLinePaint);
     }
 
     /**
@@ -237,23 +242,29 @@ public class ConnectLineView extends View {
         //----------------------存储问题的 Rect-----------------------------
         mQuestionRectList = new ArrayList<>();
 
-        int maxQuestionWidth = 0;
+//        int maxQuestionWidth = 0;
+//
+//        for (int i = 0; i < mQuestionList.size(); i++) {
+//            Rect rect = new Rect();
+//            mTextPaint.getTextBounds(mQuestionList.get(i), 0, mQuestionList.get(i).length(), rect);
+//            Log.d(TAG, "initRect: mQuestionList.get(i).length()=" + mQuestionList.get(i).length() + " rect.width()=" + rect.width());
+//            int currentWidth = rect.width();
+//            if (maxQuestionWidth < currentWidth) {
+//                maxQuestionWidth = currentWidth;
+//            }
+//        }
+
+//        Log.d(TAG, "initRect: maxQuestionWidth = " + maxQuestionWidth);
+
 
         for (int i = 0; i < mQuestionList.size(); i++) {
             Rect rect = new Rect();
             mTextPaint.getTextBounds(mQuestionList.get(i), 0, mQuestionList.get(i).length(), rect);
             Log.d(TAG, "initRect: mQuestionList.get(i).length()=" + mQuestionList.get(i).length() + " rect.width()=" + rect.width());
             int currentWidth = rect.width();
-            if (maxQuestionWidth < currentWidth) {
-                maxQuestionWidth = currentWidth;
-            }
-        }
-        Log.d(TAG, "initRect: maxQuestionWidth = " + maxQuestionWidth);
+            Rect rect1 = new Rect(offsetX, h / mQuestionList.size() * i, currentWidth + offsetX, h / mQuestionList.size() * (i + 1));
 
-        for (int i = 0; i < mQuestionList.size(); i++) {
-            Rect rect = new Rect(offsetX, h / mQuestionList.size() * i, maxQuestionWidth + offsetX, h / mQuestionList.size() * (i + 1));
-
-            mQuestionRectList.add(rect);
+            mQuestionRectList.add(rect1);
         }
 
 
@@ -285,6 +296,7 @@ public class ConnectLineView extends View {
     private boolean upInRect = false;
     private Rect upRect;
     private Point movePoint = new Point();
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
@@ -296,10 +308,14 @@ public class ConnectLineView extends View {
                 if (downInRect) {
                     movePoint.x = (int) event.getX();
                     movePoint.y = (int) event.getY();
-                    invalidate();
+                }else {
+                    movePoint.x = 0;
+                    movePoint.y = 0;
                 }
                 break;
             case MotionEvent.ACTION_UP:
+                movePoint.x = 0;
+                movePoint.y = 0;
                 upInRect = calculateUpInRect(event.getX(), event.getY());
                 Log.d(TAG, "onTouchEvent: upInRect = " + upInRect);
                 if (downInRect && upInRect) {
@@ -314,20 +330,20 @@ public class ConnectLineView extends View {
                         Log.d(TAG, "onTouchEvent: mQuestionRectList 此时连线在同侧");
                         break;
                     }
-
                     //存储连线
                     saveLines(downRect, upRect);
                 }
 
                 break;
         }
+        invalidate();
 
         return true;
     }
 
     /**
      * 根据按下的rect 和 抬起的rect 存储需要绘制的lines
-     *
+     * <p>
      * 如果当前绘制的linesNum，大于设置的chooseNum，则清空，重新绘制
      *
      * @param downRect
@@ -396,6 +412,7 @@ public class ConnectLineView extends View {
 
     /**
      * 抬起的点，是否在矩形范围
+     *
      * @param x
      * @param y
      * @return
@@ -403,7 +420,7 @@ public class ConnectLineView extends View {
     private boolean calculateUpInRect(float x, float y) {
 
         for (int i = 0; i < mQuestionRectList.size(); i++) {
-            if (mQuestionRectList.get(i).contains((int)x, (int) y)) {
+            if (mQuestionRectList.get(i).contains((int) x, (int) y)) {
                 upRect = mQuestionRectList.get(i);
                 return true;
             }
@@ -422,13 +439,14 @@ public class ConnectLineView extends View {
 
     /**
      * 按下的点，是否在矩形范围
+     *
      * @param x
      * @param y
      * @return
      */
     private boolean calculateDownInRect(float x, float y) {
         for (int i = 0; i < mQuestionRectList.size(); i++) {
-            if (mQuestionRectList.get(i).contains((int)x, (int) y)) {
+            if (mQuestionRectList.get(i).contains((int) x, (int) y)) {
                 downRect = mQuestionRectList.get(i);
                 return true;
             }
@@ -551,6 +569,7 @@ public class ConnectLineView extends View {
         void onSucceedConnect(List<LinesData> linesDataList);
 
     }
+
     /**
      * dp --> px
      *
