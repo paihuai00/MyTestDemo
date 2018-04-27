@@ -1,12 +1,14 @@
 package com.csx.mytestdemo;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
+import android.os.Bundle;
 import android.os.Environment;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.csx.mlibrary.base.BaseActivity;
 import com.csx.mytestdemo.audio_record.AudioActivity;
@@ -22,6 +24,7 @@ import com.csx.mytestdemo.gson_test.GsonActivity;
 import com.csx.mytestdemo.immerse_state_bar.StatusBarActivity;
 import com.csx.mytestdemo.keyboard_test.KeyBoardActivity;
 import com.csx.mytestdemo.ksoap_webservice.KsoapActivity;
+import com.csx.mytestdemo.loading_view.LoadingActivity;
 import com.csx.mytestdemo.mvp.MvpActivity;
 import com.csx.mytestdemo.rxjava_test.RxJavaActivity;
 import com.csx.mytestdemo.scroller_view.ScrollerActivity;
@@ -34,11 +37,8 @@ import com.csx.mytestdemo.view_touch_nine.NineDotActivity;
 import com.csx.mytestdemo.view_touch_scroll.TouchScrollActivity;
 import com.csx.mytestdemo.wifi_demo.WifiActivity;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static android.os.Environment.DIRECTORY_MUSIC;
@@ -97,6 +97,7 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.contact_btn)
     Button mContactBtn;
 
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_main;
@@ -132,6 +133,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initData() {
 
+
     }
 
 
@@ -140,7 +142,8 @@ public class MainActivity extends BaseActivity {
             R.id.broadcast_btn, R.id.gesture_velocity_btn, R.id.share_btn,
             R.id.scroller_btn, R.id.slide_menu_btn, R.id.ksoap_btn, R.id.gson_btn,
             R.id.bf_btn, R.id.flow_btn, R.id.state_bar_btn, R.id.asynctask_btn, R.id.keyboard_btn,
-            R.id.wifi_btn, R.id.float_menu_btn, R.id.service_btn, R.id.contact_btn})
+            R.id.wifi_btn, R.id.float_menu_btn, R.id.service_btn, R.id.contact_btn,
+            R.id.loading_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -217,16 +220,21 @@ public class MainActivity extends BaseActivity {
             case R.id.contact_btn:
                 openActivity(ContactActivity.class);
                 break;
+            case R.id.loading_btn:
+                openActivity(LoadingActivity.class);
+                break;
         }
     }
 
     /**
      * 跳转到 c.class
+     *
      * @param c
      */
-    private void  openActivity(Class c) {
+    private void openActivity(Class c) {
         startActivity(new Intent(MainActivity.this, c));
 
     }
+
 
 }

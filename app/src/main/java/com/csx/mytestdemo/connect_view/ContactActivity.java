@@ -7,6 +7,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.csx.mlibrary.base.BaseActivity;
+import com.csx.mlibrary.utils.ToastUtils;
 import com.csx.mytestdemo.R;
 
 import java.util.List;
@@ -47,6 +48,13 @@ public class ContactActivity extends BaseActivity {
             @Override
             public void onSucceedConnect(List<ConnectLineView.LinesData> linesDataList) {
                 Log.d(TAG, "onSucceedConnect: " + linesDataList.toString());
+                for (int i = 0; i < linesDataList.size(); i++) {
+
+                    int startPosition = linesDataList.get(i).getStartPosition() + 1;
+                    int endPosition = linesDataList.get(i).getEndPosition() + 1;
+                    ToastUtils.showShortToast("答案为：" + startPosition + " -->" + endPosition);
+                }
+
             }
         });
 

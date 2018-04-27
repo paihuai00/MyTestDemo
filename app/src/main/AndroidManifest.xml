@@ -217,9 +217,13 @@
         <!--service使用-->
         <activity android:name=".service_test.ServiceActivity" />
         <service android:name=".service_test.MyService" />
+        <service android:name=".service_test.SocketService" />
 
         <!--连线view-->
         <activity android:name=".connect_view.ContactActivity" />
+
+        <!--Loading  View-->
+        <activity android:name=".loading_view.LoadingActivity" />
 
     </application>
 

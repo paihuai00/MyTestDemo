@@ -36,4 +36,16 @@
         android:layout_height="wrap_content"
         android:text="测试权限" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/service_conn"
+        android:text="Socket连接服务器"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/socket_stop"
+        android:text="Socket断开服务器"/>
+
 </LinearLayout>
