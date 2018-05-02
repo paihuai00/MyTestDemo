@@ -206,6 +206,13 @@
             android:text="多状态（empty，error，success）"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/webview_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="WebView + ProgressBar简单的封装"
+            android:textAllCaps="false" />
+
     </LinearLayout>
 
 </ScrollView>

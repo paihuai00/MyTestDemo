@@ -228,6 +228,9 @@
         <!--多状态-->
         <activity android:name=".multiple_state.MultipleActivity" />
 
+        <!--webview + progressbar 封装-->
+        <activity android:name=".webview_progressbar.WebViewActivity" />
+
     </application>
 
 </manifest>

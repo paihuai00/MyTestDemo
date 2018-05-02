@@ -36,6 +36,7 @@ import com.csx.mytestdemo.view_gesture_velocity.GestureVelocityActivity;
 import com.csx.mytestdemo.view_slide_menu.SlideMenuActivity;
 import com.csx.mytestdemo.view_touch_nine.NineDotActivity;
 import com.csx.mytestdemo.view_touch_scroll.TouchScrollActivity;
+import com.csx.mytestdemo.webview_progressbar.WebViewActivity;
 import com.csx.mytestdemo.wifi_demo.WifiActivity;
 
 import java.io.DataInputStream;
@@ -108,6 +109,8 @@ public class MainActivity extends BaseActivity {
     Button mContactBtn;
     @BindView(R.id.multiple_state_btn)
     Button mMultipleStateBtn;
+    @BindView(R.id.webview_btn)
+    Button mWebViewBtn;
 
 
     @Override
@@ -153,7 +156,7 @@ public class MainActivity extends BaseActivity {
             R.id.scroller_btn, R.id.slide_menu_btn, R.id.ksoap_btn, R.id.gson_btn,
             R.id.bf_btn, R.id.flow_btn, R.id.state_bar_btn, R.id.asynctask_btn, R.id.keyboard_btn,
             R.id.wifi_btn, R.id.float_menu_btn, R.id.service_btn, R.id.contact_btn,
-            R.id.loading_btn,R.id.multiple_state_btn})
+            R.id.loading_btn, R.id.multiple_state_btn,R.id.webview_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -236,6 +239,9 @@ public class MainActivity extends BaseActivity {
             case R.id.multiple_state_btn:
                 openActivity(MultipleActivity.class);
                 break;
+            case R.id.webview_btn:
+                openActivity(WebViewActivity.class);
+                break;
         }
     }
 
@@ -246,8 +252,6 @@ public class MainActivity extends BaseActivity {
      */
     private void openActivity(Class c) {
         startActivity(new Intent(MainActivity.this, c));
-
     }
-
 
 }
