@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
+import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -69,6 +70,13 @@ public class MyService extends Service {
         public void doSomeThing() {
             //这里只是测试方法
             Log.d(TAG, "MyBind ---> doSomeThing: ----");
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                }
+            }, 3000);
         }
     }
 }

@@ -5,6 +5,10 @@ import android.util.Log;
 
 import com.csx.mlibrary.crash.CrashAppHelper;
 import com.csx.mlibrary.utils.Utils;
+import com.csx.mytestdemo.multiple_state.EmptyCallBack;
+import com.csx.mytestdemo.multiple_state.ErrorCallBack;
+import com.csx.mytestdemo.multiple_state.LoadingCallBack;
+import com.kingja.loadsir.core.LoadSir;
 
 import cafe.adriel.androidaudioconverter.AndroidAudioConverter;
 import cafe.adriel.androidaudioconverter.callback.ILoadCallback;
@@ -27,6 +31,19 @@ public class MyApplication extends Application {
         //初始化崩溃日志打印
         CrashAppHelper.getInstance().init(this);
 
+
+        //多状态布局配置
+        initMultipleState();
+
+    }
+
+    private void initMultipleState() {
+        LoadSir.beginBuilder()
+                .addCallback(new LoadingCallBack())
+                .addCallback(new EmptyCallBack())
+                .addCallback(new ErrorCallBack())
+                .setDefaultCallback(LoadingCallBack.class)
+                .commit();
     }
 
     /**

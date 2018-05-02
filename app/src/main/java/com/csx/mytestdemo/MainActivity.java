@@ -25,6 +25,7 @@ import com.csx.mytestdemo.immerse_state_bar.StatusBarActivity;
 import com.csx.mytestdemo.keyboard_test.KeyBoardActivity;
 import com.csx.mytestdemo.ksoap_webservice.KsoapActivity;
 import com.csx.mytestdemo.loading_view.LoadingActivity;
+import com.csx.mytestdemo.multiple_state.MultipleActivity;
 import com.csx.mytestdemo.mvp.MvpActivity;
 import com.csx.mytestdemo.rxjava_test.RxJavaActivity;
 import com.csx.mytestdemo.scroller_view.ScrollerActivity;
@@ -36,6 +37,15 @@ import com.csx.mytestdemo.view_slide_menu.SlideMenuActivity;
 import com.csx.mytestdemo.view_touch_nine.NineDotActivity;
 import com.csx.mytestdemo.view_touch_scroll.TouchScrollActivity;
 import com.csx.mytestdemo.wifi_demo.WifiActivity;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -96,6 +106,8 @@ public class MainActivity extends BaseActivity {
     Button mServiceBtn;
     @BindView(R.id.contact_btn)
     Button mContactBtn;
+    @BindView(R.id.multiple_state_btn)
+    Button mMultipleStateBtn;
 
 
     @Override
@@ -117,7 +129,6 @@ public class MainActivity extends BaseActivity {
 
         Log.d(TAG, "initView: 核心线程数：" + Runtime.getRuntime().availableProcessors());
 
-
 //        mStringList.add("11");
 
         Log.d(TAG, "Environment.getExternalStorageDirectory() = " + Environment.getExternalStorageDirectory());
@@ -133,7 +144,6 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initData() {
 
-
     }
 
 
@@ -143,7 +153,7 @@ public class MainActivity extends BaseActivity {
             R.id.scroller_btn, R.id.slide_menu_btn, R.id.ksoap_btn, R.id.gson_btn,
             R.id.bf_btn, R.id.flow_btn, R.id.state_bar_btn, R.id.asynctask_btn, R.id.keyboard_btn,
             R.id.wifi_btn, R.id.float_menu_btn, R.id.service_btn, R.id.contact_btn,
-            R.id.loading_btn})
+            R.id.loading_btn,R.id.multiple_state_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -222,6 +232,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.loading_btn:
                 openActivity(LoadingActivity.class);
+                break;
+            case R.id.multiple_state_btn:
+                openActivity(MultipleActivity.class);
                 break;
         }
     }

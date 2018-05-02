@@ -225,6 +225,9 @@
         <!--Loading  View-->
         <activity android:name=".loading_view.LoadingActivity" />
 
+        <!--多状态-->
+        <activity android:name=".multiple_state.MultipleActivity" />
+
     </application>
 
 </manifest>

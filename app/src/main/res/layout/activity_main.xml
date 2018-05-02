@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
         <Button
             android:id="@+id/rxjava_btn"
             android:layout_width="match_parent"
@@ -196,6 +197,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="加载Loading"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/multiple_state_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="多状态（empty，error，success）"
             android:textAllCaps="false" />
 
     </LinearLayout>
