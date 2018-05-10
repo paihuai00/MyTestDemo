@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.csx.mytestdemo.progress_view.HorizontalProgressView
+        android:id="@+id/hpv_language"
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        app:end_color="@color/purple_start"
+        app:end_progress="92"
+        app:isTracked="true"
+        app:progressDuration="2600"
+        app:progressTextColor="#696969"
+        app:progressTextVisibility="false"
+        app:start_color="@color/purple_light"
+        app:trackColor="#f4f4f4"
+        app:track_width="8dp" />
+
+    <com.csx.mytestdemo.progress_view.CircleProgressView
+        android:id="@+id/progressView_circle"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_marginTop="12dp"
+        app:circleBroken="true"
+        app:end_color="@color/purple_start"
+        app:end_progress="60"
+        app:isFilled="false"
+        app:isTracked="true"
+        app:progressTextColor="@color/blue_start"
+        app:progressTextSize="36sp"
+        app:start_color="@color/purple_end"
+        app:start_progress="0"
+        app:trackColor="#f3f3ee"
+        app:track_width="26dp" />
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_start_btn_selector"
+        android:text="Start Reviewing"
+        android:textColor="@color/colorAccent" />
+</LinearLayout>

@@ -27,11 +27,13 @@ import com.csx.mytestdemo.ksoap_webservice.KsoapActivity;
 import com.csx.mytestdemo.loading_view.LoadingActivity;
 import com.csx.mytestdemo.multiple_state.MultipleActivity;
 import com.csx.mytestdemo.mvp.MvpActivity;
+import com.csx.mytestdemo.progress_view.ProgressActivity;
 import com.csx.mytestdemo.rxjava_test.RxJavaActivity;
 import com.csx.mytestdemo.scroller_view.ScrollerActivity;
 import com.csx.mytestdemo.service_test.ServiceActivity;
 import com.csx.mytestdemo.share_mob.ShareActivity;
 import com.csx.mytestdemo.thread_test.ThreadActivity;
+import com.csx.mytestdemo.video_player.VideoPlayerActivity;
 import com.csx.mytestdemo.view_gesture_velocity.GestureVelocityActivity;
 import com.csx.mytestdemo.view_slide_menu.SlideMenuActivity;
 import com.csx.mytestdemo.view_touch_nine.NineDotActivity;
@@ -111,6 +113,8 @@ public class MainActivity extends BaseActivity {
     Button mMultipleStateBtn;
     @BindView(R.id.webview_btn)
     Button mWebViewBtn;
+    @BindView(R.id.progress_btn)
+    Button mProgressBtn;
 
 
     @Override
@@ -156,7 +160,7 @@ public class MainActivity extends BaseActivity {
             R.id.scroller_btn, R.id.slide_menu_btn, R.id.ksoap_btn, R.id.gson_btn,
             R.id.bf_btn, R.id.flow_btn, R.id.state_bar_btn, R.id.asynctask_btn, R.id.keyboard_btn,
             R.id.wifi_btn, R.id.float_menu_btn, R.id.service_btn, R.id.contact_btn,
-            R.id.loading_btn, R.id.multiple_state_btn,R.id.webview_btn})
+            R.id.loading_btn, R.id.multiple_state_btn, R.id.webview_btn, R.id.progress_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -168,8 +172,11 @@ public class MainActivity extends BaseActivity {
             case R.id.dialog_btn:
                 openActivity(CommonDialogActivity.class);
                 break;
-            case R.id.video_btn:
+            case R.id.drag_rv_btn:
                 openActivity(DragActivity.class);
+                break;
+            case R.id.video_btn:
+                openActivity(VideoPlayerActivity.class);
                 break;
             case R.id.audio_btn:
                 openActivity(AudioActivity.class);
@@ -241,6 +248,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.webview_btn:
                 openActivity(WebViewActivity.class);
+                break;
+            case R.id.progress_btn:
+                openActivity(ProgressActivity.class);
                 break;
         }
     }

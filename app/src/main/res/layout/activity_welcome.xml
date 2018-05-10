@@ -15,4 +15,6 @@
         app:text="欢迎使用"
         app:textInCenter="true"
         app:textSize="@dimen/y100" />
+
+
 </RelativeLayout>

@@ -34,7 +34,7 @@ public class WebViewActivity extends BaseActivity {
     private ProgressBar myGressBar;
     private WebView myWebView;
 
-    private String web_url = "https://www.baidu.com/";
+    private String web_url = "http://sjg.pdoca.com/res/kaoshi/2018_5_3/636609545896006456.mp3";
 
     @Override
     public int getLayoutId() {

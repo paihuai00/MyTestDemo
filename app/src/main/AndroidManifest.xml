@@ -231,6 +231,8 @@
         <!--webview + progressbar 封装-->
         <activity android:name=".webview_progressbar.WebViewActivity" />
 
+        <!--进度条View-->
+        <activity android:name=".progress_view.ProgressActivity" />
     </application>
 
 </manifest>

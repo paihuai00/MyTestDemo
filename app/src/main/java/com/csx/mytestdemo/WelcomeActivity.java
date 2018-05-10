@@ -9,6 +9,8 @@ import android.util.Log;
 
 import com.csx.mlibrary.base.BaseActivity;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import yanzhikai.textpath.PathAnimatorListener;
@@ -43,13 +45,14 @@ public class WelcomeActivity extends BaseActivity {
 
         mPathView.setAnimatorListener(mPathAnimatorListener);
 
-        mPathView.startAnimation(0,1);
+        mPathView.startAnimation(0, 1);
     }
 
     @Override
     public void initData() {
 
     }
+
 
     /**
      * 内部类，监听动画结束

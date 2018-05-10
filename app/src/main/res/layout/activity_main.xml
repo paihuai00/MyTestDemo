@@ -213,6 +213,13 @@
             android:text="WebView + ProgressBar简单的封装"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/progress_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Progress进度条样式"
+            android:textAllCaps="false" />
+
     </LinearLayout>
 
 </ScrollView>

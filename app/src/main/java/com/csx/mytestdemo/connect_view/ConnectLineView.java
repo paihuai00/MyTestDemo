@@ -103,16 +103,16 @@ public class ConnectLineView extends View {
     private void initData() {
         //问题
         mQuestionList = new ArrayList<>();
-        mQuestionList.add("问题1:1+1=？？");
-        mQuestionList.add("问题1:1+1=？");
-        mQuestionList.add("问题1:1+1=？？");
-        mQuestionList.add("问题1:1+1=？？???");
+        mQuestionList.add("A");
+        mQuestionList.add("B");
+        mQuestionList.add("C");
+        mQuestionList.add("D");
 
         //答案
         mAnswerList = new ArrayList<>();
-        mAnswerList.add("答案为：2");
-        mAnswerList.add("答案为：2");
-        mAnswerList.add("答案为：2");
+        mAnswerList.add("1");
+        mAnswerList.add("2");
+        mAnswerList.add("3");
 //        mAnswerList.add("答案为：2");
     }
 
@@ -128,13 +128,13 @@ public class ConnectLineView extends View {
         drawSaveLine(canvas);
 
         //打印矩形框
-//        for (int i = 0; i < mQuestionRectList.size(); i++) {
-//            canvas.drawRect(mQuestionRectList.get(i), mLinePaint);
-//        }
-//
-//        for (int i = 0; i < mAnswerRectList.size(); i++) {
-//            canvas.drawRect(mAnswerRectList.get(i),mLinePaint);
-//        }
+        for (int i = 0; i < mQuestionRectList.size(); i++) {
+            canvas.drawRect(mQuestionRectList.get(i), mLinePaint);
+        }
+
+        for (int i = 0; i < mAnswerRectList.size(); i++) {
+            canvas.drawRect(mAnswerRectList.get(i), mLinePaint);
+        }
     }
 
     /**
@@ -262,7 +262,7 @@ public class ConnectLineView extends View {
             mTextPaint.getTextBounds(mQuestionList.get(i), 0, mQuestionList.get(i).length(), rect);
             Log.d(TAG, "initRect: mQuestionList.get(i).length()=" + mQuestionList.get(i).length() + " rect.width()=" + rect.width());
             int currentWidth = rect.width();
-            Rect rect1 = new Rect(offsetX, h / mQuestionList.size() * i, currentWidth + offsetX, h / mQuestionList.size() * (i + 1));
+            Rect rect1 = new Rect(offsetX - 20, h / mQuestionList.size() * i, currentWidth + offsetX + 20, h / mQuestionList.size() * (i + 1));
 
             mQuestionRectList.add(rect1);
         }
@@ -285,7 +285,7 @@ public class ConnectLineView extends View {
         Log.d(TAG, "initRect: maxAnswerWidth = " + maxAnswerWidth);
 
         for (int i = 0; i < mAnswerList.size(); i++) {
-            Rect rect = new Rect(w - offsetX - maxAnswerWidth, h / mAnswerList.size() * i, w - offsetX, h / mAnswerList.size() * (i + 1));
+            Rect rect = new Rect(w - offsetX - maxAnswerWidth - 20, h / mAnswerList.size() * i, w - offsetX + 20, h / mAnswerList.size() * (i + 1));
 
             mAnswerRectList.add(rect);
         }
@@ -308,7 +308,7 @@ public class ConnectLineView extends View {
                 if (downInRect) {
                     movePoint.x = (int) event.getX();
                     movePoint.y = (int) event.getY();
-                }else {
+                } else {
                     movePoint.x = 0;
                     movePoint.y = 0;
                 }
