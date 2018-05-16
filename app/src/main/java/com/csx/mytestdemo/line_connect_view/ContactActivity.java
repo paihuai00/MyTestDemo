@@ -1,12 +1,17 @@
-package com.csx.mytestdemo.connect_view;
+package com.csx.mytestdemo.line_connect_view;
 
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.animation.AnimationUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.csx.mlibrary.base.BaseActivity;
+import com.csx.mlibrary.dialog.CommonDialog;
 import com.csx.mlibrary.utils.ToastUtils;
 import com.csx.mytestdemo.R;
 
@@ -14,6 +19,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @Created by cuishuxiang
@@ -29,6 +35,10 @@ public class ContactActivity extends BaseActivity {
     ImageView mLoadingView;
 
     AnimationDrawable mAnimationDrawable;
+    @BindView(R.id.show_single_choose_btn)
+    Button mShowSingleChooseBtn;
+
+    CommonDialog mSingleDialog;
 
     @Override
     public int getLayoutId() {
@@ -69,8 +79,44 @@ public class ContactActivity extends BaseActivity {
 
     @Override
     public void initData() {
+        View singleChooseView = LayoutInflater.from(this).inflate(R.layout.dialog_single_choose, null);
+        final RadioGroup radiogroup = singleChooseView.findViewById(R.id.radiogroup);
+//        RadioButton a_rb = singleChooseView.findViewById(R.id.a_rb);
+//        RadioButton b_rb = singleChooseView.findViewById(R.id.b_rb);
+//        RadioButton c_rb = singleChooseView.findViewById(R.id.c_rb);
+//        RadioButton d_rb = singleChooseView.findViewById(R.id.d_rb);
+        Button submit_btn = singleChooseView.findViewById(R.id.submit_btn);
+
+        submit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int checkId = radiogroup.getCheckedRadioButtonId();
+                switch (checkId) {
+                    case R.id.a_rb:
+                        Log.d(TAG, "onClick: 选择 a");
+                        break;
+                    case R.id.b_rb:
+                        Log.d(TAG, "onClick: 选择 b");
+                        break;
+                    case R.id.c_rb:
+                        Log.d(TAG, "onClick: 选择 c");
+                        break;
+                    case R.id.d_rb:
+                        Log.d(TAG, "onClick: 选择 d");
+                        break;
+                }
+            }
+        });
+//        a_rb.isChecked()
+        mSingleDialog = new CommonDialog.Builder(this)
+                .setContentView(singleChooseView)
+                .setCancelable(true)
+                .create();
 
     }
 
-
+    @OnClick(R.id.show_single_choose_btn)
+    public void onViewClicked() {
+        mSingleDialog.show();
+    }
 }

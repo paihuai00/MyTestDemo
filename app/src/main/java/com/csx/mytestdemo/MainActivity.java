@@ -1,14 +1,11 @@
 package com.csx.mytestdemo;
 
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
-import android.os.Bundle;
 import android.os.Environment;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import com.csx.mlibrary.base.BaseActivity;
 import com.csx.mytestdemo.audio_record.AudioActivity;
@@ -16,7 +13,8 @@ import com.csx.mytestdemo.bottom_bar.BottomBarActivity;
 import com.csx.mytestdemo.broadcast_test.BroadCastActivity;
 import com.csx.mytestdemo.butterknife_test.ButterKnifeActivity;
 import com.csx.mytestdemo.common_dialog.CommonDialogActivity;
-import com.csx.mytestdemo.connect_view.ContactActivity;
+import com.csx.mytestdemo.drag_edittext.DragEditTextActivity;
+import com.csx.mytestdemo.line_connect_view.ContactActivity;
 import com.csx.mytestdemo.drag_recyclerview.DragActivity;
 import com.csx.mytestdemo.float_menu.FloatMenuActivity;
 import com.csx.mytestdemo.flow_view.FlowActivity;
@@ -41,17 +39,7 @@ import com.csx.mytestdemo.view_touch_scroll.TouchScrollActivity;
 import com.csx.mytestdemo.webview_progressbar.WebViewActivity;
 import com.csx.mytestdemo.wifi_demo.WifiActivity;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static android.os.Environment.DIRECTORY_MUSIC;
@@ -115,6 +103,8 @@ public class MainActivity extends BaseActivity {
     Button mWebViewBtn;
     @BindView(R.id.progress_btn)
     Button mProgressBtn;
+    @BindView(R.id.drag_et_btn)
+    Button mDragEditTextBtn;
 
 
     @Override
@@ -160,7 +150,8 @@ public class MainActivity extends BaseActivity {
             R.id.scroller_btn, R.id.slide_menu_btn, R.id.ksoap_btn, R.id.gson_btn,
             R.id.bf_btn, R.id.flow_btn, R.id.state_bar_btn, R.id.asynctask_btn, R.id.keyboard_btn,
             R.id.wifi_btn, R.id.float_menu_btn, R.id.service_btn, R.id.contact_btn,
-            R.id.loading_btn, R.id.multiple_state_btn, R.id.webview_btn, R.id.progress_btn})
+            R.id.loading_btn, R.id.multiple_state_btn, R.id.webview_btn, R.id.progress_btn,
+            R.id.drag_et_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -251,6 +242,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.progress_btn:
                 openActivity(ProgressActivity.class);
+                break;
+            case R.id.drag_et_btn:
+                openActivity(DragEditTextActivity.class);
                 break;
         }
     }

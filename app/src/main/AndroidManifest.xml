@@ -220,7 +220,7 @@
         <service android:name=".service_test.SocketService" />
 
         <!--连线view-->
-        <activity android:name=".connect_view.ContactActivity" />
+        <activity android:name=".line_connect_view.ContactActivity" />
 
         <!--Loading  View-->
         <activity android:name=".loading_view.LoadingActivity" />
@@ -233,6 +233,9 @@
 
         <!--进度条View-->
         <activity android:name=".progress_view.ProgressActivity" />
+
+        <!--可拖动，缩放的EditText-->
+        <activity android:name=".drag_edittext.DragEditTextActivity" />
     </application>
 
 </manifest>

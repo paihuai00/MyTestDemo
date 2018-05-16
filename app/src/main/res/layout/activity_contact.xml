@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <com.csx.mytestdemo.connect_view.ConnectLineView
+    <com.csx.mytestdemo.line_connect_view.ConnectLineView
+        android:id="@+id/connect_view"
         android:layout_width="match_parent"
-        android:layout_height="500px"
-        android:id="@+id/connect_view"/>
+        android:layout_height="500px" />
 
 
     <ImageView
+        android:id="@+id/loading_view"
         android:layout_width="200px"
         android:layout_height="200px"
-        android:id="@+id/loading_view"
         android:background="@drawable/bg_gray_alpha"
-        android:scaleType="center"/>
+        android:scaleType="center" />
 
+    <Button
+        android:id="@+id/show_single_choose_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="单选弹框" />
 
 </LinearLayout>

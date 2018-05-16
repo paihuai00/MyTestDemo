@@ -1,4 +1,4 @@
-package com.csx.mytestdemo.connect_view;
+package com.csx.mytestdemo.line_connect_view;
 
 import android.content.Context;
 import android.graphics.Canvas;
