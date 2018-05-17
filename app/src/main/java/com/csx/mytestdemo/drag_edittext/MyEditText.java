@@ -1,15 +1,12 @@
 package com.csx.mytestdemo.drag_edittext;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.BitmapRegionDecoder;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.hardware.input.InputManager;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -19,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 
 import com.csx.mytestdemo.R;
 
@@ -26,21 +24,27 @@ import com.csx.mytestdemo.R;
  * @Created by cuishuxiang
  * @date 2018/5/16.
  * @description:
+ * 说明:1，点击view移动控件
+ *      2，点击右上角图标，编辑
+ *      3，点击右下角图标，缩放
+ *
+ *
  */
 public class MyEditText extends EditText implements View.OnTouchListener {
     private static final String TAG = "MyEditText";
     private Paint mPaint;
-    private int radius = 20;
-
     private Context mContext;
 
     private float mCurrentFontSize;
 
     private ViewGroup.LayoutParams mLayoutParams;
+    private ViewGroup.MarginLayoutParams mMarginLayoutParams;//为当前view设置位于父控件的位置
 
     private float screenWidth, screenHeight;
 
     private Bitmap scaleBitmap;//右下角缩放的bitmap
+    private Bitmap editBitmap;//右上角的编辑bitmap
+
 
     public MyEditText(Context context) {
         super(context, null);
@@ -63,11 +67,13 @@ public class MyEditText extends EditText implements View.OnTouchListener {
         setOnTouchListener(this);
         setFocusable(true);
 
-        setPadding(0, 0, radius, 0);
+        setBackgroundColor(Color.WHITE);//背景设置白色
 
-        setBackgroundColor(Color.WHITE);
+        scaleBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_sticker_control);
+        editBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_edit_text);
 
-        scaleBitmap= BitmapFactory.decodeResource(getResources(), R.drawable.ic_sticker_control);
+        int paddRight = scaleBitmap.getWidth() > editBitmap.getWidth() ? scaleBitmap.getWidth() : editBitmap.getWidth();
+        setPadding(0, 0, paddRight+20, 0);
 
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         screenWidth = displayMetrics.widthPixels;
@@ -76,6 +82,7 @@ public class MyEditText extends EditText implements View.OnTouchListener {
         mCurrentFontSize = getTextSize();
 
         Log.d(TAG, "init:屏幕宽高为: screenWidth=" + screenWidth + "  screenHeight = " + screenHeight + " mCurrentFontSize = " + mCurrentFontSize);
+        mLayoutParams = getLayoutParams();
     }
 
     private void initPaint() {
@@ -87,7 +94,8 @@ public class MyEditText extends EditText implements View.OnTouchListener {
         mPaint.setStyle(Paint.Style.STROKE);
     }
 
-    private boolean isInCircle = false;
+    private boolean isInScaleCircle = false;
+    private boolean isInEditCircle = false;
     float downRawX = 0, downRawY = 0;
     private int mViewLeft, mViewTop, mViewRight, mViewBottom;
     float startRawX = 0, startRawY = 0;
@@ -109,38 +117,39 @@ public class MyEditText extends EditText implements View.OnTouchListener {
                 startRawX = event.getRawX();
                 startRawY = event.getRawY();
 
-                isInCircle = isDownInCircle(downX, downY);
-                Log.d(TAG, "onTouch:按下的点是否在圆？ " + isInCircle + "  downX = " + downX + " downY=" + downY + "\nevent.getRawX()=" + event.getRawX() + " event.getRawY()=" + event.getRawY());
-                if (isInCircle) {
-                    mLayoutParams = (ViewGroup.MarginLayoutParams) getLayoutParams();
+                isInScaleCircle = isDownInCircle(downX, downY);
+                isInEditCircle = isDownEditCircle(downX, downY);
+                Log.d(TAG, "onTouch:按下的点是否在缩放框？ " + isInEditCircle + " 按下的点是否在编辑框：" + isInScaleCircle + "  downX = " + downX + " downY=" + downY + "\nevent.getRawX()=" + event.getRawX() + " event.getRawY()=" + event.getRawY());
 
+                if (isInEditCircle) {
+                    v.setFocusable(true);
+                    v.setFocusableInTouchMode(true);
+                } else {
+                    //如果按下，并开始移动，就屏蔽焦点，隐藏键盘（防止拖拽跟点击冲突）
+                    v.setFocusable(false);
+                    v.setFocusableInTouchMode(false);
+                    hideSoftInput(mContext, this);
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
-                //如果按下，并开始移动，就屏蔽焦点，隐藏键盘（防止拖拽跟点击冲突）
-                v.setFocusable(false);
-                v.setFocusableInTouchMode(false);
-                hideSoftInput(mContext, this);
-
-                if (isInCircle) {//如果是在右下角的圆中，则为缩放
+                if (isInScaleCircle) {//如果是在右下角的圆中，则为缩放
                     float offsetX = event.getRawX() / startRawX;
                     float offsetY = event.getRawY() / startRawY;
-                    Log.d(TAG, "onTouch: offsetX =" + offsetX + " offsetY= " + offsetY);
-                    float offset;
+
+                    //判断是放大还是缩小
                     if (offsetX >= 1 && offsetY >= 1) {
-                        offset = offsetX > offsetY ? offsetX : offsetY;
-                    }else{
-                        offset = offsetX > offsetY ? offsetY : offsetX;
+                        moveTextSize += 1;
+                    } else {
+                        moveTextSize -= 1;
                     }
 
-
-
-                    Log.d(TAG, "offset: " + offset);
-
-                    moveTextSize = mCurrentFontSize * offset;
+                    if (moveTextSize < 40) {
+                        moveTextSize = 40;
+                    }
+                    Log.d(TAG, "onTouch: offsetX =" + offsetX + " offsetY= " + offsetY+"  moveTextSize = "+moveTextSize);
                     setTextSize(TypedValue.COMPLEX_UNIT_DIP, moveTextSize);
 
-                } else {
+                } else {//平移
                     float dx = event.getRawX() - downRawX;
                     float dy = event.getRawY() - downRawY;
                     Log.d(TAG, "onTouch: 移动的 dx= " + dx + "  dy = " + dy);
@@ -167,8 +176,6 @@ public class MyEditText extends EditText implements View.OnTouchListener {
                         mViewTop = (int) (screenHeight - getMeasuredHeight());
                         mViewBottom = (int) screenHeight;
                     }
-
-
                     Log.d(TAG, "onTouch: mViewLeft= " + mViewLeft + " mViewTop = " + mViewTop + " mViewRight= " + mViewRight + " mViewBottom=" + mViewBottom);
                     v.layout(mViewLeft, mViewTop, mViewRight, mViewBottom);
                 }
@@ -176,14 +183,25 @@ public class MyEditText extends EditText implements View.OnTouchListener {
                 downRawX = event.getRawX();
                 downRawY = event.getRawY();
 
-//                v.postInvalidate();
-                invalidate();
+                v.postInvalidate();
                 break;
             case MotionEvent.ACTION_UP:
-                v.setFocusable(true);
-                v.setFocusableInTouchMode(true);
-
                 mCurrentFontSize = moveTextSize;
+
+                //得到此控件于父布局的margin
+                int marginLeft = (int) (event.getRawX() - event.getX());
+                int marginTop = (int) (event.getRawY() - event.getY());
+
+                //重新设置view的params，防止获取焦点的时候，恢复到原来的位置
+                if (mLayoutParams == null) {
+                    mLayoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    mMarginLayoutParams = new ViewGroup.MarginLayoutParams(mLayoutParams);
+                }
+                mMarginLayoutParams.setMargins(marginLeft, marginTop, 0, 0);
+
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(mMarginLayoutParams);
+
+                setLayoutParams(layoutParams);
                 break;
         }
 
@@ -196,27 +214,40 @@ public class MyEditText extends EditText implements View.OnTouchListener {
         int width = getMeasuredWidth();
         int height = getMeasuredHeight();
 
+        //绘制右侧两个图片
         canvas.drawBitmap(scaleBitmap, width - scaleBitmap.getWidth() - 5, height - scaleBitmap.getHeight() - 5, mPaint);
+        canvas.drawBitmap(editBitmap, width - scaleBitmap.getWidth() - 5, 5, mPaint);
 
         RectF rectF = new RectF(0, 0, width, height);
         canvas.drawRect(rectF, mPaint);
     }
 
-
     /**
-     * 判断 按下的点，是否在右下角的 圆中
+     * 判断 按下的点，是否在右下角的 缩放框
      *
      * @param downX
      * @param downY
      * @return
      */
+    private RectF circleRect;
     private boolean isDownInCircle(float downX, float downY) {
-        RectF circleRect = new RectF(getMeasuredWidth() - radius * 2, getMeasuredHeight() - radius * 2, getMeasuredWidth(), getMeasuredHeight());
+        circleRect = new RectF(getMeasuredWidth() - scaleBitmap.getWidth() - 20, getMeasuredHeight() - scaleBitmap.getHeight()- 20, getMeasuredWidth(), getMeasuredHeight());
         return circleRect.contains(downX, downY);
+    }
+
+    /**
+     * 判断按下的点，是否为编辑框
+     */
+    private RectF editRectF;
+    private boolean isDownEditCircle(float downX, float downY) {
+        editRectF = new RectF(getMeasuredWidth() - editBitmap.getWidth() - 20, 0, getMeasuredWidth(), editBitmap.getHeight() + 20);
+
+        return editRectF.contains(downX, downY);
     }
 
 
     /**
+     * 隐藏软键盘
      * @param mContext
      * @param view
      */
