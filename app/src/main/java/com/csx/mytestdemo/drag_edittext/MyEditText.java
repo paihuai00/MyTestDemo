@@ -23,12 +23,9 @@ import com.csx.mytestdemo.R;
 /**
  * @Created by cuishuxiang
  * @date 2018/5/16.
- * @description:
- * 说明:1，点击view移动控件
- *      2，点击右上角图标，编辑
- *      3，点击右下角图标，缩放
- *
- *
+ * @description: 说明:1，点击view移动控件
+ * 2，点击右上角图标，编辑
+ * 3，点击右下角图标，缩放
  */
 public class MyEditText extends EditText implements View.OnTouchListener {
     private static final String TAG = "MyEditText";
@@ -73,7 +70,7 @@ public class MyEditText extends EditText implements View.OnTouchListener {
         editBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_edit_text);
 
         int paddRight = scaleBitmap.getWidth() > editBitmap.getWidth() ? scaleBitmap.getWidth() : editBitmap.getWidth();
-        setPadding(0, 0, paddRight+20, 0);
+        setPadding(0, 0, paddRight + 20, 0);
 
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         screenWidth = displayMetrics.widthPixels;
@@ -146,7 +143,7 @@ public class MyEditText extends EditText implements View.OnTouchListener {
                     if (moveTextSize < 40) {
                         moveTextSize = 40;
                     }
-                    Log.d(TAG, "onTouch: offsetX =" + offsetX + " offsetY= " + offsetY+"  moveTextSize = "+moveTextSize);
+                    Log.d(TAG, "onTouch: offsetX =" + offsetX + " offsetY= " + offsetY + "  moveTextSize = " + moveTextSize);
                     setTextSize(TypedValue.COMPLEX_UNIT_DIP, moveTextSize);
 
                 } else {//平移
@@ -188,16 +185,12 @@ public class MyEditText extends EditText implements View.OnTouchListener {
             case MotionEvent.ACTION_UP:
                 mCurrentFontSize = moveTextSize;
 
-                //得到此控件于父布局的margin
-                int marginLeft = (int) (event.getRawX() - event.getX());
-                int marginTop = (int) (event.getRawY() - event.getY());
-
                 //重新设置view的params，防止获取焦点的时候，恢复到原来的位置
                 if (mLayoutParams == null) {
                     mLayoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                     mMarginLayoutParams = new ViewGroup.MarginLayoutParams(mLayoutParams);
                 }
-                mMarginLayoutParams.setMargins(marginLeft, marginTop, 0, 0);
+                mMarginLayoutParams.setMargins(mViewLeft, mViewTop, 0, 0);
 
                 RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(mMarginLayoutParams);
 
@@ -211,6 +204,10 @@ public class MyEditText extends EditText implements View.OnTouchListener {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        if (!isHideEditImage)
+            return;
+
         int width = getMeasuredWidth();
         int height = getMeasuredHeight();
 
@@ -230,8 +227,9 @@ public class MyEditText extends EditText implements View.OnTouchListener {
      * @return
      */
     private RectF circleRect;
+
     private boolean isDownInCircle(float downX, float downY) {
-        circleRect = new RectF(getMeasuredWidth() - scaleBitmap.getWidth() - 20, getMeasuredHeight() - scaleBitmap.getHeight()- 20, getMeasuredWidth(), getMeasuredHeight());
+        circleRect = new RectF(getMeasuredWidth() - scaleBitmap.getWidth() - 20, getMeasuredHeight() - scaleBitmap.getHeight() - 20, getMeasuredWidth(), getMeasuredHeight());
         return circleRect.contains(downX, downY);
     }
 
@@ -239,6 +237,7 @@ public class MyEditText extends EditText implements View.OnTouchListener {
      * 判断按下的点，是否为编辑框
      */
     private RectF editRectF;
+
     private boolean isDownEditCircle(float downX, float downY) {
         editRectF = new RectF(getMeasuredWidth() - editBitmap.getWidth() - 20, 0, getMeasuredWidth(), editBitmap.getHeight() + 20);
 
@@ -248,6 +247,7 @@ public class MyEditText extends EditText implements View.OnTouchListener {
 
     /**
      * 隐藏软键盘
+     *
      * @param mContext
      * @param view
      */
@@ -258,4 +258,12 @@ public class MyEditText extends EditText implements View.OnTouchListener {
         }
     }
 
+    //默认绘制编辑图标
+    private boolean isHideEditImage = false;
+
+    public void hideEditImage(boolean hide) {
+        isHideEditImage = hide;
+
+        invalidate();
+    }
 }

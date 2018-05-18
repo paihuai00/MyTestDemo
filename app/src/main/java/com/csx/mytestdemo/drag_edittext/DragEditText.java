@@ -21,6 +21,7 @@ public class DragEditText extends EditText implements View.OnTouchListener {
     private Context mContext;
 
     private int screenWidth, screenHeight;
+
     private void getDisplayMetrics() {
         DisplayMetrics dm = getResources().getDisplayMetrics();
         screenWidth = dm.widthPixels;
@@ -33,7 +34,7 @@ public class DragEditText extends EditText implements View.OnTouchListener {
     private int upX, upY; // 放手View的X,Y坐标
     private int rangeDifferenceX, rangeDifferenceY; // 放手和按下X,Y值差
     private int mDistance = 10; // 设定点击事件的移动距离值
-    private int mL,mB,mR,mT;//重绘时layout的值
+    private int mL, mB, mR, mT;//重绘时layout的值
 
     public DragEditText(Context context) {
         this(context, null);
@@ -67,7 +68,7 @@ public class DragEditText extends EditText implements View.OnTouchListener {
         }
     }
 
-    public interface IOnKeyboardStateChangedListener{
+    public interface IOnKeyboardStateChangedListener {
         public void openKeyboard();
     }
 
@@ -114,7 +115,7 @@ public class DragEditText extends EditText implements View.OnTouchListener {
                     mT = mB - v.getHeight();
                 }
                 v.layout(mL, mT, mR, mB);
-                Log.d("绘制：", "l="+mL+ ";t="+ mT+";r="+mR+";b="+mB);
+                Log.d("绘制：", "l=" + mL + ";t=" + mT + ";r=" + mR + ";b=" + mB);
 
                 lastX = (int) event.getRawX();
                 lastY = (int) event.getRawY();
@@ -122,7 +123,7 @@ public class DragEditText extends EditText implements View.OnTouchListener {
 
                 v.setFocusable(false);
                 v.setFocusableInTouchMode(false);
-                hideSoftInput((Activity)mContext, v);
+                hideSoftInput((Activity) mContext, v);
                 break;
             case MotionEvent.ACTION_UP:
                 upX = (int) event.getRawX();
@@ -168,5 +169,13 @@ public class DragEditText extends EditText implements View.OnTouchListener {
                 break;
         }
         return false;
+    }
+
+    private boolean isShowEditImage = true;
+
+    public void hindEditImage(boolean hind) {
+        isShowEditImage = !hind;
+
+        invalidate();
     }
 }
