@@ -32,6 +32,8 @@ public class Glide4Activity extends BaseActivity {
     ProgressDialog progressDialog;
     @BindView(R.id.show_progress_tv)
     TextView mShowProgressTv;
+    @BindView(R.id.circle_progressView)
+    CircleProgressView mCircleProgressView;
 
     @Override
     public int getLayoutId() {
@@ -49,6 +51,7 @@ public class Glide4Activity extends BaseActivity {
                 Log.d(TAG, "onProgress: " + progress);
                 progressDialog.setProgress(progress);
                 mShowProgressTv.setText("图片加载进度：" + progress);
+                mCircleProgressView.setProgress(progress);
             }
         });
 
