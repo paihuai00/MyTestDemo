@@ -227,6 +227,27 @@
             android:text="可拖动/缩放的EditText"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/color_picker_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="颜色选择！"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/photoview_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="图片查看器PhotoView"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/glide4_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Glide4"
+            android:textAllCaps="false" />
+
     </LinearLayout>
 
 </ScrollView>

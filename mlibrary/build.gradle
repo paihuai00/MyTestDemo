@@ -27,7 +27,7 @@ dependencies {
     api "com.android.support:appcompat-v7:$rootProject.ext.supportVersion"
     api "com.android.support:support-v4:$rootProject.ext.supportVersion"
     api "com.android.support:design:$rootProject.ext.supportVersion"
-    api "com.android.support:support-v13:$rootProject.ext.supportVersion"
+    implementation "com.android.support:support-v13:$rootProject.ext.supportVersion"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
@@ -42,4 +42,5 @@ dependencies {
 
     //Rv helper：https://www.jianshu.com/p/b343fcff51b0
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+
 }

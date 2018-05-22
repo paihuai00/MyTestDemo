@@ -203,11 +203,11 @@
         <receiver android:name="com.csx.mytestdemo.wifi_demo.wifi_widget.WiFiManager$NetworkBroadcastReceiver">
             <intent-filter>
                 <!-- AP扫描完成，客户端得到可用的结果集 -->
-                <action android:name="android.net.wifi.SCAN_RESULTS"/>
-                <action android:name="android.net.wifi.WIFI_STATE_CHANGED"/>
-                <action android:name="android.net.wifi.STATE_CHANGE"/>
-                <action android:name="android.net.wifi.supplicant.STATE_CHANGE"/>
-                <action android:name="android.net.wifi.supplicant.CONNECTION_CHANGE"/>
+                <action android:name="android.net.wifi.SCAN_RESULTS" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+                <action android:name="android.net.wifi.STATE_CHANGE" />
+                <action android:name="android.net.wifi.supplicant.STATE_CHANGE" />
+                <action android:name="android.net.wifi.supplicant.CONNECTION_CHANGE" />
             </intent-filter>
         </receiver>
 
@@ -216,6 +216,7 @@
 
         <!--service使用-->
         <activity android:name=".service_test.ServiceActivity" />
+
         <service android:name=".service_test.MyService" />
         <service android:name=".service_test.SocketService" />
 
@@ -236,6 +237,20 @@
 
         <!--可拖动，缩放的EditText-->
         <activity android:name=".drag_edittext.DragEditTextActivity" />
+
+        <!--颜色选择器-->
+        <activity android:name=".color_picker.ColorPickerActivity" />
+
+        <!--图片查看器  -->
+        <activity android:name=".photoview.PhotoViewActivity" />
+
+        <!--Glide 4-->
+        <activity android:name=".glide4.Glide4Activity" />
+        <!--<meta-data-->
+            <!--android:name="com.csx.mytestdemo.glide4.MyGlideModel"-->
+            <!--android:value="GlideModule" />-->
+
+
     </application>
 
 </manifest>

@@ -12,8 +12,10 @@ import com.csx.mytestdemo.audio_record.AudioActivity;
 import com.csx.mytestdemo.bottom_bar.BottomBarActivity;
 import com.csx.mytestdemo.broadcast_test.BroadCastActivity;
 import com.csx.mytestdemo.butterknife_test.ButterKnifeActivity;
+import com.csx.mytestdemo.color_picker.ColorPickerActivity;
 import com.csx.mytestdemo.common_dialog.CommonDialogActivity;
 import com.csx.mytestdemo.drag_edittext.DragEditTextActivity;
+import com.csx.mytestdemo.glide4.Glide4Activity;
 import com.csx.mytestdemo.line_connect_view.ContactActivity;
 import com.csx.mytestdemo.drag_recyclerview.DragActivity;
 import com.csx.mytestdemo.float_menu.FloatMenuActivity;
@@ -25,6 +27,7 @@ import com.csx.mytestdemo.ksoap_webservice.KsoapActivity;
 import com.csx.mytestdemo.loading_view.LoadingActivity;
 import com.csx.mytestdemo.multiple_state.MultipleActivity;
 import com.csx.mytestdemo.mvp.MvpActivity;
+import com.csx.mytestdemo.photoview.PhotoViewActivity;
 import com.csx.mytestdemo.progress_view.ProgressActivity;
 import com.csx.mytestdemo.rxjava_test.RxJavaActivity;
 import com.csx.mytestdemo.scroller_view.ScrollerActivity;
@@ -105,6 +108,12 @@ public class MainActivity extends BaseActivity {
     Button mProgressBtn;
     @BindView(R.id.drag_et_btn)
     Button mDragEditTextBtn;
+    @BindView(R.id.color_picker_btn)
+    Button mColorPickerBtn;
+    @BindView(R.id.photoview_btn)
+    Button mPhotoViewBtn;
+    @BindView(R.id.glide4_btn)
+    Button mGlide4Btn;
 
 
     @Override
@@ -151,7 +160,7 @@ public class MainActivity extends BaseActivity {
             R.id.bf_btn, R.id.flow_btn, R.id.state_bar_btn, R.id.asynctask_btn, R.id.keyboard_btn,
             R.id.wifi_btn, R.id.float_menu_btn, R.id.service_btn, R.id.contact_btn,
             R.id.loading_btn, R.id.multiple_state_btn, R.id.webview_btn, R.id.progress_btn,
-            R.id.drag_et_btn})
+            R.id.drag_et_btn, R.id.color_picker_btn, R.id.photoview_btn, R.id.glide4_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -246,6 +255,15 @@ public class MainActivity extends BaseActivity {
             case R.id.drag_et_btn:
                 openActivity(DragEditTextActivity.class);
                 break;
+            case R.id.color_picker_btn:
+                openActivity(ColorPickerActivity.class);
+                break;
+            case R.id.photoview_btn:
+                openActivity(PhotoViewActivity.class);
+                break;
+            case R.id.glide4_btn:
+                openActivity(Glide4Activity.class);
+                break;
         }
     }
 
@@ -255,7 +273,9 @@ public class MainActivity extends BaseActivity {
      * @param c
      */
     private void openActivity(Class c) {
-        startActivity(new Intent(MainActivity.this, c));
+        Intent intent = new Intent(MainActivity.this, c);
+        overridePendingTransition(R.anim.activity_enter, R.anim.activity_exit);
+        startActivity(intent);
     }
 
 }

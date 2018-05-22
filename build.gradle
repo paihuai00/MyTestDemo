@@ -35,13 +35,13 @@ task clean(type: Delete) {
 
 ext {
     //支持库版本
-    supportVersion = "26.1.0"
+    supportVersion = "27.1.0"
     //编译的SDK版本
-    compileSdkVersion = 26
+    compileSdkVersion = 27
     //构建工具的版本，其中包括了打包工具aapt、dx等,如API20对应的build-tool的版本就是20.0.0
-    buildToolsVersion = "26.0.0"
+    buildToolsVersion = "27.0.0"
     //兼容的最低 SDK 版本
     minSdkVersion = 18
     //向前兼容，保存新旧两种逻辑，并通过 if-else 方法来判断执行哪种逻辑
-    targetSdkVersion = 26
+    targetSdkVersion = 27
 }
