@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,12 +30,14 @@ public class Glide4Activity extends BaseActivity {
     String imgUrl = "http://img5.adesk.com/5ab8cef4e7bce7355224a6cb?imageMogr2/thumbnail/!720x1280r/gravity/Center/crop/720x1280";
     @BindView(R.id.glide_iv)
     ImageView mGlideIv;
-    ProgressDialog progressDialog;
+
     @BindView(R.id.show_progress_tv)
     TextView mShowProgressTv;
     @BindView(R.id.circle_progressView)
     CircleProgressView mCircleProgressView;
 
+
+//    ProgressDialog progressDialog;
     @Override
     public int getLayoutId() {
         return R.layout.activity_glide;
@@ -42,15 +45,15 @@ public class Glide4Activity extends BaseActivity {
 
     @Override
     public void initView() {
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        progressDialog.setMessage("加载中");
+//        progressDialog = new ProgressDialog(this);
+//        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+//        progressDialog.setMessage("加载中");
         ProgressInterceptor.addListener(imgUrl, new ProgressListener() {
             @Override
             public void onProgress(int progress) {
                 Log.d(TAG, "onProgress: " + progress);
-                progressDialog.setProgress(progress);
-                mShowProgressTv.setText("图片加载进度：" + progress);
+//                progressDialog.setProgress(progress);
+//                mShowProgressTv.setText("图片加载进度：" + progress);
                 mCircleProgressView.setProgress(progress);
             }
         });
@@ -58,7 +61,7 @@ public class Glide4Activity extends BaseActivity {
         SimpleTarget<Drawable> simpleTarge = new SimpleTarget<Drawable>() {
             @Override
             public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
                 mGlideIv.setImageDrawable(resource);
                 Log.d(TAG, "onResourceReady: ");
                 ProgressInterceptor.removeListener(imgUrl);
@@ -68,11 +71,13 @@ public class Glide4Activity extends BaseActivity {
             public void onStart() {
                 super.onStart();
                 Log.d(TAG, "onStart: ");
-                progressDialog.show();
+//                progressDialog.show();
+                mCircleProgressView.setVisibility(View.VISIBLE);
             }
         };
         GlideApp.with(this)
                 .load(imgUrl)
+                .placeholder(R.color.red)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
                 .into(simpleTarge);

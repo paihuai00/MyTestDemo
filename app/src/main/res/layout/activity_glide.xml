@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
 
     <ImageView
         android:id="@+id/glide_iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
     <com.csx.mytestdemo.glide4.CircleProgressView
         android:id="@+id/circle_progressView"
         android:layout_width="50dp"
@@ -20,7 +21,7 @@
         app:cpv_outerSize="1dp"
         app:cpv_progressNormalColor="#E5ffffff"
         app:cpv_progressReachColor="@color/white"
-        app:cpv_progressStyle="FillInnerArc"/>
+        app:cpv_progressStyle="FillInnerArc" />
 
     <TextView
         android:id="@+id/show_progress_tv"
@@ -28,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:visibility="invisible"
         android:textColor="@color/red"
-        android:textSize="@dimen/y45" />
+        android:textSize="@dimen/y45"
+        android:visibility="invisible" />
 </RelativeLayout>
