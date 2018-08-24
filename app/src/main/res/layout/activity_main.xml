@@ -248,6 +248,49 @@
             android:text="Glide4"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/diff_utils_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DiffUtil使用"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/sticky_rv_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="顶部悬浮的Rv"
+            android:textAllCaps="false" />
+
+
+        <Button
+            android:id="@+id/lazy_fg_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="懒加载"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/refresh_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SmartRefreshLayout"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/bottom_dialog_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="仿ios底部弹框"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/banner_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="轮播图"
+            android:textAllCaps="false" />
+
     </LinearLayout>
 
 </ScrollView>

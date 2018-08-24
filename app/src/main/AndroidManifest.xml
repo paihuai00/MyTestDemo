@@ -251,6 +251,23 @@
             <!--android:value="GlideModule" />-->
 
 
+        <!--diffUtil 工具类Activity-->
+        <activity android:name=".diffutil_rv.DiffUtilsActivity" />
+
+        <!--顶部悬浮的 Rv-->
+        <activity android:name=".sticky_recyclerview.StickyRvActivity" />
+
+        <!--lazy fg -->
+        <activity android:name=".lazy_fg.LazyFgActivity" />
+
+        <!--smart refresh layout-->
+        <activity android:name=".smart_refresh.SmartRefreshActivity" />
+
+        <!--仿ios 底部弹框-->
+        <activity android:name=".bottom_dialog.BottomDialogActivity" />
+        <activity android:name=".banner_.BannerActivity" />
+
+
     </application>
 
 </manifest>

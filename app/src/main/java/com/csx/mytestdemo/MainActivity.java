@@ -9,21 +9,25 @@ import android.widget.Button;
 
 import com.csx.mlibrary.base.BaseActivity;
 import com.csx.mytestdemo.audio_record.AudioActivity;
+import com.csx.mytestdemo.banner_.BannerActivity;
 import com.csx.mytestdemo.bottom_bar.BottomBarActivity;
+import com.csx.mytestdemo.bottom_dialog.BottomDialogActivity;
 import com.csx.mytestdemo.broadcast_test.BroadCastActivity;
 import com.csx.mytestdemo.butterknife_test.ButterKnifeActivity;
 import com.csx.mytestdemo.color_picker.ColorPickerActivity;
 import com.csx.mytestdemo.common_dialog.CommonDialogActivity;
+import com.csx.mytestdemo.diffutil_rv.DiffUtilsActivity;
 import com.csx.mytestdemo.drag_edittext.DragEditTextActivity;
-import com.csx.mytestdemo.glide4.Glide4Activity;
-import com.csx.mytestdemo.line_connect_view.ContactActivity;
 import com.csx.mytestdemo.drag_recyclerview.DragActivity;
 import com.csx.mytestdemo.float_menu.FloatMenuActivity;
 import com.csx.mytestdemo.flow_view.FlowActivity;
+import com.csx.mytestdemo.glide4.Glide4Activity;
 import com.csx.mytestdemo.gson_test.GsonActivity;
 import com.csx.mytestdemo.immerse_state_bar.StatusBarActivity;
 import com.csx.mytestdemo.keyboard_test.KeyBoardActivity;
 import com.csx.mytestdemo.ksoap_webservice.KsoapActivity;
+import com.csx.mytestdemo.lazy_fg.LazyFgActivity;
+import com.csx.mytestdemo.line_connect_view.ContactActivity;
 import com.csx.mytestdemo.loading_view.LoadingActivity;
 import com.csx.mytestdemo.multiple_state.MultipleActivity;
 import com.csx.mytestdemo.mvp.MvpActivity;
@@ -33,6 +37,8 @@ import com.csx.mytestdemo.rxjava_test.RxJavaActivity;
 import com.csx.mytestdemo.scroller_view.ScrollerActivity;
 import com.csx.mytestdemo.service_test.ServiceActivity;
 import com.csx.mytestdemo.share_mob.ShareActivity;
+import com.csx.mytestdemo.smart_refresh.SmartRefreshActivity;
+import com.csx.mytestdemo.sticky_recyclerview.StickyRvActivity;
 import com.csx.mytestdemo.thread_test.ThreadActivity;
 import com.csx.mytestdemo.video_player.VideoPlayerActivity;
 import com.csx.mytestdemo.view_gesture_velocity.GestureVelocityActivity;
@@ -114,6 +120,20 @@ public class MainActivity extends BaseActivity {
     Button mPhotoViewBtn;
     @BindView(R.id.glide4_btn)
     Button mGlide4Btn;
+    @BindView(R.id.diff_utils_btn)
+    Button mDiffUtilsBtn;
+    @BindView(R.id.loading_btn)
+    Button mLoadingBtn;
+    @BindView(R.id.sticky_rv_btn)
+    Button mStickyRvBtn;
+    @BindView(R.id.lazy_fg_btn)
+    Button mLazyFgBtn;
+    @BindView(R.id.refresh_btn)
+    Button mRefreshBtn;
+    @BindView(R.id.bottom_dialog_btn)
+    Button mBottomDialogBtn;
+    @BindView(R.id.banner_btn)
+    Button mBannerBtn;
 
 
     @Override
@@ -144,6 +164,7 @@ public class MainActivity extends BaseActivity {
         Log.d(TAG, "Environment.getExternalStorageState() = " + Environment.getExternalStorageState());
         Log.d(TAG, "getExternalCacheDir().getAbsolutePath() =  " + getExternalCacheDir().getAbsolutePath());
 
+
     }
 
 
@@ -160,7 +181,9 @@ public class MainActivity extends BaseActivity {
             R.id.bf_btn, R.id.flow_btn, R.id.state_bar_btn, R.id.asynctask_btn, R.id.keyboard_btn,
             R.id.wifi_btn, R.id.float_menu_btn, R.id.service_btn, R.id.contact_btn,
             R.id.loading_btn, R.id.multiple_state_btn, R.id.webview_btn, R.id.progress_btn,
-            R.id.drag_et_btn, R.id.color_picker_btn, R.id.photoview_btn, R.id.glide4_btn})
+            R.id.drag_et_btn, R.id.color_picker_btn, R.id.photoview_btn, R.id.glide4_btn,
+            R.id.diff_utils_btn, R.id.sticky_rv_btn, R.id.lazy_fg_btn, R.id.refresh_btn, R.id.banner_btn,
+            R.id.bottom_dialog_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -263,6 +286,24 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.glide4_btn:
                 openActivity(Glide4Activity.class);
+                break;
+            case R.id.diff_utils_btn:
+                openActivity(DiffUtilsActivity.class);
+                break;
+            case R.id.sticky_rv_btn:
+                openActivity(StickyRvActivity.class);
+                break;
+            case R.id.lazy_fg_btn:
+                openActivity(LazyFgActivity.class);
+                break;
+            case R.id.refresh_btn:
+                openActivity(SmartRefreshActivity.class);
+                break;
+            case R.id.bottom_dialog_btn:
+                openActivity(BottomDialogActivity.class);
+                break;
+            case R.id.banner_btn:
+                openActivity(BannerActivity.class);
                 break;
         }
     }
