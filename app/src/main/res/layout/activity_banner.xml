@@ -14,4 +14,22 @@
         app:indicatorPaddingRight="5dp"
         app:middle_page_cover="false"
         app:open_mz_mode="true" />
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorAccent"
+        android:text="点我旋转"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        />
+
+    <Button
+        android:id="@+id/reveal_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="揭露动画" />
+
 </LinearLayout>

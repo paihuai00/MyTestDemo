@@ -3,24 +3,20 @@ package com.csx.mytestdemo.lazy_fg;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.csx.mlibrary.base.BaseFragment;
 import com.csx.mytestdemo.R;
 
 import butterknife.BindView;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
-import static android.widget.Toast.LENGTH_SHORT;
+import me.henrytao.smoothappbarlayout.SmoothAppBarLayout;
+import me.henrytao.smoothappbarlayout.base.ObservableFragment;
+import me.henrytao.smoothappbarlayout.base.Utils;
+import me.henrytao.smoothappbarlayout.widget.NestedScrollView;
 
 /**
  * Create by cuishuxiang
@@ -29,10 +25,12 @@ import static android.widget.Toast.LENGTH_SHORT;
  * @description:
  */
 
-public class LazyFragment_1 extends BaseFragment {
+public class LazyFragment_1 extends BaseFragment implements ObservableFragment {
     private static final String TAG = LazyFragment_1.class.getSimpleName().toString();
     @BindView(R.id.lazy_tv)
     TextView mLazyTv;
+    @BindView(R.id.nested_scroll_view)
+    NestedScrollView mNestedScrollView;
 
     public LazyFragment_1() {
         super();
@@ -108,20 +106,30 @@ public class LazyFragment_1 extends BaseFragment {
     @Override
     protected void initView() {
 
-        SpannableStringBuilder mSpannableStringBuilder = new SpannableStringBuilder("这是 SpannableStringBuilder ");
-        mSpannableStringBuilder.setSpan(new ClickableSpan() {
-            @Override
-            public void onClick(View widget) {
-                Log.i(TAG, "onClick: ");
-                Toast.makeText(getContext(), "点击我！", Toast.LENGTH_SHORT).show();
-            }
-        }, 0, 10, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
-        mLazyTv.setText(mSpannableStringBuilder);
-        mLazyTv.setMovementMethod(LinkMovementMethod.getInstance());//需要设置这行代码，否则点击失效
+//        SpannableStringBuilder mSpannableStringBuilder = new SpannableStringBuilder("这是 SpannableStringBuilder ");
+//        mSpannableStringBuilder.setSpan(new ClickableSpan() {
+//            @Override
+//            public void onClick(View widget) {
+//                Log.i(TAG, "onClick: ");
+//                Toast.makeText(getContext(), "点击我！", Toast.LENGTH_SHORT).show();
+//            }
+//        }, 0, 10, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+//        mLazyTv.setText(mSpannableStringBuilder);
+//        mLazyTv.setMovementMethod(LinkMovementMethod.getInstance());//需要设置这行代码，否则点击失效
     }
 
     public void setTextString(String name) {
         if (mLazyTv != null)
             mLazyTv.setText(name);
+    }
+
+    @Override
+    public View getScrollTarget() {
+        return mNestedScrollView;
+    }
+
+    @Override
+    public boolean onOffsetChanged(SmoothAppBarLayout smoothAppBarLayout, View target, int verticalOffset) {
+        return Utils.syncOffset(smoothAppBarLayout,target,verticalOffset,getScrollTarget());
     }
 }

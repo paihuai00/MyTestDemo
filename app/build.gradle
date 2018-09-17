@@ -22,7 +22,15 @@ android {
     defaultConfig {
         multiDexEnabled true
     }
-
+    //解决模拟器安装失败问题
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'armeabi-v7a','x86_64'
+            universalApk true
+        }
+    }
 }
 
 dependencies {
@@ -114,6 +122,9 @@ dependencies {
 
     //https://github.com/scwang90/SmartRefreshLayout
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-12'
+
+    //https://github.com/henrytao-me/smooth-app-bar-layout
+    implementation 'me.henrytao:smooth-app-bar-layout:25.3.1.0'
 }
 // 在MobSDK的扩展中注册ShareSDK的相关信息
 MobSDK {

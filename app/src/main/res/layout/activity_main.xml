@@ -291,6 +291,61 @@
             android:text="轮播图"
             android:textAllCaps="false" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/transform_explode_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="分解转场"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/transform_slide_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="滑动转场"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/transform_fade_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="渐变转场"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/vp_fg_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="head+ViewPager+Fragment"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/coordinate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="协调布局，相关控件"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_select_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="自定义选择图片"
+            android:textAllCaps="false" />
+
     </LinearLayout>
 
 </ScrollView>

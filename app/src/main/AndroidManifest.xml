@@ -247,8 +247,8 @@
         <!--Glide 4-->
         <activity android:name=".glide4.Glide4Activity" />
         <!--<meta-data-->
-            <!--android:name="com.csx.mytestdemo.glide4.MyGlideModel"-->
-            <!--android:value="GlideModule" />-->
+        <!--android:name="com.csx.mytestdemo.glide4.MyGlideModel"-->
+        <!--android:value="GlideModule" />-->
 
 
         <!--diffUtil 工具类Activity-->
@@ -267,6 +267,18 @@
         <activity android:name=".bottom_dialog.BottomDialogActivity" />
         <activity android:name=".banner_.BannerActivity" />
 
+        <activity android:name=".transform_anim.TransformActivity" />
+
+        <!--head 加 vp  fg-->
+        <activity android:name=".head_vp_fg.ViewPagerActivity" />
+
+        <activity android:name=".coordinate_layout.CoordinateActivity" />
+        <activity android:name=".coordinate_layout.FabActivity" />
+        <activity android:name=".coordinate_layout.SimpleBehaviorActivity" />
+
+        <!--图片选择-->
+        <activity android:name=".image_select.image.MultiImageSelectorFragment" />
+        <activity android:name=".image_select.CustomImageSelectActivity" />
 
     </application>
 

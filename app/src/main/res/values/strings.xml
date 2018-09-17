@@ -8,4 +8,5 @@
     <string name="permission_ask">您已经禁止了该权限,请前往 - 设置开启</string>
     <string name="permission_deny">您拒绝了该权限，将无法正常使用该功能！</string>
 
+    <string name="my_behavior">com.csx.mytestdemo.coordinate_layout.CustomBehavior</string>
 </resources>

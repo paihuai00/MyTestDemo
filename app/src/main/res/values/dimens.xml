@@ -24,7 +24,7 @@
     <dimen name="size_39_dp">39dp</dimen>
     <dimen name="size_40_dp">40dp</dimen>
 
-
+    <dimen name="margin_brand">75dp</dimen>
 
     <dimen name="x1">1.0px</dimen>
     <dimen name="x2">2.0px</dimen>

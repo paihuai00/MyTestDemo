@@ -1,9 +1,13 @@
 package com.csx.mytestdemo;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Environment;
+import android.support.annotation.RequiresApi;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -16,6 +20,7 @@ import com.csx.mytestdemo.broadcast_test.BroadCastActivity;
 import com.csx.mytestdemo.butterknife_test.ButterKnifeActivity;
 import com.csx.mytestdemo.color_picker.ColorPickerActivity;
 import com.csx.mytestdemo.common_dialog.CommonDialogActivity;
+import com.csx.mytestdemo.coordinate_layout.CoordinateActivity;
 import com.csx.mytestdemo.diffutil_rv.DiffUtilsActivity;
 import com.csx.mytestdemo.drag_edittext.DragEditTextActivity;
 import com.csx.mytestdemo.drag_recyclerview.DragActivity;
@@ -23,6 +28,8 @@ import com.csx.mytestdemo.float_menu.FloatMenuActivity;
 import com.csx.mytestdemo.flow_view.FlowActivity;
 import com.csx.mytestdemo.glide4.Glide4Activity;
 import com.csx.mytestdemo.gson_test.GsonActivity;
+import com.csx.mytestdemo.head_vp_fg.ViewPagerActivity;
+import com.csx.mytestdemo.image_select.CustomImageSelectActivity;
 import com.csx.mytestdemo.immerse_state_bar.StatusBarActivity;
 import com.csx.mytestdemo.keyboard_test.KeyBoardActivity;
 import com.csx.mytestdemo.ksoap_webservice.KsoapActivity;
@@ -40,6 +47,7 @@ import com.csx.mytestdemo.share_mob.ShareActivity;
 import com.csx.mytestdemo.smart_refresh.SmartRefreshActivity;
 import com.csx.mytestdemo.sticky_recyclerview.StickyRvActivity;
 import com.csx.mytestdemo.thread_test.ThreadActivity;
+import com.csx.mytestdemo.transform_anim.TransformActivity;
 import com.csx.mytestdemo.video_player.VideoPlayerActivity;
 import com.csx.mytestdemo.view_gesture_velocity.GestureVelocityActivity;
 import com.csx.mytestdemo.view_slide_menu.SlideMenuActivity;
@@ -134,6 +142,18 @@ public class MainActivity extends BaseActivity {
     Button mBottomDialogBtn;
     @BindView(R.id.banner_btn)
     Button mBannerBtn;
+    @BindView(R.id.transform_explode_btn)
+    Button mExplodeBtn;
+    @BindView(R.id.transform_fade_btn)
+    Button mFadeBtn;
+    @BindView(R.id.transform_slide_btn)
+    Button mSlideBtn;
+    @BindView(R.id.vp_fg_btn)
+    Button mVpBtn;
+    @BindView(R.id.coordinate)
+    Button mConstraintBtn;
+    @BindView(R.id.btn_select_image)
+    Button mImageSelectBtn;
 
 
     @Override
@@ -174,6 +194,7 @@ public class MainActivity extends BaseActivity {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @OnClick({R.id.rxjava_btn, R.id.mvp_btn, R.id.dialog_btn, R.id.video_btn,
             R.id.drag_rv_btn, R.id.touch_scroll_btn, R.id.audio_btn, R.id.bottom_bar_btn,
             R.id.broadcast_btn, R.id.gesture_velocity_btn, R.id.share_btn,
@@ -183,7 +204,8 @@ public class MainActivity extends BaseActivity {
             R.id.loading_btn, R.id.multiple_state_btn, R.id.webview_btn, R.id.progress_btn,
             R.id.drag_et_btn, R.id.color_picker_btn, R.id.photoview_btn, R.id.glide4_btn,
             R.id.diff_utils_btn, R.id.sticky_rv_btn, R.id.lazy_fg_btn, R.id.refresh_btn, R.id.banner_btn,
-            R.id.bottom_dialog_btn})
+            R.id.bottom_dialog_btn, R.id.transform_explode_btn, R.id.transform_slide_btn, R.id.transform_fade_btn,
+            R.id.vp_fg_btn, R.id.coordinate, R.id.btn_select_image})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -305,6 +327,33 @@ public class MainActivity extends BaseActivity {
             case R.id.banner_btn:
                 openActivity(BannerActivity.class);
                 break;
+            case R.id.transform_explode_btn:
+                Intent explodeIntent = new Intent(this, TransformActivity.class);
+                explodeIntent.putExtra("flag", "explode");
+                startActivity(explodeIntent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+
+                break;
+            case R.id.transform_slide_btn:
+                Intent slideIntent = new Intent(this, TransformActivity.class);
+                slideIntent.putExtra("flag", "slide");
+                startActivity(slideIntent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+
+                break;
+            case R.id.transform_fade_btn:
+                Intent fadeIntent = new Intent(this, TransformActivity.class);
+                fadeIntent.putExtra("flag", "fade");
+                startActivity(fadeIntent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+
+                break;
+            case R.id.vp_fg_btn:
+                openActivity(ViewPagerActivity.class);
+                break;
+            case R.id.coordinate:
+                openActivity(CoordinateActivity.class);
+                break;
+            case R.id.btn_select_image:
+                openActivity(CustomImageSelectActivity.class);
+                break;
         }
     }
 
@@ -319,4 +368,15 @@ public class MainActivity extends BaseActivity {
         startActivity(intent);
     }
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.d(TAG, "onBackPressed: ");
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        return super.onKeyDown(keyCode, event);
+    }
 }
