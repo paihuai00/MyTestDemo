@@ -12,6 +12,20 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    // 签名配置
+//    signingConfigs {
+//        release {
+//            try {
+//                storeFile file("../csx.jks")
+//                storePassword "123456"
+//                keyAlias "key"
+//                keyPassword "123456"
+//            } catch (ex) {
+//                throw new InvalidUserDataException(ex.toString())
+//            }
+//        }
+//    }
     buildTypes {
         release {
             minifyEnabled false
@@ -64,6 +78,7 @@ dependencies {
 
     //gson解析器
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+
     //Glide4.0 : https://github.com/bumptech/glide
     implementation('com.github.bumptech.glide:glide:4.7.1') {
         //Glide4，对sdk版本有限制，需要exclude  support库
@@ -125,6 +140,7 @@ dependencies {
 
     //https://github.com/henrytao-me/smooth-app-bar-layout
     implementation 'me.henrytao:smooth-app-bar-layout:25.3.1.0'
+    implementation files('libs/AMap3DMap_6.4.1_AMapLocation_4.2.0_20180906.jar')
 }
 // 在MobSDK的扩展中注册ShareSDK的相关信息
 MobSDK {

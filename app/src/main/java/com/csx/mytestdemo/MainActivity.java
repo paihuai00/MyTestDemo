@@ -1,17 +1,25 @@
 package com.csx.mytestdemo;
 
+import android.Manifest;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.RequiresApi;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
 import com.csx.mlibrary.base.BaseActivity;
+import com.csx.mlibrary.utils.XPermission;
+import com.csx.mytestdemo.app.LocationUtil;
 import com.csx.mytestdemo.audio_record.AudioActivity;
 import com.csx.mytestdemo.banner_.BannerActivity;
 import com.csx.mytestdemo.bottom_bar.BottomBarActivity;
@@ -155,6 +163,9 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.btn_select_image)
     Button mImageSelectBtn;
 
+    public AMapLocationClient mAMapLocationClient;
+    @BindView(R.id.tv_city)
+    TextView mTvCity;
 
     @Override
     public int getLayoutId() {
@@ -185,8 +196,44 @@ public class MainActivity extends BaseActivity {
         Log.d(TAG, "getExternalCacheDir().getAbsolutePath() =  " + getExternalCacheDir().getAbsolutePath());
 
 
+        XPermission.requestPermissions(this, 100, new String[]{Manifest.permission_group.LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, new XPermission.OnPermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+                initGaoDeMap();
+            }
+
+            @Override
+            public void onPermissionDenied() {
+                Toast.makeText(getApplicationContext(), "定位权限被拒绝！", Toast.LENGTH_SHORT).show();
+            }
+        });
+        initGaoDeMap();
     }
 
+    private void initGaoDeMap() {
+        mAMapLocationClient = LocationUtil.getLocation(this, new LocationUtil.LocationListener() {
+            @Override
+            public void onLocation(AMapLocation location) {
+                if (location != null) {
+                    if (location.getErrorCode() == 0) {
+                        //定位成功
+                        String city = location.getCity();
+                        System.out.println("@city:" + city);
+                        if (!TextUtils.isEmpty(city)) {
+                            mTvCity.setText("当前：" + city);
+                            Toast.makeText(getApplicationContext(), "当前：" + city, Toast.LENGTH_SHORT).show();
+                        }
+                        mAMapLocationClient.stopLocation();
+                    } else {
+                        //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
+                        Log.e("AmapError", "location Error, ErrCode:"
+                                + location.getErrorCode() + ", errInfo:"
+                                + location.getErrorInfo());
+                    }
+                }
+            }
+        });
+    }
 
     @Override
     public void initData() {
