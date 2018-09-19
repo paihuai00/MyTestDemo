@@ -60,7 +60,7 @@
         <!--高德定位-->
         <!--name 必须为这个。key为自己申请-->
         <meta-data
-            android:name="com.amap.api.v2.apikey"/>
+            android:name="com.amap.api.v2.apikey"
             android:value="bd6a8539b37fc75b383e66e43f390144" />
         <service android:name="com.amap.api.location.APSService" />
 
