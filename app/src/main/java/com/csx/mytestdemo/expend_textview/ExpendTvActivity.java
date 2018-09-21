@@ -37,7 +37,7 @@ public class ExpendTvActivity extends BaseActivity {
     public void initView() {
         mExpendEtv.setContent(yourText);
         mExpendEtv.setLinkClickListener(linkClickListener);
-        mExpendEtv.setEndExpendContent("一小时以前");
+        mExpendEtv.setEndExpendContent("一小时以前");//结尾添加文字
     }
 
     @Override
