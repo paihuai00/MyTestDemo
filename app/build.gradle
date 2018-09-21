@@ -45,6 +45,10 @@ android {
             universalApk true
         }
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -141,6 +145,9 @@ dependencies {
     //https://github.com/henrytao-me/smooth-app-bar-layout
     implementation 'me.henrytao:smooth-app-bar-layout:25.3.1.0'
     implementation files('libs/AMap3DMap_6.4.1_AMapLocation_4.2.0_20180906.jar')
+
+    //屏幕适配
+    implementation 'me.jessyan:autosize:0.9.5'
 }
 // 在MobSDK的扩展中注册ShareSDK的相关信息
 MobSDK {

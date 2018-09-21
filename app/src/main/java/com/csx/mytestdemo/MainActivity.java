@@ -21,6 +21,7 @@ import com.csx.mlibrary.base.BaseActivity;
 import com.csx.mlibrary.utils.XPermission;
 import com.csx.mytestdemo.app.LocationUtil;
 import com.csx.mytestdemo.audio_record.AudioActivity;
+import com.csx.mytestdemo.auto_size.AutoSizeActivity;
 import com.csx.mytestdemo.banner_.BannerActivity;
 import com.csx.mytestdemo.bottom_bar.BottomBarActivity;
 import com.csx.mytestdemo.bottom_dialog.BottomDialogActivity;
@@ -32,6 +33,7 @@ import com.csx.mytestdemo.coordinate_layout.CoordinateActivity;
 import com.csx.mytestdemo.diffutil_rv.DiffUtilsActivity;
 import com.csx.mytestdemo.drag_edittext.DragEditTextActivity;
 import com.csx.mytestdemo.drag_recyclerview.DragActivity;
+import com.csx.mytestdemo.expend_textview.ExpendTvActivity;
 import com.csx.mytestdemo.float_menu.FloatMenuActivity;
 import com.csx.mytestdemo.flow_view.FlowActivity;
 import com.csx.mytestdemo.glide4.Glide4Activity;
@@ -166,6 +168,8 @@ public class MainActivity extends BaseActivity {
     public AMapLocationClient mAMapLocationClient;
     @BindView(R.id.tv_city)
     TextView mTvCity;
+    @BindView(R.id.btn_auto_size)
+    Button mBtnAutoSize;
 
     @Override
     public int getLayoutId() {
@@ -252,7 +256,7 @@ public class MainActivity extends BaseActivity {
             R.id.drag_et_btn, R.id.color_picker_btn, R.id.photoview_btn, R.id.glide4_btn,
             R.id.diff_utils_btn, R.id.sticky_rv_btn, R.id.lazy_fg_btn, R.id.refresh_btn, R.id.banner_btn,
             R.id.bottom_dialog_btn, R.id.transform_explode_btn, R.id.transform_slide_btn, R.id.transform_fade_btn,
-            R.id.vp_fg_btn, R.id.coordinate, R.id.btn_select_image})
+            R.id.vp_fg_btn, R.id.coordinate, R.id.btn_select_image, R.id.btn_auto_size,R.id.btn_expend})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -401,6 +405,12 @@ public class MainActivity extends BaseActivity {
             case R.id.btn_select_image:
                 openActivity(CustomImageSelectActivity.class);
                 break;
+            case R.id.btn_auto_size:
+                openActivity(AutoSizeActivity.class);
+                break;
+            case R.id.btn_expend:
+                openActivity(ExpendTvActivity.class);
+                break;
         }
     }
 
@@ -426,4 +436,5 @@ public class MainActivity extends BaseActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         return super.onKeyDown(keyCode, event);
     }
+
 }

@@ -64,6 +64,14 @@
             android:value="bd6a8539b37fc75b383e66e43f390144" />
         <service android:name="com.amap.api.location.APSService" />
 
+        <!--屏幕适配-->
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="360"/>
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="640"/>
+
         <!--主页-->
         <activity android:name=".MainActivity" />
 
@@ -301,6 +309,9 @@
         <activity android:name=".image_select.image.MultiImageSelectorFragment" />
         <activity android:name=".image_select.CustomImageSelectActivity" />
 
+        <activity android:name=".auto_size.AutoSizeActivity" />
+
+        <activity android:name=".expend_textview.ExpendTvActivity" />
     </application>
 
 </manifest>
