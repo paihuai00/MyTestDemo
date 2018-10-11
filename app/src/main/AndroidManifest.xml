@@ -312,6 +312,9 @@
         <activity android:name=".auto_size.AutoSizeActivity" />
 
         <activity android:name=".expend_textview.ExpendTvActivity" />
+        <activity android:name=".switch_view.SwitchViewActivity" />
+
+        <activity android:name=".my_butterknife.MyButterKnifeActivity" />
     </application>
 
 </manifest>

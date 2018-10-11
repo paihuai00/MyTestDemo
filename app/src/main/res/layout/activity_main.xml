@@ -14,10 +14,10 @@
 
         <TextView
             android:id="@+id/tv_city"
-            android:textSize="15sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center" />
+            android:gravity="center"
+            android:textSize="15sp" />
 
         <Button
             android:id="@+id/rxjava_btn"
@@ -366,6 +366,22 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="可展开，@的TextView"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="自定义滑动选择控件"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_butterknife"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="仿ButterKnife"
             android:textAllCaps="false" />
     </LinearLayout>
 

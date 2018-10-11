@@ -48,6 +48,7 @@ import com.csx.mytestdemo.line_connect_view.ContactActivity;
 import com.csx.mytestdemo.loading_view.LoadingActivity;
 import com.csx.mytestdemo.multiple_state.MultipleActivity;
 import com.csx.mytestdemo.mvp.MvpActivity;
+import com.csx.mytestdemo.my_butterknife.MyButterKnifeActivity;
 import com.csx.mytestdemo.photoview.PhotoViewActivity;
 import com.csx.mytestdemo.progress_view.ProgressActivity;
 import com.csx.mytestdemo.rxjava_test.RxJavaActivity;
@@ -56,6 +57,7 @@ import com.csx.mytestdemo.service_test.ServiceActivity;
 import com.csx.mytestdemo.share_mob.ShareActivity;
 import com.csx.mytestdemo.smart_refresh.SmartRefreshActivity;
 import com.csx.mytestdemo.sticky_recyclerview.StickyRvActivity;
+import com.csx.mytestdemo.switch_view.SwitchViewActivity;
 import com.csx.mytestdemo.thread_test.ThreadActivity;
 import com.csx.mytestdemo.transform_anim.TransformActivity;
 import com.csx.mytestdemo.video_player.VideoPlayerActivity;
@@ -164,11 +166,15 @@ public class MainActivity extends BaseActivity {
     Button mConstraintBtn;
     @BindView(R.id.btn_select_image)
     Button mImageSelectBtn;
+    @BindView(R.id.btn_switch)
+    Button mSwitchBtn;
+    @BindView(R.id.btn_butterknife)
+    Button mButterKnifeBtn;
 
     public AMapLocationClient mAMapLocationClient;
     @BindView(R.id.tv_city)
     TextView mTvCity;
-    @BindView(R.id.btn_auto_size)
+//    @BindView(R.id.btn_auto_size)
     Button mBtnAutoSize;
 
     @Override
@@ -181,37 +187,42 @@ public class MainActivity extends BaseActivity {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         float dpi = displayMetrics.densityDpi;
-        Log.d(TAG, "设备dpi = " + dpi);
+        Log.e(TAG, "设备displayMetrics.densityDpi = " + dpi);
+        Log.e(TAG, "设备displayMetrics.density = " + displayMetrics.density);
+        Log.e(TAG, "设备displayMetrics.scaledDensity = " + displayMetrics.scaledDensity);
 
         float widthPixels = displayMetrics.widthPixels;
         float heightPixels = displayMetrics.heightPixels;
 
-        Log.d(TAG, "initView: widthPixels = " + widthPixels + "   heightPixels = " + heightPixels);
+        Log.e(TAG, "initView: widthPixels = " + widthPixels + "   heightPixels = " + heightPixels);
 
-        Log.d(TAG, "initView: 核心线程数：" + Runtime.getRuntime().availableProcessors());
+        Log.e(TAG, "initView: 核心线程数：" + Runtime.getRuntime().availableProcessors());
 
 //        mStringList.add("11");
 
-        Log.d(TAG, "Environment.getExternalStorageDirectory() = " + Environment.getExternalStorageDirectory());
-        Log.d(TAG, "Environment.getExternalStorageDirectory().getAbsolutePath()= " + Environment.getExternalStorageDirectory().getAbsolutePath());
-        Log.d(TAG, "Environment.getExternalStoragePublicDirectory(DIRECTORY_MUSIC)= " + Environment.getExternalStoragePublicDirectory(DIRECTORY_MUSIC));
-        Log.d(TAG, "Environment.getDownloadCacheDirectory() = " + Environment.getDownloadCacheDirectory());
-        Log.d(TAG, "Environment.getExternalStorageState() = " + Environment.getExternalStorageState());
-        Log.d(TAG, "getExternalCacheDir().getAbsolutePath() =  " + getExternalCacheDir().getAbsolutePath());
+        Log.e(TAG, "Environment.getExternalStorageDirectory() = " + Environment.getExternalStorageDirectory());
+        Log.e(TAG, "Environment.getExternalStorageDirectory().getAbsolutePath()= " + Environment.getExternalStorageDirectory().getAbsolutePath());
+        Log.e(TAG, "Environment.getExternalStoragePublicDirectory(DIRECTORY_MUSIC)= " + Environment.getExternalStoragePublicDirectory(DIRECTORY_MUSIC));
+        Log.e(TAG, "Environment.getDownloadCacheDirectory() = " + Environment.getDownloadCacheDirectory());
+        Log.e(TAG, "Environment.getExternalStorageState() = " + Environment.getExternalStorageState());
+        Log.e(TAG, "getExternalCacheDir().getAbsolutePath() =  " + getExternalCacheDir().getAbsolutePath());
 
 
-        XPermission.requestPermissions(this, 100, new String[]{Manifest.permission_group.LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, new XPermission.OnPermissionListener() {
-            @Override
-            public void onPermissionGranted() {
-                initGaoDeMap();
-            }
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M)
+            XPermission.requestPermissions(this, 100, new String[]{Manifest.permission_group.LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, new XPermission.OnPermissionListener() {
+                @Override
+                public void onPermissionGranted() {
+                    initGaoDeMap();
+                }
 
-            @Override
-            public void onPermissionDenied() {
-                Toast.makeText(getApplicationContext(), "定位权限被拒绝！", Toast.LENGTH_SHORT).show();
-            }
-        });
-        initGaoDeMap();
+                @Override
+                public void onPermissionDenied() {
+                    Toast.makeText(getApplicationContext(), "定位权限被拒绝！", Toast.LENGTH_SHORT).show();
+                }
+            });
+//        initGaoDeMap();
+
+        mBtnAutoSize.setText("11");
     }
 
     private void initGaoDeMap() {
@@ -256,7 +267,8 @@ public class MainActivity extends BaseActivity {
             R.id.drag_et_btn, R.id.color_picker_btn, R.id.photoview_btn, R.id.glide4_btn,
             R.id.diff_utils_btn, R.id.sticky_rv_btn, R.id.lazy_fg_btn, R.id.refresh_btn, R.id.banner_btn,
             R.id.bottom_dialog_btn, R.id.transform_explode_btn, R.id.transform_slide_btn, R.id.transform_fade_btn,
-            R.id.vp_fg_btn, R.id.coordinate, R.id.btn_select_image, R.id.btn_auto_size,R.id.btn_expend})
+            R.id.vp_fg_btn, R.id.coordinate, R.id.btn_select_image, R.id.btn_auto_size, R.id.btn_expend, R.id.btn_switch,
+            R.id.btn_butterknife})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -410,6 +422,12 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.btn_expend:
                 openActivity(ExpendTvActivity.class);
+                break;
+            case R.id.btn_switch:
+                openActivity(SwitchViewActivity.class);
+                break;
+            case R.id.btn_butterknife:
+                openActivity(MyButterKnifeActivity.class);
                 break;
         }
     }

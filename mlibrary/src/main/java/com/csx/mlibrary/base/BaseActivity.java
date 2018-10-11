@@ -6,12 +6,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.os.MessageQueue;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.csx.mlibrary.R;
 
@@ -128,5 +130,9 @@ public abstract class BaseActivity extends AppCompatActivity {
             result = context.getResources().getDimensionPixelSize(resourceId);
         }
         return result;
+    }
+
+    public void showShortToast(@NonNull String msg) {
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
 }

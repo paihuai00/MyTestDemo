@@ -113,7 +113,7 @@ public abstract class CrashAppLog implements Thread.UncaughtExceptionHandler{
 
         try {
 
-            if (!hanlderException(throwable) && mUncaughtExceptionHandler != null) {
+            if (!handlerException(throwable) && mUncaughtExceptionHandler != null) {
 
                 /**
                  * 如果此异常不处理则由系统自己处理
@@ -141,7 +141,7 @@ public abstract class CrashAppLog implements Thread.UncaughtExceptionHandler{
      * @param throwable
      * @return
      */
-    private boolean hanlderException(Throwable throwable) {
+    private boolean handlerException(Throwable throwable) {
 
         try {
 
@@ -174,7 +174,7 @@ public abstract class CrashAppLog implements Thread.UncaughtExceptionHandler{
             limitAppLogCount(LIMIT_LOG_COUNT);
 
         } catch (Exception e) {
-            Log.e(TAG, "hanlderException - " + e.getMessage());
+            Log.e(TAG, "handlerException - " + e.getMessage());
         }
         return false;
     }

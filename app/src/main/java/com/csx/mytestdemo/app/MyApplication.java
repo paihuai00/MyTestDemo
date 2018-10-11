@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.csx.mlibrary.crash.CrashAppHelper;
 import com.csx.mlibrary.utils.Utils;
+import com.csx.mytestdemo.carsh_handle.CrashHandle;
 import com.csx.mytestdemo.multiple_state.EmptyCallBack;
 import com.csx.mytestdemo.multiple_state.ErrorCallBack;
 import com.csx.mytestdemo.multiple_state.LoadingCallBack;
