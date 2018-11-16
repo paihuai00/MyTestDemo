@@ -3,6 +3,7 @@ package com.csx.mytestdemo;
 import android.Manifest;
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.RequiresApi;
@@ -17,9 +18,14 @@ import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
+import com.csx.mlibrary.actionbar.DefaultActionBar;
 import com.csx.mlibrary.base.BaseActivity;
+import com.csx.mlibrary.http.HttpCallBack;
+import com.csx.mlibrary.http.HttpUtils;
+import com.csx.mlibrary.http.OkHttpEngine;
 import com.csx.mlibrary.utils.XPermission;
 import com.csx.mytestdemo.app.LocationUtil;
+import com.csx.mytestdemo.app.MyApplication;
 import com.csx.mytestdemo.audio_record.AudioActivity;
 import com.csx.mytestdemo.auto_size.AutoSizeActivity;
 import com.csx.mytestdemo.banner_.BannerActivity;
@@ -51,10 +57,12 @@ import com.csx.mytestdemo.mvp.MvpActivity;
 import com.csx.mytestdemo.my_butterknife.MyButterKnifeActivity;
 import com.csx.mytestdemo.photoview.PhotoViewActivity;
 import com.csx.mytestdemo.progress_view.ProgressActivity;
+import com.csx.mytestdemo.rv_touch_helper.MyTouchHelperActivity;
 import com.csx.mytestdemo.rxjava_test.RxJavaActivity;
 import com.csx.mytestdemo.scroller_view.ScrollerActivity;
 import com.csx.mytestdemo.service_test.ServiceActivity;
 import com.csx.mytestdemo.share_mob.ShareActivity;
+import com.csx.mytestdemo.skin.SkinActivity;
 import com.csx.mytestdemo.smart_refresh.SmartRefreshActivity;
 import com.csx.mytestdemo.sticky_recyclerview.StickyRvActivity;
 import com.csx.mytestdemo.switch_view.SwitchViewActivity;
@@ -67,6 +75,12 @@ import com.csx.mytestdemo.view_touch_nine.NineDotActivity;
 import com.csx.mytestdemo.view_touch_scroll.TouchScrollActivity;
 import com.csx.mytestdemo.webview_progressbar.WebViewActivity;
 import com.csx.mytestdemo.wifi_demo.WifiActivity;
+
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -170,11 +184,15 @@ public class MainActivity extends BaseActivity {
     Button mSwitchBtn;
     @BindView(R.id.btn_butterknife)
     Button mButterKnifeBtn;
+    @BindView(R.id.btn_skin)
+    Button mSkinBtn;
+    @BindView(R.id.btn_touch_helper)
+    Button mTouchHelperBtn;
 
     public AMapLocationClient mAMapLocationClient;
     @BindView(R.id.tv_city)
     TextView mTvCity;
-//    @BindView(R.id.btn_auto_size)
+    //    @BindView(R.id.btn_auto_size)
     Button mBtnAutoSize;
 
     @Override
@@ -222,7 +240,17 @@ public class MainActivity extends BaseActivity {
             });
 //        initGaoDeMap();
 
-        mBtnAutoSize.setText("11");
+        File fixFile = new File(Environment.getExternalStorageDirectory() + File.separator + "fix.apatch");
+        if (fixFile.exists()) {
+            try {
+                MyApplication.mPathManager.addPatch(fixFile.getAbsolutePath());
+                showShortToast("热修复成功！");
+            } catch (IOException e) {
+                e.printStackTrace();
+                showShortToast("热修复失败！");
+            }
+        }
+
     }
 
     private void initGaoDeMap() {
@@ -252,6 +280,42 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initData() {
+        DefaultActionBar mDefaultActionBar = new DefaultActionBar.Builder(this)
+                .setTitle("hahahah")
+                .builder();
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("max", 0);
+        params.put("uid", 197425);
+        params.put("limit", 40);
+        params.put("series_id", 2793);
+        params.put("app_id", "035a20e92066fd2017467f13c6382abc");
+        params.put("version", "2.9.0");
+        params.put("sign", "39821867dfb2bc10d61ae83797b17a20");
+
+        HttpUtils.getInstance()
+                .setUrl("https://ask.api.qichedaquan.com/question/list")
+                .addParams(params)
+                .execute(new HttpCallBack() {
+                });
+
+        //--------------post 测试
+        HashMap<String, Object> mParams = new HashMap<>();
+        mParams.put("realName", "张南1");
+        mParams.put("alipay", "sym695989697@yahoo.cn");
+        mParams.put("address", "suush2");
+        mParams.put("nickName", "张南");
+        mParams.put("mobile", "13946154291");
+        mParams.put("sign", "be32ba6e4282c4acb2f3ba6fd25c053e");
+        mParams.put("avatar", "http://img3.qcdqcdn.com/group3/M00/37/5A/4ZMEAFpMK7yAEyzjAAEvRYEnocY955.png");
+        mParams.put("app_id", "1307d891ab11a60276f49aa631495332");
+        mParams.put("token", "72116c8d55f44b7d8b7737cf4682a084");
+        HttpUtils.getInstance()
+                .setUrl("https://app.api.qichedaquan.com/huitongche/hunter/user/updateUserInfo")
+                .addParams(mParams)
+                .post()
+                .execute(new HttpCallBack() {
+                });
 
     }
 
@@ -268,7 +332,7 @@ public class MainActivity extends BaseActivity {
             R.id.diff_utils_btn, R.id.sticky_rv_btn, R.id.lazy_fg_btn, R.id.refresh_btn, R.id.banner_btn,
             R.id.bottom_dialog_btn, R.id.transform_explode_btn, R.id.transform_slide_btn, R.id.transform_fade_btn,
             R.id.vp_fg_btn, R.id.coordinate, R.id.btn_select_image, R.id.btn_auto_size, R.id.btn_expend, R.id.btn_switch,
-            R.id.btn_butterknife})
+            R.id.btn_butterknife, R.id.btn_skin,R.id.btn_touch_helper})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -429,6 +493,12 @@ public class MainActivity extends BaseActivity {
             case R.id.btn_butterknife:
                 openActivity(MyButterKnifeActivity.class);
                 break;
+            case R.id.btn_skin:
+                openActivity(SkinActivity.class);
+                break;
+            case R.id.btn_touch_helper:
+                openActivity(MyTouchHelperActivity.class);
+                break;
         }
     }
 
@@ -441,6 +511,7 @@ public class MainActivity extends BaseActivity {
         Intent intent = new Intent(MainActivity.this, c);
         overridePendingTransition(R.anim.activity_enter, R.anim.activity_exit);
         startActivity(intent);
+
     }
 
 
@@ -448,11 +519,14 @@ public class MainActivity extends BaseActivity {
     public void onBackPressed() {
         super.onBackPressed();
         Log.d(TAG, "onBackPressed: ");
+
+
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         return super.onKeyDown(keyCode, event);
     }
+
 
 }

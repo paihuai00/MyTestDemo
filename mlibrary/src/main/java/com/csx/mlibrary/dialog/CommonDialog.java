@@ -2,6 +2,7 @@ package com.csx.mlibrary.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.StyleRes;
 
@@ -154,6 +155,14 @@ public class CommonDialog extends Dialog {
                 P.mAnimation = R.style.dialog_from_bottom_anim;
             }
             P.mGravity = Gravity.BOTTOM;
+            return this;
+        }
+
+        public Builder showFromTop(boolean isAnim) {
+            if (isAnim) {
+                P.mAnimation = R.style.dialog_from_top_anim;
+            }
+            P.mGravity = Gravity.TOP;
             return this;
         }
 

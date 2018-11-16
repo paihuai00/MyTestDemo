@@ -8,6 +8,7 @@
     tools:context="com.csx.mytestdemo.MainActivity">
 
     <LinearLayout
+        android:id="@+id/root_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -287,7 +288,7 @@
             android:id="@+id/bottom_dialog_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="仿ios底部弹框"
+            android:text="弹框+倒计时"
             android:textAllCaps="false" />
 
         <Button
@@ -382,6 +383,22 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="仿ButterKnife"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_skin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="换肤"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_touch_helper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="拖拽ItemTouchHelper"
             android:textAllCaps="false" />
     </LinearLayout>
 

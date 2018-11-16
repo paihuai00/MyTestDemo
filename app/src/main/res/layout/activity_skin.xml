@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_end"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_change"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="skin改变" />
+
+    <ImageView
+        android:id="@+id/iv_girl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_girl" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="注：需要在手机内存卡中，提前准备一个(xx.skin)文件，该文件是由xx.apk，修改名称而来，并且其中包含了所需要的
+资源文件，例如：原ic_iamge.jpg ,xx.apk 也应该在同目录下包含一个该文件，以达到替换的目的(当然，也可以不同)"
+        android:textColorHint="@color/black"
+        android:textSize="15sp" />
+
+</LinearLayout>

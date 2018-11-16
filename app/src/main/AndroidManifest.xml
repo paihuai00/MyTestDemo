@@ -315,6 +315,10 @@
         <activity android:name=".switch_view.SwitchViewActivity" />
 
         <activity android:name=".my_butterknife.MyButterKnifeActivity" />
+
+        <activity android:name=".skin.SkinActivity" />
+
+        <activity android:name=".rv_touch_helper.MyTouchHelperActivity" />
     </application>
 
 </manifest>

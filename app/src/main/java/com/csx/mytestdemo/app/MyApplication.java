@@ -1,11 +1,15 @@
 package com.csx.mytestdemo.app;
 
 import android.app.Application;
+import android.content.pm.PackageManager;
 import android.util.Log;
 
+import com.alipay.euler.andfix.patch.PatchManager;
 import com.csx.mlibrary.crash.CrashAppHelper;
+import com.csx.mlibrary.http.HttpUtils;
+import com.csx.mlibrary.http.OkHttpEngine;
+import com.csx.mlibrary.skin.SkinManager;
 import com.csx.mlibrary.utils.Utils;
-import com.csx.mytestdemo.carsh_handle.CrashHandle;
 import com.csx.mytestdemo.multiple_state.EmptyCallBack;
 import com.csx.mytestdemo.multiple_state.ErrorCallBack;
 import com.csx.mytestdemo.multiple_state.LoadingCallBack;
@@ -21,6 +25,8 @@ import cafe.adriel.androidaudioconverter.callback.ILoadCallback;
 
 public class MyApplication extends Application {
     private static final String TAG = "MyApplication";
+
+    public static PatchManager mPathManager;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -36,6 +42,19 @@ public class MyApplication extends Application {
         //多状态布局配置
         initMultipleState();
 
+        //阿里热修复
+        mPathManager = new PatchManager(this);
+        mPathManager.init("1");//当前应用版本
+
+        //加载之前的patch包
+        mPathManager.loadPatch();
+
+
+        //初始化 网络引擎
+        HttpUtils.init(OkHttpEngine.getInstance(getApplicationContext()));
+
+        //初始化换肤
+        SkinManager.getInstance().init(this);
     }
 
     private void initMultipleState() {

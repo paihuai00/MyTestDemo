@@ -24,4 +24,9 @@ public class PersonBean  {
     public void setAge(String age) {
         this.age = age;
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

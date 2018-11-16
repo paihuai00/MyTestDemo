@@ -37,14 +37,14 @@ android {
         multiDexEnabled true
     }
     //解决模拟器安装失败问题
-    splits {
-        abi {
-            enable true
-            reset()
-            include 'x86', 'armeabi-v7a','x86_64'
-            universalApk true
-        }
-    }
+//    splits {
+//        abi {
+//            enable true
+//            reset()
+//            include 'x86', 'armeabi-v7a','x86_64'
+//            universalApk true
+//        }
+//    }
     compileOptions {
         targetCompatibility 1.8
         sourceCompatibility 1.8
@@ -91,10 +91,6 @@ dependencies {
     }
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
 
-    //okhttp + 拦截器
-    api 'com.squareup.okhttp3:okhttp:3.4.1'
-    api 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-    api 'com.github.bumptech.glide:okhttp3-integration:4.3.1'
 
     //permission 6.0 权限管理
     implementation 'com.github.hotchemi:permissionsdispatcher:3.1.0'
@@ -148,6 +144,13 @@ dependencies {
 
     //屏幕适配
     implementation 'me.jessyan:autosize:0.9.5'
+
+
+    //阿里 热修复
+    implementation 'com.alipay.euler:andfix:0.5.0@aar'
+
+
+    compile 'com.zhy:okhttputils:2.6.2'
 }
 // 在MobSDK的扩展中注册ShareSDK的相关信息
 MobSDK {
