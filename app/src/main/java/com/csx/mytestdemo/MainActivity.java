@@ -3,7 +3,6 @@ package com.csx.mytestdemo;
 import android.Manifest;
 import android.app.ActivityOptions;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.RequiresApi;
@@ -22,7 +21,6 @@ import com.csx.mlibrary.actionbar.DefaultActionBar;
 import com.csx.mlibrary.base.BaseActivity;
 import com.csx.mlibrary.http.HttpCallBack;
 import com.csx.mlibrary.http.HttpUtils;
-import com.csx.mlibrary.http.OkHttpEngine;
 import com.csx.mlibrary.utils.XPermission;
 import com.csx.mytestdemo.app.LocationUtil;
 import com.csx.mytestdemo.app.MyApplication;
@@ -36,7 +34,9 @@ import com.csx.mytestdemo.butterknife_test.ButterKnifeActivity;
 import com.csx.mytestdemo.color_picker.ColorPickerActivity;
 import com.csx.mytestdemo.common_dialog.CommonDialogActivity;
 import com.csx.mytestdemo.coordinate_layout.CoordinateActivity;
+import com.csx.mytestdemo.databing_demo.DataBindingActivity;
 import com.csx.mytestdemo.diffutil_rv.DiffUtilsActivity;
+import com.csx.mytestdemo.disklrucache_test.DiskLruCacheActivity;
 import com.csx.mytestdemo.drag_edittext.DragEditTextActivity;
 import com.csx.mytestdemo.drag_recyclerview.DragActivity;
 import com.csx.mytestdemo.expend_textview.ExpendTvActivity;
@@ -55,11 +55,14 @@ import com.csx.mytestdemo.loading_view.LoadingActivity;
 import com.csx.mytestdemo.multiple_state.MultipleActivity;
 import com.csx.mytestdemo.mvp.MvpActivity;
 import com.csx.mytestdemo.my_butterknife.MyButterKnifeActivity;
+import com.csx.mytestdemo.net_change.NetChangeActivity;
 import com.csx.mytestdemo.photoview.PhotoViewActivity;
 import com.csx.mytestdemo.progress_view.ProgressActivity;
 import com.csx.mytestdemo.rv_touch_helper.MyTouchHelperActivity;
 import com.csx.mytestdemo.rxjava_test.RxJavaActivity;
 import com.csx.mytestdemo.scroller_view.ScrollerActivity;
+import com.csx.mytestdemo.search_demo.SearchActivity;
+import com.csx.mytestdemo.service_test.Person2;
 import com.csx.mytestdemo.service_test.ServiceActivity;
 import com.csx.mytestdemo.share_mob.ShareActivity;
 import com.csx.mytestdemo.skin.SkinActivity;
@@ -75,12 +78,24 @@ import com.csx.mytestdemo.view_touch_nine.NineDotActivity;
 import com.csx.mytestdemo.view_touch_scroll.TouchScrollActivity;
 import com.csx.mytestdemo.webview_progressbar.WebViewActivity;
 import com.csx.mytestdemo.wifi_demo.WifiActivity;
+import com.csx.mytestdemo.zxing_demo.ZxingDemoActivity;
+
+import net.sourceforge.pinyin4j.PinyinHelper;
+import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
+import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
+import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -194,6 +209,14 @@ public class MainActivity extends BaseActivity {
     TextView mTvCity;
     //    @BindView(R.id.btn_auto_size)
     Button mBtnAutoSize;
+    @BindView(R.id.btn_expend)
+    Button btnExpend;
+    @BindView(R.id.btn_search_demo)
+    Button btnSearchDemo;
+    @BindView(R.id.btn_zxing)
+    Button btnZxing;
+    @BindView(R.id.btn_lru_cache)
+    Button btnDiskLru;
 
     @Override
     public int getLayoutId() {
@@ -251,6 +274,30 @@ public class MainActivity extends BaseActivity {
             }
         }
 
+//        try {
+////            Class cl = Class.forName("com.csx.mytestdemo.MainActivity");
+//            Class cl=this.getClass();
+//            Field field = cl.getDeclaredField("mSkinBtn");
+//            field.setAccessible(true);
+//            Button button= (Button) field.get(this);
+//            Class btm = Class.forName("android.widget.Button");
+//
+//            Method method = btm.getMethod("setText", CharSequence.class);
+//
+//            method.invoke(button, "1112222111");
+////            field.set("setText", "111111111111");
+//
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchFieldException e) {
+//            e.printStackTrace();
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchMethodException e) {
+//            e.printStackTrace();
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private void initGaoDeMap() {
@@ -317,6 +364,37 @@ public class MainActivity extends BaseActivity {
                 .execute(new HttpCallBack() {
                 });
 
+        /**
+         * 转化汉字 为拼音
+         * 需要添加libs 下的：pinyin4j-2.5.0.jar 包
+         */
+        String str = "单赵钱孙李周吴郑王冯陈褚卫abc";
+        HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
+        format.setCaseType(HanyuPinyinCaseType.UPPERCASE);
+        format.setToneType(HanyuPinyinToneType.WITH_TONE_NUMBER);
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+
+            String[] vals = new String[0];
+            try {
+                vals = PinyinHelper.toHanyuPinyinStringArray(c, format);
+            } catch (BadHanyuPinyinOutputFormatCombination badHanyuPinyinOutputFormatCombination) {
+                badHanyuPinyinOutputFormatCombination.printStackTrace();
+            }
+            System.out.print(Arrays.toString(vals));
+
+        }
+
+        //判断输入的是否为 英文
+        String strEnglish = "abc";
+        Pattern pattern = Pattern.compile("[a-zA-Z]+");
+        Matcher matcher = pattern.matcher(strEnglish);
+
+        if (matcher.matches()) {
+            System.out.print("");
+        }
+
+
     }
 
 
@@ -332,7 +410,8 @@ public class MainActivity extends BaseActivity {
             R.id.diff_utils_btn, R.id.sticky_rv_btn, R.id.lazy_fg_btn, R.id.refresh_btn, R.id.banner_btn,
             R.id.bottom_dialog_btn, R.id.transform_explode_btn, R.id.transform_slide_btn, R.id.transform_fade_btn,
             R.id.vp_fg_btn, R.id.coordinate, R.id.btn_select_image, R.id.btn_auto_size, R.id.btn_expend, R.id.btn_switch,
-            R.id.btn_butterknife, R.id.btn_skin,R.id.btn_touch_helper})
+            R.id.btn_butterknife, R.id.btn_skin, R.id.btn_touch_helper, R.id.btn_search_demo, R.id.btn_zxing,
+            R.id.btn_databing, R.id.btn_net_change, R.id.btn_lru_cache})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -498,6 +577,31 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.btn_touch_helper:
                 openActivity(MyTouchHelperActivity.class);
+                break;
+            case R.id.btn_search_demo:
+                openActivity(SearchActivity.class);
+                break;
+            case R.id.btn_zxing:
+                openActivity(ZxingDemoActivity.class);
+                break;
+            case R.id.btn_databing:
+                openActivity(DataBindingActivity.class);
+                break;
+            case R.id.btn_lru_cache:
+                openActivity(DiskLruCacheActivity.class);
+                break;
+            case R.id.btn_net_change:
+//                openActivity(NetChangeActivity.class);
+                Person2 person2 = new Person2();
+                person2.setAge(1);
+                person2.setName("1");
+                Person2 person3 = new Person2();
+                person3.setAge(1);
+                person3.setName("1");
+
+                Intent intentChange = new Intent(this, NetChangeActivity.class);
+                intentChange.putExtra("person", person2);
+                startActivity(intentChange);
                 break;
         }
     }

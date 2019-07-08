@@ -14,6 +14,7 @@ import com.csx.mytestdemo.multiple_state.EmptyCallBack;
 import com.csx.mytestdemo.multiple_state.ErrorCallBack;
 import com.csx.mytestdemo.multiple_state.LoadingCallBack;
 import com.kingja.loadsir.core.LoadSir;
+import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
 import cafe.adriel.androidaudioconverter.AndroidAudioConverter;
 import cafe.adriel.androidaudioconverter.callback.ILoadCallback;
@@ -55,6 +56,10 @@ public class MyApplication extends Application {
 
         //初始化换肤
         SkinManager.getInstance().init(this);
+
+        //zxing
+        ZXingLibrary.initDisplayOpinion(this);
+
     }
 
     private void initMultipleState() {

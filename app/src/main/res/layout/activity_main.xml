@@ -400,6 +400,46 @@
             android:layout_weight="1"
             android:text="拖拽ItemTouchHelper"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_search_demo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="搜索demo"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_zxing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="二维码Zxing"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_databing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="DataBinding"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_net_change"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="监控网络"
+            android:textAllCaps="false" />
+
+        <Button
+        android:id="@+id/btn_lru_cache"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="磁盘缓存"
+        android:textAllCaps="false" />
     </LinearLayout>
 
 </ScrollView>

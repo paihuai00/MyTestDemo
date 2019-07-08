@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="person"
+            type="com.csx.mytestdemo.databing_demo.Person" />
+
+        <variable
+            name="click"
+            type="com.csx.mytestdemo.databing_demo.DataBindingActivity" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--注意：这里age是int类型，必须转化为String，否则会运行时异常-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+
+            android:textSize="16sp" />
+        <!--android:text="@={String.valueOf(person.age)}"-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@={person.name}"
+            android:textSize="16sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{click.onButtenClick}"
+            android:text="随机改变上面" />
+    </LinearLayout>
+
+</layout>

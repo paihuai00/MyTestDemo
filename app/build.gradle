@@ -13,6 +13,11 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
+    //支持 dateBinding
+    dataBinding {
+        enabled = true
+    }
+
     // 签名配置
 //    signingConfigs {
 //        release {
@@ -91,7 +96,6 @@ dependencies {
     }
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
 
-
     //permission 6.0 权限管理
     implementation 'com.github.hotchemi:permissionsdispatcher:3.1.0'
     annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:3.1.0"
@@ -145,12 +149,20 @@ dependencies {
     //屏幕适配
     implementation 'me.jessyan:autosize:0.9.5'
 
-
     //阿里 热修复
     implementation 'com.alipay.euler:andfix:0.5.0@aar'
+    implementation 'com.zhy:okhttputils:2.6.2'
 
+    //二维码zxing   https://github.com/yipianfengye/android-zxingLibrary
+    implementation 'cn.yipianfengye.android:zxing-library:2.2'
+    implementation files('libs/pinyin4j-2.5.0.jar')
 
-    compile 'com.zhy:okhttputils:2.6.2'
+    //DiskLruCache  磁盘缓存
+    implementation 'com.jakewharton:disklrucache:2.0.2'
+
+    //自己上传的库，监听网络
+//    implementation 'com.github.paihuai00:NetWorkMonitor:1.0.0'
+
 }
 // 在MobSDK的扩展中注册ShareSDK的相关信息
 MobSDK {

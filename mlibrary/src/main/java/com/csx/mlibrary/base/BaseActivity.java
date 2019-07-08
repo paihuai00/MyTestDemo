@@ -33,7 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getLayoutId());
+        if (getLayoutId() != 0) setContentView(getLayoutId());
         initImmerseBar();
         mUnbinder = ButterKnife.bind(this);
         //初始化View
@@ -44,6 +44,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     private View statusBarView;
+
     /**
      * 渐变
      * http://www.jb51.net/article/124110.htm
