@@ -434,12 +434,20 @@
             android:textAllCaps="false" />
 
         <Button
-        android:id="@+id/btn_lru_cache"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="磁盘缓存"
-        android:textAllCaps="false" />
+            android:id="@+id/btn_lru_cache"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="磁盘缓存"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="加载功能按钮"
+            android:textAllCaps="false" />
     </LinearLayout>
 
 </ScrollView>

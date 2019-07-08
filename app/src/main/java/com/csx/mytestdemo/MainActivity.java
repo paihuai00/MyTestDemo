@@ -31,6 +31,7 @@ import com.csx.mytestdemo.bottom_bar.BottomBarActivity;
 import com.csx.mytestdemo.bottom_dialog.BottomDialogActivity;
 import com.csx.mytestdemo.broadcast_test.BroadCastActivity;
 import com.csx.mytestdemo.butterknife_test.ButterKnifeActivity;
+import com.csx.mytestdemo.button_with_loading.ButtonWithLoadActivity;
 import com.csx.mytestdemo.color_picker.ColorPickerActivity;
 import com.csx.mytestdemo.common_dialog.CommonDialogActivity;
 import com.csx.mytestdemo.coordinate_layout.CoordinateActivity;
@@ -217,6 +218,8 @@ public class MainActivity extends BaseActivity {
     Button btnZxing;
     @BindView(R.id.btn_lru_cache)
     Button btnDiskLru;
+    @BindView(R.id.btn_loading)
+    Button btnWithLoad;
 
     @Override
     public int getLayoutId() {
@@ -411,7 +414,7 @@ public class MainActivity extends BaseActivity {
             R.id.bottom_dialog_btn, R.id.transform_explode_btn, R.id.transform_slide_btn, R.id.transform_fade_btn,
             R.id.vp_fg_btn, R.id.coordinate, R.id.btn_select_image, R.id.btn_auto_size, R.id.btn_expend, R.id.btn_switch,
             R.id.btn_butterknife, R.id.btn_skin, R.id.btn_touch_helper, R.id.btn_search_demo, R.id.btn_zxing,
-            R.id.btn_databing, R.id.btn_net_change, R.id.btn_lru_cache})
+            R.id.btn_databing, R.id.btn_net_change, R.id.btn_lru_cache, R.id.btn_loading})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -589,6 +592,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.btn_lru_cache:
                 openActivity(DiskLruCacheActivity.class);
+                break;
+            case R.id.btn_loading:
+                openActivity(ButtonWithLoadActivity.class);
                 break;
             case R.id.btn_net_change:
 //                openActivity(NetChangeActivity.class);

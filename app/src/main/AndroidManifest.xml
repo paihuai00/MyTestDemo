@@ -342,6 +342,7 @@
         <activity android:name=".net_change.NetChangeActivity" />
 
         <activity android:name=".disklrucache_test.DiskLruCacheActivity" />
+        <activity android:name=".button_with_loading.ButtonWithLoadActivity" />
 
         <!--网络广播-->
         <receiver android:name=".net_change.net_change.NetStateReceiver">
