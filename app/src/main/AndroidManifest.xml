@@ -344,12 +344,18 @@
         <activity android:name=".disklrucache_test.DiskLruCacheActivity" />
         <activity android:name=".button_with_loading.ButtonWithLoadActivity" />
 
+        <activity android:name=".notification_test.NotificationActivity"
+            android:launchMode="singleTop"/>
+
         <!--网络广播-->
         <receiver android:name=".net_change.net_change.NetStateReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
+
+
+
     </application>
 
 </manifest>

@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: "com.mob.sdk"
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     //现在Android Gradle 插件有默认的buildToolsVersion，我们完全可以不设置buildToolsVersion
     defaultConfig {
         applicationId "com.csx.mytestdemo"
@@ -58,20 +58,16 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-
-    //    implementation "com.android.support:support-v4:$rootProject.ext.supportVersion"
-
-    //mlibrary中已经添加，无需重复添加
-
-    //    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportVersion"
-
-    //    implementation "com.android.support:design:$rootProject.ext.supportVersion"
-    implementation project(':mlibrary')
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
+    implementation project(':mlibrary')
+//    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportVersion"
+//    implementation "com.android.support:support-v4:$rootProject.ext.supportVersion"
+//    implementation "com.android.support:design:$rootProject.ext.supportVersion"
+//    implementation "com.android.support:support-v13:$rootProject.ext.supportVersion"
     //RxJava RxAndroid
     implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
@@ -101,7 +97,7 @@ dependencies {
     annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:3.1.0"
 
     //ButterKnife
-    api 'com.jakewharton:butterknife:8.5.1'
+    implementation 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 
     //此库，为了解决android录音无法转换为MP3  详情见AudioActivity
@@ -161,7 +157,11 @@ dependencies {
     implementation 'com.jakewharton:disklrucache:2.0.2'
 
     //自己上传的库，监听网络
-//    implementation 'com.github.paihuai00:NetWorkMonitor:1.0.0'
+
+    //    implementation 'com.github.paihuai00:NetWorkMonitor:1.0.0'
+
+    //debug环境，监控卡顿
+    debugImplementation 'com.github.markzhai:blockcanary-android:1.5.0'
 
 }
 // 在MobSDK的扩展中注册ShareSDK的相关信息

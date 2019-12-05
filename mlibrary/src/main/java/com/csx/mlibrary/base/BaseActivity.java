@@ -20,6 +20,8 @@ import com.csx.mlibrary.R;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
+import static android.security.KeyStore.getApplicationContext;
+
 /**
  * @Created by cuishuxiang
  * @date 2018/1/25.

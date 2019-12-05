@@ -3,6 +3,12 @@
 buildscript {
     
     repositories {
+        //使用alinyun，解决依赖下载问题
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/google' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
+
         google()
         jcenter()
         mavenCentral()
@@ -11,7 +17,7 @@ buildscript {
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.1.0'
         classpath 'com.jakewharton:butterknife-gradle-plugin:8.5.1'
         // 注册MobSDK
         classpath "com.mob.sdk:MobSDK:+"
@@ -23,6 +29,11 @@ buildscript {
 
 allprojects {
     repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/google' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
+
         google()
         jcenter()
         maven { url "https://jitpack.io" }
@@ -35,7 +46,7 @@ task clean(type: Delete) {
 
 ext {
     //支持库版本
-    supportVersion = "27.1.0"
+    supportVersion = "27.1.1"
     //编译的SDK版本
     compileSdkVersion = 27
     //构建工具的版本，其中包括了打包工具aapt、dx等,如API20对应的build-tool的版本就是20.0.0

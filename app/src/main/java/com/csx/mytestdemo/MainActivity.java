@@ -57,6 +57,7 @@ import com.csx.mytestdemo.multiple_state.MultipleActivity;
 import com.csx.mytestdemo.mvp.MvpActivity;
 import com.csx.mytestdemo.my_butterknife.MyButterKnifeActivity;
 import com.csx.mytestdemo.net_change.NetChangeActivity;
+import com.csx.mytestdemo.notification_test.NotificationActivity;
 import com.csx.mytestdemo.photoview.PhotoViewActivity;
 import com.csx.mytestdemo.progress_view.ProgressActivity;
 import com.csx.mytestdemo.rv_touch_helper.MyTouchHelperActivity;
@@ -220,6 +221,8 @@ public class MainActivity extends BaseActivity {
     Button btnDiskLru;
     @BindView(R.id.btn_loading)
     Button btnWithLoad;
+    @BindView(R.id.btn_notification)
+    Button btnNotification;
 
     @Override
     public int getLayoutId() {
@@ -414,7 +417,7 @@ public class MainActivity extends BaseActivity {
             R.id.bottom_dialog_btn, R.id.transform_explode_btn, R.id.transform_slide_btn, R.id.transform_fade_btn,
             R.id.vp_fg_btn, R.id.coordinate, R.id.btn_select_image, R.id.btn_auto_size, R.id.btn_expend, R.id.btn_switch,
             R.id.btn_butterknife, R.id.btn_skin, R.id.btn_touch_helper, R.id.btn_search_demo, R.id.btn_zxing,
-            R.id.btn_databing, R.id.btn_net_change, R.id.btn_lru_cache, R.id.btn_loading})
+            R.id.btn_databing, R.id.btn_net_change, R.id.btn_lru_cache, R.id.btn_loading,R.id.btn_notification})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -594,6 +597,13 @@ public class MainActivity extends BaseActivity {
                 openActivity(DiskLruCacheActivity.class);
                 break;
             case R.id.btn_loading:
+                //测试UI卡顿，停顿2s
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, "onClick of R.id.button1: ", e);
+                }
                 openActivity(ButtonWithLoadActivity.class);
                 break;
             case R.id.btn_net_change:
@@ -608,6 +618,9 @@ public class MainActivity extends BaseActivity {
                 Intent intentChange = new Intent(this, NetChangeActivity.class);
                 intentChange.putExtra("person", person2);
                 startActivity(intentChange);
+                break;
+            case R.id.btn_notification:
+                openActivity(NotificationActivity.class);
                 break;
         }
     }

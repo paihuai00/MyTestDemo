@@ -1,6 +1,7 @@
 package com.csx.mytestdemo.app;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.util.Log;
 
@@ -13,6 +14,7 @@ import com.csx.mlibrary.utils.Utils;
 import com.csx.mytestdemo.multiple_state.EmptyCallBack;
 import com.csx.mytestdemo.multiple_state.ErrorCallBack;
 import com.csx.mytestdemo.multiple_state.LoadingCallBack;
+import com.github.moduth.blockcanary.BlockCanary;
 import com.kingja.loadsir.core.LoadSir;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
@@ -28,11 +30,15 @@ public class MyApplication extends Application {
     private static final String TAG = "MyApplication";
 
     public static PatchManager mPathManager;
+
+    private static Context mContext;
+
     @Override
     public void onCreate() {
         super.onCreate();
         Utils.init(this);
 
+        mContext = this;
 
         initAudio();
 
@@ -59,6 +65,10 @@ public class MyApplication extends Application {
 
         //zxing
         ZXingLibrary.initDisplayOpinion(this);
+
+
+        //UI 卡顿
+        BlockCanary.install(this, new BlockCanaryUI()).start();
 
     }
 
@@ -89,5 +99,9 @@ public class MyApplication extends Application {
             }
         });
         
+    }
+
+    public static Context getContext() {
+        return mContext;
     }
 }

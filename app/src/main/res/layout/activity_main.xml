@@ -448,6 +448,14 @@
             android:layout_weight="1"
             android:text="加载功能按钮"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_notification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="通知"
+            android:textAllCaps="false" />
     </LinearLayout>
 
 </ScrollView>
