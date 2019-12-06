@@ -46,7 +46,9 @@ public class NotificationActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("Name");
+        //System.out.println("NotificationActivity 接收到 Name = " + name);
     }
 
 
@@ -91,6 +93,8 @@ public class NotificationActivity extends BaseActivity {
          * 这里的Intent可以携带参数传递到跳转的Activity，后面会专门解释
          */
         Intent intent = new Intent(this, NotificationActivity.class);
+        intent.putExtra("Name", "张三");
+        //注意，这里不设置flag，无法接收到参数
         PendingIntent pIntent = PendingIntent.getActivity(this, 1, intent, 0);
         //横幅通知
         if (isShowHengfu) builder.setFullScreenIntent(pIntent, true);
@@ -106,6 +110,60 @@ public class NotificationActivity extends BaseActivity {
         notificationManager.notify((int)Math.random()*1000, notification);
     }
 
+    private void showHengFuNotification() {
+        NotificationCompat.Builder builder = null;
+        /**
+         * 这里需要注意，8.0以上需要创建 Channel 渠道
+         */
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel notificationChannel = new NotificationChannel("测试渠道", getString(R.string.app_name),
+                            NotificationManager.IMPORTANCE_DEFAULT);
+            notificationManager.createNotificationChannel(notificationChannel);
+            builder = new NotificationCompat.Builder(this, "测试渠道");
+        } else {
+            builder = new NotificationCompat.Builder(this);
+        }
+
+        //Ticker是状态栏显示的提示
+        builder.setTicker("显示setTicker");
+        //第一行内容  通常作为通知栏标题
+        builder.setContentTitle("显示setContentTitle");
+        //第二行内容 通常是通知正文
+        builder.setContentText("这里显示setContentText");
+        //第三行内容 通常是内容摘要什么的 在低版本机器上不一定显示
+        builder.setSubText("这里显示setSubText！");
+        //ContentInfo 在通知的右侧 时间的下面 用来展示一些其他信息
+        builder.setContentInfo("这里显示ContentInfo");
+        //number设计用来显示同种通知的数量和ContentInfo的位置一样，如果设置了ContentInfo则number会被隐藏
+        builder.setNumber(2);
+        //true：点击通知栏，通知消失
+        builder.setAutoCancel(true);
+        //系统状态栏显示的小图标
+        builder.setSmallIcon(R.mipmap.ic_launcher);
+        //通知时间
+        builder.setWhen(System.currentTimeMillis());
+        //下拉显示的大图标
+        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
+
+        /**
+         * 这里的Intent可以携带参数传递到跳转的Activity，后面会专门解释
+         */
+        Intent intent = new Intent(this, NotificationActivity.class);
+        PendingIntent pIntent = PendingIntent.getActivity(this, 1, intent, 0);
+        //横幅通知
+        //builder.setFullScreenIntent(pIntent, true);
+        builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+
+        //点击跳转的intent
+        builder.setContentIntent(pIntent);
+        //通知默认的声音 震动 呼吸灯
+        builder.setDefaults(NotificationCompat.DEFAULT_ALL);
+        Notification notification = builder.build();
+        /**
+         * 第一个参数为id，如果id相同则该通知会更新；
+         */
+        notificationManager.notify((int)Math.random()*1000, notification);
+    }
 
     @OnClick({
             R.id.btn_simple_notify, R.id.btn_bigtext_style, R.id.btn_inbox_style, R.id.btn_pic_style,R.id.btn_hengfu
@@ -142,7 +200,7 @@ public class NotificationActivity extends BaseActivity {
                 showSimpleNotification(picStyle,false);
                 break;
             case R.id.btn_hengfu://显示横幅通知:
-                showSimpleNotification(null,true);
+                showHengFuNotification();
                 break;
         }
     }

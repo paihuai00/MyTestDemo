@@ -51,6 +51,9 @@
 
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:name=".app.MyApplication"
@@ -344,8 +347,7 @@
         <activity android:name=".disklrucache_test.DiskLruCacheActivity" />
         <activity android:name=".button_with_loading.ButtonWithLoadActivity" />
 
-        <activity android:name=".notification_test.NotificationActivity"
-            android:launchMode="singleTop"/>
+        <activity android:name=".notification_test.NotificationActivity"/>
 
         <!--网络广播-->
         <receiver android:name=".net_change.net_change.NetStateReceiver">
