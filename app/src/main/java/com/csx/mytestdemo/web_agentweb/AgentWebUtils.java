@@ -29,13 +29,13 @@ public class AgentWebUtils {
             activity = (Activity) activityOrFragment;
             agentBuilder = AgentWeb.with(activity);
         } else if (activityOrFragment instanceof Fragment) {
+            fragment = (Fragment) activityOrFragment;
             agentBuilder = AgentWeb.with(fragment);
         }
 
         if (agentBuilder == null) {
             throw new IllegalArgumentException("AgentWebUtils Please enter Activity or Fragment!");
         }
-
 
         AgentWeb mAgentWeb = agentBuilder
                 .setAgentWebParent(parentView, new LinearLayout.LayoutParams(-1, -1))
