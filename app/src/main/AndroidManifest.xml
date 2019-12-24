@@ -349,6 +349,8 @@
 
         <activity android:name=".notification_test.NotificationActivity"/>
 
+        <activity android:name=".web_agentweb.WebActivity"/>
+
         <!--网络广播-->
         <receiver android:name=".net_change.net_change.NetStateReceiver">
             <intent-filter>

@@ -163,6 +163,12 @@ dependencies {
     //debug环境，监控卡顿
     debugImplementation 'com.github.markzhai:blockcanary-android:1.5.0'
 
+
+    //leakcanary：内存泄漏
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.3'
+
+    //AgentWeb: https://github.com/Justson/AgentWeb
+    implementation 'com.just.agentweb:agentweb:4.1.2' // (必选)
 }
 // 在MobSDK的扩展中注册ShareSDK的相关信息
 MobSDK {

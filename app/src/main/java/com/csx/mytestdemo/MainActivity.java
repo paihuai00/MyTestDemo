@@ -78,6 +78,7 @@ import com.csx.mytestdemo.view_gesture_velocity.GestureVelocityActivity;
 import com.csx.mytestdemo.view_slide_menu.SlideMenuActivity;
 import com.csx.mytestdemo.view_touch_nine.NineDotActivity;
 import com.csx.mytestdemo.view_touch_scroll.TouchScrollActivity;
+import com.csx.mytestdemo.web_agentweb.WebActivity;
 import com.csx.mytestdemo.webview_progressbar.WebViewActivity;
 import com.csx.mytestdemo.wifi_demo.WifiActivity;
 import com.csx.mytestdemo.zxing_demo.ZxingDemoActivity;
@@ -107,122 +108,66 @@ import static android.os.Environment.DIRECTORY_MUSIC;
 public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
 
-    @BindView(R.id.rxjava_btn)
-    Button mRxjavaBtn;
-    @BindView(R.id.mvp_btn)
-    Button mMvpBtn;
-    @BindView(R.id.dialog_btn)
-    Button mDialogBtn;
-    @BindView(R.id.video_btn)
-    Button mVideoBtn;
-    @BindView(R.id.drag_rv_btn)
-    Button mDragRvBtn;
-    @BindView(R.id.audio_btn)
-    Button mAudioBtn;
-    @BindView(R.id.bottom_bar_btn)
-    Button mBottomBarBtn;
-    @BindView(R.id.broadcast_btn)
-    Button mBroadcastBtn;
-    @BindView(R.id.gesture_velocity_btn)
-    Button mGestureVelocityBtn;
-    @BindView(R.id.nice_dot_btn)
-    Button mNiceDotBtn;
-    @BindView(R.id.touch_scroll_btn)
-    Button mTouchScrollBtn;
-    @BindView(R.id.share_btn)
-    Button mShareBtn;
-    @BindView(R.id.scroller_btn)
-    Button mScrollBtn;
-    @BindView(R.id.slide_menu_btn)
-    Button mSlideMenuBtn;
-    @BindView(R.id.ksoap_btn)
-    Button mKsoapBtn;
-    @BindView(R.id.bf_btn)
-    Button mBfBtn;
-    @BindView(R.id.gson_btn)
-    Button mGsonBtn;
-    @BindView(R.id.flow_btn)
-    Button mFlowBtn;
-    @BindView(R.id.state_bar_btn)
-    Button mStateBarBtn;
-    @BindView(R.id.asynctask_btn)
-    Button mAsyncTaskBtn;
-    @BindView(R.id.keyboard_btn)
-    Button mKeyBoardBtn;
-    @BindView(R.id.wifi_btn)
-    Button mWifiBtn;
-    @BindView(R.id.float_menu_btn)
-    Button mFloatMenuBtn;
-    @BindView(R.id.service_btn)
-    Button mServiceBtn;
-    @BindView(R.id.contact_btn)
-    Button mContactBtn;
-    @BindView(R.id.multiple_state_btn)
-    Button mMultipleStateBtn;
-    @BindView(R.id.webview_btn)
-    Button mWebViewBtn;
-    @BindView(R.id.progress_btn)
-    Button mProgressBtn;
-    @BindView(R.id.drag_et_btn)
-    Button mDragEditTextBtn;
-    @BindView(R.id.color_picker_btn)
-    Button mColorPickerBtn;
-    @BindView(R.id.photoview_btn)
-    Button mPhotoViewBtn;
-    @BindView(R.id.glide4_btn)
-    Button mGlide4Btn;
-    @BindView(R.id.diff_utils_btn)
-    Button mDiffUtilsBtn;
-    @BindView(R.id.loading_btn)
-    Button mLoadingBtn;
-    @BindView(R.id.sticky_rv_btn)
-    Button mStickyRvBtn;
-    @BindView(R.id.lazy_fg_btn)
-    Button mLazyFgBtn;
-    @BindView(R.id.refresh_btn)
-    Button mRefreshBtn;
-    @BindView(R.id.bottom_dialog_btn)
-    Button mBottomDialogBtn;
-    @BindView(R.id.banner_btn)
-    Button mBannerBtn;
-    @BindView(R.id.transform_explode_btn)
-    Button mExplodeBtn;
-    @BindView(R.id.transform_fade_btn)
-    Button mFadeBtn;
-    @BindView(R.id.transform_slide_btn)
-    Button mSlideBtn;
-    @BindView(R.id.vp_fg_btn)
-    Button mVpBtn;
-    @BindView(R.id.coordinate)
-    Button mConstraintBtn;
-    @BindView(R.id.btn_select_image)
-    Button mImageSelectBtn;
-    @BindView(R.id.btn_switch)
-    Button mSwitchBtn;
-    @BindView(R.id.btn_butterknife)
-    Button mButterKnifeBtn;
-    @BindView(R.id.btn_skin)
-    Button mSkinBtn;
-    @BindView(R.id.btn_touch_helper)
-    Button mTouchHelperBtn;
+    @BindView(R.id.rxjava_btn) Button mRxjavaBtn;
+    @BindView(R.id.mvp_btn) Button mMvpBtn;
+    @BindView(R.id.dialog_btn) Button mDialogBtn;
+    @BindView(R.id.video_btn) Button mVideoBtn;
+    @BindView(R.id.drag_rv_btn) Button mDragRvBtn;
+    @BindView(R.id.audio_btn) Button mAudioBtn;
+    @BindView(R.id.bottom_bar_btn) Button mBottomBarBtn;
+    @BindView(R.id.broadcast_btn) Button mBroadcastBtn;
+    @BindView(R.id.gesture_velocity_btn) Button mGestureVelocityBtn;
+    @BindView(R.id.nice_dot_btn) Button mNiceDotBtn;
+    @BindView(R.id.touch_scroll_btn) Button mTouchScrollBtn;
+    @BindView(R.id.share_btn) Button mShareBtn;
+    @BindView(R.id.scroller_btn) Button mScrollBtn;
+    @BindView(R.id.slide_menu_btn) Button mSlideMenuBtn;
+    @BindView(R.id.ksoap_btn) Button mKsoapBtn;
+    @BindView(R.id.bf_btn) Button mBfBtn;
+    @BindView(R.id.gson_btn) Button mGsonBtn;
+    @BindView(R.id.flow_btn) Button mFlowBtn;
+    @BindView(R.id.state_bar_btn) Button mStateBarBtn;
+    @BindView(R.id.asynctask_btn) Button mAsyncTaskBtn;
+    @BindView(R.id.keyboard_btn) Button mKeyBoardBtn;
+    @BindView(R.id.wifi_btn) Button mWifiBtn;
+    @BindView(R.id.float_menu_btn) Button mFloatMenuBtn;
+    @BindView(R.id.service_btn) Button mServiceBtn;
+    @BindView(R.id.contact_btn) Button mContactBtn;
+    @BindView(R.id.multiple_state_btn) Button mMultipleStateBtn;
+    @BindView(R.id.webview_btn) Button mWebViewBtn;
+    @BindView(R.id.progress_btn) Button mProgressBtn;
+    @BindView(R.id.drag_et_btn) Button mDragEditTextBtn;
+    @BindView(R.id.color_picker_btn) Button mColorPickerBtn;
+    @BindView(R.id.photoview_btn) Button mPhotoViewBtn;
+    @BindView(R.id.glide4_btn) Button mGlide4Btn;
+    @BindView(R.id.diff_utils_btn) Button mDiffUtilsBtn;
+    @BindView(R.id.loading_btn) Button mLoadingBtn;
+    @BindView(R.id.sticky_rv_btn) Button mStickyRvBtn;
+    @BindView(R.id.lazy_fg_btn) Button mLazyFgBtn;
+    @BindView(R.id.refresh_btn) Button mRefreshBtn;
+    @BindView(R.id.bottom_dialog_btn) Button mBottomDialogBtn;
+    @BindView(R.id.banner_btn) Button mBannerBtn;
+    @BindView(R.id.transform_explode_btn) Button mExplodeBtn;
+    @BindView(R.id.transform_fade_btn) Button mFadeBtn;
+    @BindView(R.id.transform_slide_btn) Button mSlideBtn;
+    @BindView(R.id.vp_fg_btn) Button mVpBtn;
+    @BindView(R.id.coordinate) Button mConstraintBtn;
+    @BindView(R.id.btn_select_image) Button mImageSelectBtn;
+    @BindView(R.id.btn_switch) Button mSwitchBtn;
+    @BindView(R.id.btn_butterknife) Button mButterKnifeBtn;
+    @BindView(R.id.btn_skin) Button mSkinBtn;
+    @BindView(R.id.btn_touch_helper) Button mTouchHelperBtn;
 
     public AMapLocationClient mAMapLocationClient;
-    @BindView(R.id.tv_city)
-    TextView mTvCity;
+    @BindView(R.id.tv_city) TextView mTvCity;
     //    @BindView(R.id.btn_auto_size)
     Button mBtnAutoSize;
-    @BindView(R.id.btn_expend)
-    Button btnExpend;
-    @BindView(R.id.btn_search_demo)
-    Button btnSearchDemo;
-    @BindView(R.id.btn_zxing)
-    Button btnZxing;
-    @BindView(R.id.btn_lru_cache)
-    Button btnDiskLru;
-    @BindView(R.id.btn_loading)
-    Button btnWithLoad;
-    @BindView(R.id.btn_notification)
-    Button btnNotification;
+    @BindView(R.id.btn_expend) Button btnExpend;
+    @BindView(R.id.btn_search_demo) Button btnSearchDemo;
+    @BindView(R.id.btn_zxing) Button btnZxing;
+    @BindView(R.id.btn_lru_cache) Button btnDiskLru;
+    @BindView(R.id.btn_loading) Button btnWithLoad;
+    @BindView(R.id.btn_notification) Button btnNotification;
 
     @Override
     public int getLayoutId() {
@@ -245,18 +190,25 @@ public class MainActivity extends BaseActivity {
 
         Log.e(TAG, "initView: 核心线程数：" + Runtime.getRuntime().availableProcessors());
 
-//        mStringList.add("11");
+        //        mStringList.add("11");
 
-        Log.e(TAG, "Environment.getExternalStorageDirectory() = " + Environment.getExternalStorageDirectory());
-        Log.e(TAG, "Environment.getExternalStorageDirectory().getAbsolutePath()= " + Environment.getExternalStorageDirectory().getAbsolutePath());
-        Log.e(TAG, "Environment.getExternalStoragePublicDirectory(DIRECTORY_MUSIC)= " + Environment.getExternalStoragePublicDirectory(DIRECTORY_MUSIC));
-        Log.e(TAG, "Environment.getDownloadCacheDirectory() = " + Environment.getDownloadCacheDirectory());
-        Log.e(TAG, "Environment.getExternalStorageState() = " + Environment.getExternalStorageState());
-        Log.e(TAG, "getExternalCacheDir().getAbsolutePath() =  " + getExternalCacheDir().getAbsolutePath());
+        Log.e(TAG, "Environment.getExternalStorageDirectory() = "
+                + Environment.getExternalStorageDirectory());
+        Log.e(TAG, "Environment.getExternalStorageDirectory().getAbsolutePath()= "
+                + Environment.getExternalStorageDirectory().getAbsolutePath());
+        Log.e(TAG, "Environment.getExternalStoragePublicDirectory(DIRECTORY_MUSIC)= "
+                + Environment.getExternalStoragePublicDirectory(DIRECTORY_MUSIC));
+        Log.e(TAG, "Environment.getDownloadCacheDirectory() = "
+                + Environment.getDownloadCacheDirectory());
+        Log.e(TAG,
+                "Environment.getExternalStorageState() = " + Environment.getExternalStorageState());
+        Log.e(TAG, "getExternalCacheDir().getAbsolutePath() =  "
+                + getExternalCacheDir().getAbsolutePath());
 
-
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M)
-            XPermission.requestPermissions(this, 100, new String[]{Manifest.permission_group.LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, new XPermission.OnPermissionListener() {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+            XPermission.requestPermissions(this, 100, new String[] {
+                    Manifest.permission_group.LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION
+            }, new XPermission.OnPermissionListener() {
                 @Override
                 public void onPermissionGranted() {
                     initGaoDeMap();
@@ -267,9 +219,11 @@ public class MainActivity extends BaseActivity {
                     Toast.makeText(getApplicationContext(), "定位权限被拒绝！", Toast.LENGTH_SHORT).show();
                 }
             });
-//        initGaoDeMap();
+        }
+        //        initGaoDeMap();
 
-        File fixFile = new File(Environment.getExternalStorageDirectory() + File.separator + "fix.apatch");
+        File fixFile =
+                new File(Environment.getExternalStorageDirectory() + File.separator + "fix.apatch");
         if (fixFile.exists()) {
             try {
                 MyApplication.mPathManager.addPatch(fixFile.getAbsolutePath());
@@ -280,30 +234,30 @@ public class MainActivity extends BaseActivity {
             }
         }
 
-//        try {
-////            Class cl = Class.forName("com.csx.mytestdemo.MainActivity");
-//            Class cl=this.getClass();
-//            Field field = cl.getDeclaredField("mSkinBtn");
-//            field.setAccessible(true);
-//            Button button= (Button) field.get(this);
-//            Class btm = Class.forName("android.widget.Button");
-//
-//            Method method = btm.getMethod("setText", CharSequence.class);
-//
-//            method.invoke(button, "1112222111");
-////            field.set("setText", "111111111111");
-//
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (NoSuchFieldException e) {
-//            e.printStackTrace();
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//        } catch (NoSuchMethodException e) {
-//            e.printStackTrace();
-//        } catch (InvocationTargetException e) {
-//            e.printStackTrace();
-//        }
+        //        try {
+        ////            Class cl = Class.forName("com.csx.mytestdemo.MainActivity");
+        //            Class cl=this.getClass();
+        //            Field field = cl.getDeclaredField("mSkinBtn");
+        //            field.setAccessible(true);
+        //            Button button= (Button) field.get(this);
+        //            Class btm = Class.forName("android.widget.Button");
+        //
+        //            Method method = btm.getMethod("setText", CharSequence.class);
+        //
+        //            method.invoke(button, "1112222111");
+        ////            field.set("setText", "111111111111");
+        //
+        //        } catch (ClassNotFoundException e) {
+        //            e.printStackTrace();
+        //        } catch (NoSuchFieldException e) {
+        //            e.printStackTrace();
+        //        } catch (IllegalAccessException e) {
+        //            e.printStackTrace();
+        //        } catch (NoSuchMethodException e) {
+        //            e.printStackTrace();
+        //        } catch (InvocationTargetException e) {
+        //            e.printStackTrace();
+        //        }
     }
 
     private void initGaoDeMap() {
@@ -317,13 +271,15 @@ public class MainActivity extends BaseActivity {
                         System.out.println("@city:" + city);
                         if (!TextUtils.isEmpty(city)) {
                             mTvCity.setText("当前：" + city);
-                            Toast.makeText(getApplicationContext(), "当前：" + city, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "当前：" + city,
+                                    Toast.LENGTH_SHORT).show();
                         }
                         mAMapLocationClient.stopLocation();
                     } else {
                         //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
                         Log.e("AmapError", "location Error, ErrCode:"
-                                + location.getErrorCode() + ", errInfo:"
+                                + location.getErrorCode()
+                                + ", errInfo:"
                                 + location.getErrorInfo());
                     }
                 }
@@ -333,9 +289,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        DefaultActionBar mDefaultActionBar = new DefaultActionBar.Builder(this)
-                .setTitle("hahahah")
-                .builder();
+        DefaultActionBar mDefaultActionBar =
+                new DefaultActionBar.Builder(this).setTitle("hahahah").builder();
 
         Map<String, Object> params = new HashMap<>();
         params.put("max", 0);
@@ -360,7 +315,8 @@ public class MainActivity extends BaseActivity {
         mParams.put("nickName", "张南");
         mParams.put("mobile", "13946154291");
         mParams.put("sign", "be32ba6e4282c4acb2f3ba6fd25c053e");
-        mParams.put("avatar", "http://img3.qcdqcdn.com/group3/M00/37/5A/4ZMEAFpMK7yAEyzjAAEvRYEnocY955.png");
+        mParams.put("avatar",
+                "http://img3.qcdqcdn.com/group3/M00/37/5A/4ZMEAFpMK7yAEyzjAAEvRYEnocY955.png");
         mParams.put("app_id", "1307d891ab11a60276f49aa631495332");
         mParams.put("token", "72116c8d55f44b7d8b7737cf4682a084");
         HttpUtils.getInstance()
@@ -388,7 +344,6 @@ public class MainActivity extends BaseActivity {
                 badHanyuPinyinOutputFormatCombination.printStackTrace();
             }
             System.out.print(Arrays.toString(vals));
-
         }
 
         //判断输入的是否为 英文
@@ -399,25 +354,26 @@ public class MainActivity extends BaseActivity {
         if (matcher.matches()) {
             System.out.print("");
         }
-
-
     }
 
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @OnClick({R.id.rxjava_btn, R.id.mvp_btn, R.id.dialog_btn, R.id.video_btn,
-            R.id.drag_rv_btn, R.id.touch_scroll_btn, R.id.audio_btn, R.id.bottom_bar_btn,
-            R.id.broadcast_btn, R.id.gesture_velocity_btn, R.id.share_btn,
-            R.id.scroller_btn, R.id.slide_menu_btn, R.id.ksoap_btn, R.id.gson_btn,
-            R.id.bf_btn, R.id.flow_btn, R.id.state_bar_btn, R.id.asynctask_btn, R.id.keyboard_btn,
-            R.id.wifi_btn, R.id.float_menu_btn, R.id.service_btn, R.id.contact_btn,
-            R.id.loading_btn, R.id.multiple_state_btn, R.id.webview_btn, R.id.progress_btn,
-            R.id.drag_et_btn, R.id.color_picker_btn, R.id.photoview_btn, R.id.glide4_btn,
-            R.id.diff_utils_btn, R.id.sticky_rv_btn, R.id.lazy_fg_btn, R.id.refresh_btn, R.id.banner_btn,
-            R.id.bottom_dialog_btn, R.id.transform_explode_btn, R.id.transform_slide_btn, R.id.transform_fade_btn,
-            R.id.vp_fg_btn, R.id.coordinate, R.id.btn_select_image, R.id.btn_auto_size, R.id.btn_expend, R.id.btn_switch,
-            R.id.btn_butterknife, R.id.btn_skin, R.id.btn_touch_helper, R.id.btn_search_demo, R.id.btn_zxing,
-            R.id.btn_databing, R.id.btn_net_change, R.id.btn_lru_cache, R.id.btn_loading,R.id.btn_notification})
+    @OnClick({
+            R.id.rxjava_btn, R.id.mvp_btn, R.id.dialog_btn, R.id.video_btn, R.id.drag_rv_btn,
+            R.id.touch_scroll_btn, R.id.audio_btn, R.id.bottom_bar_btn, R.id.broadcast_btn,
+            R.id.gesture_velocity_btn, R.id.share_btn, R.id.scroller_btn, R.id.slide_menu_btn,
+            R.id.ksoap_btn, R.id.gson_btn, R.id.bf_btn, R.id.flow_btn, R.id.state_bar_btn,
+            R.id.asynctask_btn, R.id.keyboard_btn, R.id.wifi_btn, R.id.float_menu_btn,
+            R.id.service_btn, R.id.contact_btn, R.id.loading_btn, R.id.multiple_state_btn,
+            R.id.webview_btn, R.id.progress_btn, R.id.drag_et_btn, R.id.color_picker_btn,
+            R.id.photoview_btn, R.id.glide4_btn, R.id.diff_utils_btn, R.id.sticky_rv_btn,
+            R.id.lazy_fg_btn, R.id.refresh_btn, R.id.banner_btn, R.id.bottom_dialog_btn,
+            R.id.transform_explode_btn, R.id.transform_slide_btn, R.id.transform_fade_btn,
+            R.id.vp_fg_btn, R.id.coordinate, R.id.btn_select_image, R.id.btn_auto_size,
+            R.id.btn_expend, R.id.btn_switch, R.id.btn_butterknife, R.id.btn_skin,
+            R.id.btn_touch_helper, R.id.btn_search_demo, R.id.btn_zxing, R.id.btn_databing,
+            R.id.btn_net_change, R.id.btn_lru_cache, R.id.btn_loading, R.id.btn_notification,
+            R.id.btn_agentweb
+    })
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rxjava_btn:
@@ -542,19 +498,22 @@ public class MainActivity extends BaseActivity {
             case R.id.transform_explode_btn:
                 Intent explodeIntent = new Intent(this, TransformActivity.class);
                 explodeIntent.putExtra("flag", "explode");
-                startActivity(explodeIntent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                startActivity(explodeIntent,
+                        ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
 
                 break;
             case R.id.transform_slide_btn:
                 Intent slideIntent = new Intent(this, TransformActivity.class);
                 slideIntent.putExtra("flag", "slide");
-                startActivity(slideIntent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                startActivity(slideIntent,
+                        ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
 
                 break;
             case R.id.transform_fade_btn:
                 Intent fadeIntent = new Intent(this, TransformActivity.class);
                 fadeIntent.putExtra("flag", "fade");
-                startActivity(fadeIntent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                startActivity(fadeIntent,
+                        ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
 
                 break;
             case R.id.vp_fg_btn:
@@ -607,7 +566,7 @@ public class MainActivity extends BaseActivity {
                 openActivity(ButtonWithLoadActivity.class);
                 break;
             case R.id.btn_net_change:
-//                openActivity(NetChangeActivity.class);
+                //                openActivity(NetChangeActivity.class);
                 Person2 person2 = new Person2();
                 person2.setAge(1);
                 person2.setName("1");
@@ -622,34 +581,29 @@ public class MainActivity extends BaseActivity {
             case R.id.btn_notification:
                 openActivity(NotificationActivity.class);
                 break;
+            case R.id.btn_agentweb:
+                openActivity(WebActivity.class);
+                break;
         }
     }
 
     /**
      * 跳转到 c.class
-     *
-     * @param c
      */
     private void openActivity(Class c) {
         Intent intent = new Intent(MainActivity.this, c);
         overridePendingTransition(R.anim.activity_enter, R.anim.activity_exit);
         startActivity(intent);
-
     }
-
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         Log.d(TAG, "onBackPressed: ");
-
-
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         return super.onKeyDown(keyCode, event);
     }
-
-
 }

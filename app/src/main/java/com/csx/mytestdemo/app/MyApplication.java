@@ -16,6 +16,7 @@ import com.csx.mytestdemo.multiple_state.ErrorCallBack;
 import com.csx.mytestdemo.multiple_state.LoadingCallBack;
 import com.github.moduth.blockcanary.BlockCanary;
 import com.kingja.loadsir.core.LoadSir;
+import com.squareup.leakcanary.LeakCanary;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
 import cafe.adriel.androidaudioconverter.AndroidAudioConverter;
@@ -69,6 +70,8 @@ public class MyApplication extends Application {
 
         //UI 卡顿
         BlockCanary.install(this, new BlockCanaryUI()).start();
+
+        LeakCanary.install(this);
 
     }
 
