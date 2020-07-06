@@ -35,6 +35,8 @@ import com.csx.mytestdemo.button_with_loading.ButtonWithLoadActivity;
 import com.csx.mytestdemo.color_picker.ColorPickerActivity;
 import com.csx.mytestdemo.common_dialog.CommonDialogActivity;
 import com.csx.mytestdemo.coordinate_layout.CoordinateActivity;
+import com.csx.mytestdemo.custom_views.CustomViewsActivity;
+import com.csx.mytestdemo.custom_views.XfermodesActivity;
 import com.csx.mytestdemo.databing_demo.DataBindingActivity;
 import com.csx.mytestdemo.diffutil_rv.DiffUtilsActivity;
 import com.csx.mytestdemo.disklrucache_test.DiskLruCacheActivity;
@@ -108,66 +110,126 @@ import static android.os.Environment.DIRECTORY_MUSIC;
 public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
 
-    @BindView(R.id.rxjava_btn) Button mRxjavaBtn;
-    @BindView(R.id.mvp_btn) Button mMvpBtn;
-    @BindView(R.id.dialog_btn) Button mDialogBtn;
-    @BindView(R.id.video_btn) Button mVideoBtn;
-    @BindView(R.id.drag_rv_btn) Button mDragRvBtn;
-    @BindView(R.id.audio_btn) Button mAudioBtn;
-    @BindView(R.id.bottom_bar_btn) Button mBottomBarBtn;
-    @BindView(R.id.broadcast_btn) Button mBroadcastBtn;
-    @BindView(R.id.gesture_velocity_btn) Button mGestureVelocityBtn;
-    @BindView(R.id.nice_dot_btn) Button mNiceDotBtn;
-    @BindView(R.id.touch_scroll_btn) Button mTouchScrollBtn;
-    @BindView(R.id.share_btn) Button mShareBtn;
-    @BindView(R.id.scroller_btn) Button mScrollBtn;
-    @BindView(R.id.slide_menu_btn) Button mSlideMenuBtn;
-    @BindView(R.id.ksoap_btn) Button mKsoapBtn;
-    @BindView(R.id.bf_btn) Button mBfBtn;
-    @BindView(R.id.gson_btn) Button mGsonBtn;
-    @BindView(R.id.flow_btn) Button mFlowBtn;
-    @BindView(R.id.state_bar_btn) Button mStateBarBtn;
-    @BindView(R.id.asynctask_btn) Button mAsyncTaskBtn;
-    @BindView(R.id.keyboard_btn) Button mKeyBoardBtn;
-    @BindView(R.id.wifi_btn) Button mWifiBtn;
-    @BindView(R.id.float_menu_btn) Button mFloatMenuBtn;
-    @BindView(R.id.service_btn) Button mServiceBtn;
-    @BindView(R.id.contact_btn) Button mContactBtn;
-    @BindView(R.id.multiple_state_btn) Button mMultipleStateBtn;
-    @BindView(R.id.webview_btn) Button mWebViewBtn;
-    @BindView(R.id.progress_btn) Button mProgressBtn;
-    @BindView(R.id.drag_et_btn) Button mDragEditTextBtn;
-    @BindView(R.id.color_picker_btn) Button mColorPickerBtn;
-    @BindView(R.id.photoview_btn) Button mPhotoViewBtn;
-    @BindView(R.id.glide4_btn) Button mGlide4Btn;
-    @BindView(R.id.diff_utils_btn) Button mDiffUtilsBtn;
-    @BindView(R.id.loading_btn) Button mLoadingBtn;
-    @BindView(R.id.sticky_rv_btn) Button mStickyRvBtn;
-    @BindView(R.id.lazy_fg_btn) Button mLazyFgBtn;
-    @BindView(R.id.refresh_btn) Button mRefreshBtn;
-    @BindView(R.id.bottom_dialog_btn) Button mBottomDialogBtn;
-    @BindView(R.id.banner_btn) Button mBannerBtn;
-    @BindView(R.id.transform_explode_btn) Button mExplodeBtn;
-    @BindView(R.id.transform_fade_btn) Button mFadeBtn;
-    @BindView(R.id.transform_slide_btn) Button mSlideBtn;
-    @BindView(R.id.vp_fg_btn) Button mVpBtn;
-    @BindView(R.id.coordinate) Button mConstraintBtn;
-    @BindView(R.id.btn_select_image) Button mImageSelectBtn;
-    @BindView(R.id.btn_switch) Button mSwitchBtn;
-    @BindView(R.id.btn_butterknife) Button mButterKnifeBtn;
-    @BindView(R.id.btn_skin) Button mSkinBtn;
-    @BindView(R.id.btn_touch_helper) Button mTouchHelperBtn;
+    @BindView(R.id.rxjava_btn)
+    Button mRxjavaBtn;
+    @BindView(R.id.mvp_btn)
+    Button mMvpBtn;
+    @BindView(R.id.dialog_btn)
+    Button mDialogBtn;
+    @BindView(R.id.video_btn)
+    Button mVideoBtn;
+    @BindView(R.id.drag_rv_btn)
+    Button mDragRvBtn;
+    @BindView(R.id.audio_btn)
+    Button mAudioBtn;
+    @BindView(R.id.bottom_bar_btn)
+    Button mBottomBarBtn;
+    @BindView(R.id.broadcast_btn)
+    Button mBroadcastBtn;
+    @BindView(R.id.gesture_velocity_btn)
+    Button mGestureVelocityBtn;
+    @BindView(R.id.nice_dot_btn)
+    Button mNiceDotBtn;
+    @BindView(R.id.touch_scroll_btn)
+    Button mTouchScrollBtn;
+    @BindView(R.id.share_btn)
+    Button mShareBtn;
+    @BindView(R.id.scroller_btn)
+    Button mScrollBtn;
+    @BindView(R.id.slide_menu_btn)
+    Button mSlideMenuBtn;
+    @BindView(R.id.ksoap_btn)
+    Button mKsoapBtn;
+    @BindView(R.id.bf_btn)
+    Button mBfBtn;
+    @BindView(R.id.gson_btn)
+    Button mGsonBtn;
+    @BindView(R.id.flow_btn)
+    Button mFlowBtn;
+    @BindView(R.id.state_bar_btn)
+    Button mStateBarBtn;
+    @BindView(R.id.asynctask_btn)
+    Button mAsyncTaskBtn;
+    @BindView(R.id.keyboard_btn)
+    Button mKeyBoardBtn;
+    @BindView(R.id.wifi_btn)
+    Button mWifiBtn;
+    @BindView(R.id.float_menu_btn)
+    Button mFloatMenuBtn;
+    @BindView(R.id.service_btn)
+    Button mServiceBtn;
+    @BindView(R.id.contact_btn)
+    Button mContactBtn;
+    @BindView(R.id.multiple_state_btn)
+    Button mMultipleStateBtn;
+    @BindView(R.id.webview_btn)
+    Button mWebViewBtn;
+    @BindView(R.id.progress_btn)
+    Button mProgressBtn;
+    @BindView(R.id.drag_et_btn)
+    Button mDragEditTextBtn;
+    @BindView(R.id.color_picker_btn)
+    Button mColorPickerBtn;
+    @BindView(R.id.photoview_btn)
+    Button mPhotoViewBtn;
+    @BindView(R.id.glide4_btn)
+    Button mGlide4Btn;
+    @BindView(R.id.diff_utils_btn)
+    Button mDiffUtilsBtn;
+    @BindView(R.id.loading_btn)
+    Button mLoadingBtn;
+    @BindView(R.id.sticky_rv_btn)
+    Button mStickyRvBtn;
+    @BindView(R.id.lazy_fg_btn)
+    Button mLazyFgBtn;
+    @BindView(R.id.refresh_btn)
+    Button mRefreshBtn;
+    @BindView(R.id.bottom_dialog_btn)
+    Button mBottomDialogBtn;
+    @BindView(R.id.banner_btn)
+    Button mBannerBtn;
+    @BindView(R.id.transform_explode_btn)
+    Button mExplodeBtn;
+    @BindView(R.id.transform_fade_btn)
+    Button mFadeBtn;
+    @BindView(R.id.transform_slide_btn)
+    Button mSlideBtn;
+    @BindView(R.id.vp_fg_btn)
+    Button mVpBtn;
+    @BindView(R.id.coordinate)
+    Button mConstraintBtn;
+    @BindView(R.id.btn_select_image)
+    Button mImageSelectBtn;
+    @BindView(R.id.btn_switch)
+    Button mSwitchBtn;
+    @BindView(R.id.btn_butterknife)
+    Button mButterKnifeBtn;
+    @BindView(R.id.btn_skin)
+    Button mSkinBtn;
+    @BindView(R.id.btn_touch_helper)
+    Button mTouchHelperBtn;
 
     public AMapLocationClient mAMapLocationClient;
-    @BindView(R.id.tv_city) TextView mTvCity;
+    @BindView(R.id.tv_city)
+    TextView mTvCity;
     //    @BindView(R.id.btn_auto_size)
     Button mBtnAutoSize;
-    @BindView(R.id.btn_expend) Button btnExpend;
-    @BindView(R.id.btn_search_demo) Button btnSearchDemo;
-    @BindView(R.id.btn_zxing) Button btnZxing;
-    @BindView(R.id.btn_lru_cache) Button btnDiskLru;
-    @BindView(R.id.btn_loading) Button btnWithLoad;
-    @BindView(R.id.btn_notification) Button btnNotification;
+    @BindView(R.id.btn_expend)
+    Button btnExpend;
+    @BindView(R.id.btn_search_demo)
+    Button btnSearchDemo;
+    @BindView(R.id.btn_zxing)
+    Button btnZxing;
+    @BindView(R.id.btn_lru_cache)
+    Button btnDiskLru;
+    @BindView(R.id.btn_loading)
+    Button btnWithLoad;
+    @BindView(R.id.btn_notification)
+    Button btnNotification;
+    @BindView(R.id.btn_customs)
+    Button btn_customs;
+    @BindView(R.id.btn_xfermodes)
+    Button btn_xfermodes;
 
     @Override
     public int getLayoutId() {
@@ -206,7 +268,7 @@ public class MainActivity extends BaseActivity {
                 + getExternalCacheDir().getAbsolutePath());
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-            XPermission.requestPermissions(this, 100, new String[] {
+            XPermission.requestPermissions(this, 100, new String[]{
                     Manifest.permission_group.LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION
             }, new XPermission.OnPermissionListener() {
                 @Override
@@ -290,7 +352,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initData() {
         DefaultActionBar mDefaultActionBar =
-                new DefaultActionBar.Builder(this).setTitle("hahahah").builder();
+                new DefaultActionBar.Builder(this).setTitle("标题").builder();
 
         Map<String, Object> params = new HashMap<>();
         params.put("max", 0);
@@ -372,7 +434,7 @@ public class MainActivity extends BaseActivity {
             R.id.btn_expend, R.id.btn_switch, R.id.btn_butterknife, R.id.btn_skin,
             R.id.btn_touch_helper, R.id.btn_search_demo, R.id.btn_zxing, R.id.btn_databing,
             R.id.btn_net_change, R.id.btn_lru_cache, R.id.btn_loading, R.id.btn_notification,
-            R.id.btn_agentweb
+            R.id.btn_agentweb, R.id.btn_customs, R.id.btn_xfermodes
     })
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -583,6 +645,12 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.btn_agentweb:
                 openActivity(WebActivity.class);
+                break;
+            case R.id.btn_customs:
+                openActivity(CustomViewsActivity.class);
+                break;
+            case R.id.btn_xfermodes:
+                openActivity(XfermodesActivity.class);
                 break;
         }
     }

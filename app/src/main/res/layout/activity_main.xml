@@ -465,6 +465,23 @@
             android:layout_weight="1"
             android:text="AgentWeb使用"
             android:textAllCaps="false" />
+
+
+        <Button
+            android:id="@+id/btn_customs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="常见自定义view"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_xfermodes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Xfermodes"
+            android:textAllCaps="false" />
     </LinearLayout>
 
 </ScrollView>

@@ -20,6 +20,19 @@
         <attr name="textMovedEnable" format="boolean" />
     </declare-styleable>
 
+
+
+    <declare-styleable name="ColorfulProgressbarStatic">
+        <attr name="style" format="string|reference"/>
+        <attr name="animation" format="boolean"/>
+        <attr name="maxProgress" format="integer|reference"/>
+        <attr name="currentProgress" format="integer|reference"/>
+        <attr name="secondProgress" format="integer|reference"/>
+        <attr name="backgroundColor" format="color|reference"/>
+        <attr name="progressColor1" format="color|reference"/>
+        <attr name="progressColor2" format="color|reference"/>
+    </declare-styleable>
+
     <!--CircleStyle-->
     <declare-styleable name="CircleProgressView">
 

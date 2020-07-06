@@ -64,7 +64,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:name">
-        <activity android:name=".WelcomeActivity">
+        <activity android:name=".custom_views.CustomViewsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -347,9 +347,11 @@
         <activity android:name=".disklrucache_test.DiskLruCacheActivity" />
         <activity android:name=".button_with_loading.ButtonWithLoadActivity" />
 
-        <activity android:name=".notification_test.NotificationActivity"/>
+        <activity android:name=".notification_test.NotificationActivity" />
 
-        <activity android:name=".web_agentweb.WebActivity"/>
+        <activity android:name=".web_agentweb.WebActivity" />
+
+<!--        <activity android:name=".custom_views.CustomViewsActivity" />-->
 
         <!--网络广播-->
         <receiver android:name=".net_change.net_change.NetStateReceiver">
@@ -359,6 +361,7 @@
         </receiver>
 
 
+        <activity android:name=".custom_views.XfermodesActivity" />
 
     </application>
 
