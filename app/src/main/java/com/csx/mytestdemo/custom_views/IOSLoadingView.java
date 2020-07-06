@@ -49,6 +49,8 @@ public class IOSLoadingView extends View {
      */
     private String[] color = {"#bbbbbb", "#aaaaaa", "#999999", "#888888", "#777777", "#666666",};
 
+    private boolean isViewFinishing = false;
+
     public IOSLoadingView(Context context) {
         this(context, null);
     }
@@ -114,10 +116,17 @@ public class IOSLoadingView extends View {
             pos = 0;
         }
 
+        if (isViewFinishing)return;
         postInvalidateDelayed(100);  //一个周期用时1200
     }
 
-//    public void setStartAnimal() {
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        isViewFinishing = true;
+    }
+
+    //    public void setStartAnimal() {
 //        ValueAnimator valueAnimator = ValueAnimator.ofInt(0, 12);
 //        valueAnimator.setDuration(1500);
 //        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
