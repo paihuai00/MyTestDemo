@@ -25,4 +25,7 @@
     <color name="blue_end">#fda000</color>
     <color name="purple_light">#e488ff</color>
 
+    <color name="tab_select_color">#FE6C03</color>
+
+    <color name="tab_text_color">#454545</color>
 </resources>

@@ -13,6 +13,9 @@ import android.widget.TextView;
 import com.csx.mlibrary.base.BaseActivity;
 import com.csx.mytestdemo.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Author: cuishuxiang
  * Date: 2020/6/19 15:26
@@ -25,6 +28,8 @@ public class CustomViewsActivity extends BaseActivity {
     private ImageView iv_load;
 
     ColorProgress cpv;
+
+    private MyTabView mYPKTabLayoutView;
 
     @Override
     public int getLayoutId() {
@@ -40,6 +45,28 @@ public class CustomViewsActivity extends BaseActivity {
 
 
         initProgress();
+
+        initTab();
+    }
+
+
+    /**
+     * 自定义指示器
+     */
+    private void initTab() {
+        mYPKTabLayoutView = findViewById(R.id.mYPKTabLayoutView);
+        List<String> stringList = new ArrayList<>();
+        stringList.add("标题1");
+        stringList.add("标题2");
+        stringList.add("标题3");
+
+        mYPKTabLayoutView.setTabTextList(stringList);
+
+        mYPKTabLayoutView.addTabSelectedListener(tabPosition -> {
+            showShortToast("点击了："+tabPosition);
+        });
+
+
     }
 
     private void initProgress() {
