@@ -55,7 +55,7 @@ public class ColorProgress extends View {
     //双螺旋图片是否绘制成功
     boolean isColorsBP = false;
 
-    private int bgColor = Color.LTGRAY;
+    private int bgColor = Color.parseColor("#F3F7F8");
     private int progressColor = Color.parseColor("#7263ff");    //进度条颜色一
     private int progressColor2 = Color.parseColor("#674EFF");  //进度条颜色二
 
@@ -65,15 +65,17 @@ public class ColorProgress extends View {
 
     PorterDuffXfermode porterDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.SRC_IN);
 
-    private boolean isNeedAnim = true;//是否需要动画
+    private boolean isNeedAnim = false;//是否需要动画
 
     //执行的动画
     private AnimatorSet mAnimatorSet;
-    private int mDuration = 5000;//间隔越小，动画执行越快
+    private ValueAnimator mAlternateAnim;//交替动画
+    private int mDuration = 4000;//间隔越小，动画执行越快
 
 
     private Path mProgressPath;
     private Path mBgPath;
+
 
     public ColorProgress(Context context) {
         this(context, null);
@@ -89,10 +91,12 @@ public class ColorProgress extends View {
     }
 
     private void init() {
-        paint = new Paint();
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.FILL);
-        paint.setStrokeWidth(1f);
+//        paint.setStrokeWidth(1f);
+        //关闭硬件加速，部分手机使用  Xfermode 会不显示
+        setLayerType(View.LAYER_TYPE_SOFTWARE, null);
     }
 
     private int getMeasurement(int measureSpec, int defaultSize) {
@@ -165,16 +169,21 @@ public class ColorProgress extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        //防止需要动画，没开启的bug
+        if (isNeedAnim && mAlternateAnim != null && !mAlternateAnim.isRunning()) {
+            mAlternateAnim.start();
+        }
+
         drawBg(canvas);
 
         int layerId = canvas.saveLayer(0, 0, getWidth(), getHeight(), null, Canvas.ALL_SAVE_FLAG);
 
         //进度条进度区域
-        if (mProgressPath==null)mProgressPath = new Path();
+        if (mProgressPath == null) mProgressPath = new Path();
         mProgressPath.reset();
         RectF progressRect = new RectF(0f, 0f, progressLength, mHeight);
         mProgressPath.addRoundRect(progressRect, corners, Path.Direction.CW);
-        areaBp = Bitmap.createBitmap((int) progressLength == 0 ? 1 : (int) progressLength, mHeight, Bitmap.Config.ARGB_8888);
+        areaBp = Bitmap.createBitmap((int) progressLength <= 0 ? 1 : (int) progressLength, mHeight, Bitmap.Config.ARGB_8888);
         Canvas canvas1 = new Canvas(areaBp);
         canvas1.drawPath(mProgressPath, paint);
 
@@ -182,7 +191,7 @@ public class ColorProgress extends View {
         drawProgressWithColor(canvas);
 
 
-        canvas.drawBitmap(areaBp, 0, 0, paint);
+        canvas.drawBitmap(areaBp, -1, 0, paint);
         paint.setXfermode(porterDuffXfermode);
         canvas.drawBitmap(colorsBp, offset, 0, paint);
         paint.setXfermode(null);
@@ -192,6 +201,7 @@ public class ColorProgress extends View {
 
     /**
      * 绘制不同色块
+     *
      * @param canvas
      */
     private void drawProgressWithColor(Canvas canvas) {
@@ -202,7 +212,7 @@ public class ColorProgress extends View {
             int x = -blockWidth * 2;
             int y = mHeight;
             Canvas canvas2 = new Canvas(colorsBp);
-            for (int i = -1; i < (pairCount + 1) * 2; i++) {
+            for (int i = -pairCount; i < (pairCount + 1) * 2; i++) {
                 colorPath1.reset();
                 colorPath1.moveTo(x, y);
                 colorPath1.lineTo(x + blockWidth, 0);
@@ -214,7 +224,7 @@ public class ColorProgress extends View {
                 canvas2.drawPath(colorPath1, paint);
 
 
-                x += blockWidth;
+                x += blockWidth-2;//坐标移动小一像素，两个色块中会有白线
                 colorPath2.reset();
                 colorPath2.moveTo(x, y);
                 colorPath2.lineTo(x + blockWidth, 0);
@@ -224,7 +234,7 @@ public class ColorProgress extends View {
                 colorPath2.close();
                 paint.setColor(progressColor2);
                 canvas2.drawPath(colorPath2, paint);
-                x += blockWidth;
+                x += blockWidth-2;
             }
             isColorsBP = true;
         }
@@ -238,7 +248,8 @@ public class ColorProgress extends View {
      */
     private void drawBg(Canvas canvas) {
         //画背景 , 裁剪
-        mBgPath = new Path();
+        if (mBgPath == null) mBgPath = new Path();
+        mBgPath.reset();
         mBgPath.addRoundRect(new RectF(0, 0, mWidth, mHeight), corners, Path.Direction.CW);
         canvas.clipPath(mBgPath);
         canvas.drawColor(bgColor);//绘制背景颜色
@@ -248,45 +259,63 @@ public class ColorProgress extends View {
      * 开启动画
      */
     public void startAnim() {
-        postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ValueAnimator valueAnimator1 = ValueAnimator.ofFloat(1f, mWidth);
-                valueAnimator1.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        progressLength = (float) animation.getAnimatedValue();
+//        postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                //进度条 0 - mWidth 动画
+//                ValueAnimator valueAnimator1 = ValueAnimator.ofFloat(1f, mWidth);
+//                valueAnimator1.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//                    @Override
+//                    public void onAnimationUpdate(ValueAnimator animation) {
+//                        progressLength = (float) animation.getAnimatedValue();
+//
+//                        if (progressLength > mWidth * curProgressPercent / 100) {
+//                            progressLength = mWidth * curProgressPercent / 100;
+//                        }
+//
+//                        invalidate();
+//                    }
+//                });
+//
+//                valueAnimator1.setDuration(mDuration / 3);
+//                valueAnimator1.setInterpolator(new LinearInterpolator());
+//
+//                ValueAnimator valueAnimator2 = ValueAnimator.ofFloat(-mWidth, 0);
+//                valueAnimator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//                    @Override
+//                    public void onAnimationUpdate(ValueAnimator animation) {
+//                        offset = (float) animation.getAnimatedValue();
+//                        invalidate();
+//                    }
+//                });
+//                valueAnimator2.setDuration(mDuration);
+//                valueAnimator2.setRepeatMode(ValueAnimator.RESTART);
+//                valueAnimator2.setRepeatCount(ValueAnimator.INFINITE);
+//                valueAnimator2.setInterpolator(new LinearInterpolator());
+//
+//                mAnimatorSet = new AnimatorSet();
+//                mAnimatorSet.playTogether(valueAnimator1, valueAnimator2);
+//                mAnimatorSet.start();
+//            }
+//        }, 500);
 
-                        if (progressLength > mWidth * curProgressPercent / 100) {
-                            progressLength = mWidth * curProgressPercent / 100;
-                        }
+        //交替动画
+        if (mAlternateAnim == null) {
+            mAlternateAnim = ValueAnimator.ofFloat(-mWidth, 0);
+            mAlternateAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    offset = (float) animation.getAnimatedValue();
+                    invalidate();
+                }
+            });
+            mAlternateAnim.setDuration(mDuration);
+            mAlternateAnim.setRepeatMode(ValueAnimator.RESTART);
+            mAlternateAnim.setRepeatCount(ValueAnimator.INFINITE);
+            mAlternateAnim.setInterpolator(new LinearInterpolator());
+        }
 
-                        invalidate();
-                    }
-                });
-
-                valueAnimator1.setDuration(mDuration);
-                valueAnimator1.setInterpolator(new LinearInterpolator());
-
-                ValueAnimator valueAnimator2 = ValueAnimator.ofFloat(-mWidth, 0);
-                valueAnimator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        offset = (float) animation.getAnimatedValue();
-                        invalidate();
-                    }
-                });
-                valueAnimator2.setDuration(mDuration);
-                valueAnimator2.setRepeatMode(ValueAnimator.RESTART);
-                valueAnimator2.setRepeatCount(ValueAnimator.INFINITE);
-                valueAnimator2.setInterpolator(new LinearInterpolator());
-
-                mAnimatorSet = new AnimatorSet();
-                mAnimatorSet.playTogether(valueAnimator1, valueAnimator2);
-                mAnimatorSet.start();
-            }
-        }, 500);
-
+        if (!mAlternateAnim.isRunning())mAlternateAnim.start();
     }
 
     /**
@@ -295,27 +324,33 @@ public class ColorProgress extends View {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if (mAnimatorSet != null && mAnimatorSet.isRunning()) mAnimatorSet.cancel();
+        release();//资源释放
     }
 
     /**
      * 设置当前进度百分比 - 无动画
+     *
      * @param curProgressPercent
      */
     public void setCurProgressPercent(@IntRange(from = 0, to = 100) int curProgressPercent) {
         this.curProgressPercent = curProgressPercent;
         isNeedAnim = false;
+        progressLength = mWidth * curProgressPercent / 100;
+        postInvalidate();
     }
 
     /**
      * 设置当前进度百分比 - 动画
+     *
      * @param curProgressPercent
      */
     public void setCurProgressPercentWithAnim(@IntRange(from = 0, to = 100) int curProgressPercent) {
         if (curProgressPercent < 0) curProgressPercent = 0;
         if (curProgressPercent > 100) curProgressPercent = 100;
         this.curProgressPercent = curProgressPercent;
+        progressLength = mWidth * curProgressPercent / 100;
         isNeedAnim = true;
+        postInvalidate();
     }
 
 
@@ -356,4 +391,18 @@ public class ColorProgress extends View {
         return result;
     }
 
+    /**
+     * 资源释放
+     */
+    public void release() {
+        isNeedAnim = false;
+        if (mAnimatorSet != null && mAnimatorSet.isRunning()) {
+            mAlternateAnim.removeAllUpdateListeners();
+            mAnimatorSet.cancel();
+        }
+        if (mAlternateAnim != null && mAlternateAnim.isRunning()) {
+            mAlternateAnim.removeAllUpdateListeners();
+            mAlternateAnim.cancel();
+        }
+    }
 }

@@ -3,18 +3,26 @@ package com.csx.mytestdemo.custom_views;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
+import android.os.Environment;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.csx.mlibrary.base.BaseActivity;
+import com.csx.mlibrary.utils.ToastUtils;
 import com.csx.mytestdemo.R;
+import com.csx.mytestdemo.custom_views.music_circle.CircularMusicProgressBar;
+import com.csx.mytestdemo.custom_views.music_circle.OnCircularSeekBarChangeListener;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Author: cuishuxiang
@@ -30,6 +38,7 @@ public class CustomViewsActivity extends BaseActivity {
     ColorProgress cpv;
 
     private MyTabView mYPKTabLayoutView;
+    private CircularMusicProgressBar mCircularMusicProgressBar;
 
     @Override
     public int getLayoutId() {
@@ -47,6 +56,47 @@ public class CustomViewsActivity extends BaseActivity {
         initProgress();
 
         initTab();
+
+        initMusicCircle();
+
+        try {
+            File file = new File(Environment.getExternalStorageDirectory().getAbsoluteFile() + File.separator + "mask22", "child.txt");
+            file.mkdirs();
+
+            file.createNewFile();
+
+
+        } catch (Exception e) {
+
+        }
+    }
+
+    private void initMusicCircle() {
+        Random random = new Random();
+
+        mCircularMusicProgressBar = findViewById(R.id.music_circle);
+        mCircularMusicProgressBar.setImageResource(R.mipmap.ic_launcher);
+        mCircularMusicProgressBar.setOnCircularBarChangeListener(new OnCircularSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(CircularMusicProgressBar circularBar, int progress, boolean fromUser) {
+                Log.d(TAG, "onProgressChanged: progress: " + progress + " / from user? " + fromUser);
+            }
+
+            @Override
+            public void onClick(CircularMusicProgressBar circularBar) {
+                float percent = random.nextInt(100);
+                mCircularMusicProgressBar.setValue(percent);
+
+            }
+
+            @Override
+            public void onLongPress(CircularMusicProgressBar circularBar) {
+                Log.d(TAG, "onLongPress");
+            }
+
+        });
+
+        mCircularMusicProgressBar.setValue(20f);
     }
 
 
@@ -63,7 +113,7 @@ public class CustomViewsActivity extends BaseActivity {
         mYPKTabLayoutView.setTabTextList(stringList);
 
         mYPKTabLayoutView.addTabSelectedListener(tabPosition -> {
-            showShortToast("点击了："+tabPosition);
+            showShortToast("点击了：" + tabPosition);
         });
 
 
@@ -71,13 +121,19 @@ public class CustomViewsActivity extends BaseActivity {
 
     private void initProgress() {
         cpv = findViewById(R.id.cpv);
-        cpv.setCurProgressPercentWithAnim(10);
+        cpv.setCurProgressPercent(10);
 //        cpv.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                cpv.setCurProgressPercentWithAnim(10);
 //            }
 //        });
+        cpv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cpv.setCurProgressPercent(20);
+            }
+        });
     }
 
 
@@ -96,10 +152,9 @@ public class CustomViewsActivity extends BaseActivity {
 //
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.btn_photo_nor);
 
-        ImageSpan span = new MyImageSpan(this,bitmap);
+        ImageSpan span = new MyImageSpan(this, bitmap);
         spannableString.setSpan(span, 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
         tv_content.setText(spannableString);
-
 
 
     }
