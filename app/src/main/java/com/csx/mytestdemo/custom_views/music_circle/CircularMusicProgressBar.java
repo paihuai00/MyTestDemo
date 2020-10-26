@@ -27,7 +27,11 @@ import android.view.MotionEvent;
 
 import com.csx.mytestdemo.R;
 
-
+/**
+ * 原型头像 + 进度条
+ *
+ * https://github.com/aliab/circular-music-progressbar
+ */
 public class CircularMusicProgressBar extends AppCompatImageView {
 
     private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
